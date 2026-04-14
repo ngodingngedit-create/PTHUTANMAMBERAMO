@@ -103,18 +103,18 @@ defineProps({ t: Object, lang: String })
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-size: clamp(2.5rem, 8vw, 5.2rem);
   font-weight: 900;
-  line-height: 1.05;
-  margin-bottom: 32px;
+  line-height: 1.1;
+  margin-bottom: 24px;
   color: #ffffff;
   letter-spacing: -0.02em;
 }
 
 .hero-subtitle {
-  font-size:normal;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: #ffffff;
-  max-width: 780px;
+  max-width: 850px;
   margin: 0 auto 56px;
   line-height: 1.7;
   font-weight: 400;
@@ -158,7 +158,56 @@ defineProps({ t: Object, lang: String })
 }
 
 @media (max-width: 768px) {
-  .hero-glass-panel { padding: 48px 24px; }
-  .hero-title { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center !important;
+    padding: 0 20px;
+  }
+  .hero-wrapper { 
+    padding: 0;
+    width: 100%;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .hero-content { 
+    width: 100%; 
+    max-width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .hero-glass-panel { 
+    padding: 24px 10px; 
+    display: flex !important; 
+    flex-direction: column !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    background: transparent; /* Remove background on mobile for cleaner look if needed */
+    box-shadow: none;
+  }
+  .hero-title { 
+    font-size: clamp(1.8rem, 8.5vw, 2.8rem); 
+    text-align: center !important; 
+    width: 100% !important;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+    display: block !important;
+  }
+  .hero-subtitle { 
+    text-align: center !important; 
+    font-size: 0.95rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto 30px !important;
+    line-height: 1.6;
+    display: block !important;
+  }
 }
 </style>

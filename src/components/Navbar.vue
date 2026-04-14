@@ -2,18 +2,7 @@
   <nav class="navbar" :class="{ scrolled: isScrolled || !isHome }">
     <div class="container nav-inner">
       <router-link to="/" class="nav-logo">
-        <div class="logo-icon">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path d="M16 2L4 10v12l12 8 12-8V10L16 2z" fill="url(#logoGrad)" opacity="0.95"/>
-            <path d="M16 13 L16 22 M13 16 L19 16" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-            <defs>
-              <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
-                <stop offset="0%" stop-color="#2B9090"/>
-                <stop offset="100%" stop-color="#1A6B6B"/>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
+        <img :src="(isScrolled || !isHome) ? '/logo/logo-membrano.png' : '/logo/logo-putih.png'" alt="Logo PT Hutan Harapan" class="logo-image">
         <div class="logo-text">
           <span class="logo-name">PT Hutan Harapan</span>
           <span class="logo-sub">Memberamo</span>
@@ -88,7 +77,12 @@
     <!-- Mobile Sidebar -->
     <div class="sidebar-overlay" :class="{ open: menuOpen }" @click="menuOpen = false"></div>
     <div class="sidebar" :class="{ open: menuOpen }">
-      <button class="close-sidebar" @click="menuOpen = false">&times;</button>
+      <button class="close-sidebar" @click="menuOpen = false" aria-label="Close Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
       <ul class="nav-links-mobile">
         <li v-for="link in navLinks" :key="link.id">
           <template v-if="!(link.children || link.megaMenu)">
@@ -96,8 +90,13 @@
           </template>
           
           <template v-else-if="link.children && !link.megaMenu">
-            <div class="mobile-dropdown-title">{{ t.nav[link.key] }}</div>
-            <ul class="mobile-dropdown-list">
+            <div class="mobile-dropdown-title" @click="toggleAccordion(link.key)">
+              <span>{{ t.nav[link.key] }}</span>
+              <svg :class="{'rotated': activeAccordion === link.key}" width="12" height="8" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 1L5 5L9 1"/>
+              </svg>
+            </div>
+            <ul class="mobile-dropdown-list" v-show="activeAccordion === link.key">
               <li v-for="child in link.children" :key="child.id">
                 <router-link :to="child.path" @click="menuOpen = false" active-class="active">{{ t.nav[child.key] }}</router-link>
               </li>
@@ -105,14 +104,21 @@
           </template>
 
           <template v-else-if="link.megaMenu">
-            <div class="mobile-dropdown-title">{{ t.nav[link.key] }}</div>
-            <div v-for="(group, idx) in link.groups" :key="idx" class="mobile-mega-group">
-              <span class="mobile-mega-subtitle">{{ t.nav[group.key] }}</span>
-              <ul class="mobile-dropdown-list">
-                <li v-for="child in group.children" :key="child.id">
-                  <router-link :to="child.path" @click="menuOpen = false" active-class="active">{{ t.nav[child.key] }}</router-link>
-                </li>
-              </ul>
+            <div class="mobile-dropdown-title" @click="toggleAccordion(link.key)">
+              <span>{{ t.nav[link.key] }}</span>
+              <svg :class="{'rotated': activeAccordion === link.key}" width="12" height="8" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 1L5 5L9 1"/>
+              </svg>
+            </div>
+            <div v-show="activeAccordion === link.key" class="mobile-accordion-content">
+              <div v-for="(group, idx) in link.groups" :key="idx" class="mobile-mega-group">
+                <span class="mobile-mega-subtitle">{{ t.nav[group.key] }}</span>
+                <ul class="mobile-dropdown-list">
+                  <li v-for="child in group.children" :key="child.id">
+                    <router-link :to="child.path" @click="menuOpen = false" active-class="active">{{ t.nav[child.key] }}</router-link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </template>
         </li>
@@ -138,8 +144,13 @@ defineEmits(['set-lang'])
 
 const isScrolled = ref(false)
 const menuOpen = ref(false)
+const activeAccordion = ref(null)
 const route = useRoute()
 const isHome = computed(() => route.path === '/')
+
+function toggleAccordion(key) {
+  activeAccordion.value = activeAccordion.value === key ? null : key
+}
 
 const navLinks = [
   { id: 'home', key: 'home', path: '/' },
@@ -285,13 +296,11 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   gap: 20px;
 }
 
-.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-.logo-icon {
-  width: 42px; height: 42px;
-  background: linear-gradient(135deg, #2B9090, #1A6B6B);
-  border-radius: 11px;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 14px rgba(43,144,144,0.25);
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+.logo-image {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
 }
 .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
 .logo-name { font-family: 'Poppins', sans-serif; font-size: 0.84rem; font-weight: 700; }
@@ -401,8 +410,8 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(4px);
-  border-radius: 10px;
-  padding: 8px 8px;
+  border-radius: 12px;
+  padding: 10px 12px;
   display: flex; align-items: center; gap: 8px;
   cursor: pointer; transition: all 0.3s;
   color: white;
@@ -419,7 +428,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   background: rgba(43,144,144,0.06);
 }
 .lang-active-btn img {
-  width: 29px; height: auto; border-radius: 2px; display: block;
+  width: 34px; height: auto; border-radius: 3px; display: block;
 }
 .lang-switch-wrapper:hover .dropdown-arrow { transform: rotate(180deg); }
 
@@ -442,13 +451,13 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   top: -15px; left: 0; right: 0; height: 15px;
 }
 .lang-dropdown button {
-  width: 100%; display: flex; align-items: center; gap: 10px;
-  background: transparent; border: none; padding: 10px 14px;
+  width: 100%; display: flex; align-items: center; gap: 12px;
+  background: transparent; border: none; padding: 12px 14px;
   border-radius: 8px; cursor: pointer; color: #5A7070; font-weight: 500;
-  font-size: 0.9rem; transition: all 0.2s;
+  font-size: 0.95rem; transition: all 0.2s;
 }
 .lang-dropdown button img {
-  width: 20px; height: auto; border-radius: 2px; display: block;
+  width: 26px; height: auto; border-radius: 2px; display: block;
 }
 .lang-dropdown button:hover, .lang-dropdown button.active {
   background: rgba(43,144,144,0.08); color: #1A6B6B;
@@ -468,51 +477,78 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 .sidebar-overlay.open { opacity: 1; visibility: visible; }
 
 .sidebar {
-  position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
-  background: white; z-index: 2000; padding: 80px 24px 24px;
-  box-shadow: -4px 0 24px rgba(26,107,107,0.1);
-  overflow-y: auto; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: fixed; top: 0; right: -100%; width: 300px; height: 100vh;
+  background: rgba(255, 255, 255, 0.98); 
+  backdrop-filter: blur(25px);
+  z-index: 2000; padding: 100px 24px 40px;
+  box-shadow: -10px 0 40px rgba(26,107,107,0.15);
+  overflow-y: auto; transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
 }
 .sidebar.open { right: 0; }
 
 .close-sidebar {
-  position: absolute; top: 24px; right: 24px;
-  background: transparent; border: none; font-size: 2rem;
-  color: #1A6B6B; cursor: pointer; line-height: 1;
+  position: absolute; top: 30px; right: 24px;
+  width: 44px; height: 44px;
+  background: #F4FAFA; border: 1px solid rgba(43,144,144,0.1);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: #1A6B6B; cursor: pointer; transition: all 0.3s;
 }
+.close-sidebar:hover { background: #1A6B6B; color: white; transform: rotate(90deg); }
 
-.nav-links-mobile { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px; }
-.nav-links-mobile a {
-  text-decoration: none; color: #5A7070; font-weight: 600;
-  display: block; font-size: 1rem; transition: color 0.3s;
+.nav-links-mobile { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 40px; }
+.nav-links-mobile > li > a {
+  text-decoration: none; color: #1A2A2A; font-weight: 700;
+  display: block; font-size: 1.1rem; padding: 14px 16px;
+  border-radius: 12px; transition: all 0.3s;
 }
-.nav-links-mobile a.active { color: #1A6B6B; }
+.nav-links-mobile > li > a:active, .nav-links-mobile > li > a.active { 
+  background: rgba(43,144,144,0.08); color: #1A6B6B; 
+}
 
 .mobile-dropdown-title {
-  font-size: 0.9rem; font-weight: 700; color: #1A6B6B;
-  margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid rgba(43,144,144,0.1);
-  text-transform: uppercase; letter-spacing: 0.5px;
+  display: flex; align-items: center; justify-content: space-between; cursor: pointer;
+  font-size: 1rem; font-weight: 700; color: #1A2A2A;
+  margin-bottom: 4px; padding: 14px 16px; border-radius: 12px;
+  text-transform: uppercase; letter-spacing: 0.8px; transition: all 0.3s;
 }
-.mobile-dropdown-list { list-style: none; padding-left: 12px; display: flex; flex-direction: column; gap: 8px; }
-.mobile-mega-group { margin-bottom: 12px; }
+.mobile-dropdown-title:hover { background: rgba(43,144,144,0.05); }
+.mobile-dropdown-title svg { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); color: #2B9090; }
+.mobile-dropdown-title svg.rotated { transform: rotate(180deg); color: #1A6B6B; }
+.mobile-accordion-content { padding-left: 12px; padding-bottom: 10px; margin-top: 4px; }
+
+.mobile-dropdown-list { list-style: none; padding-left: 12px; display: flex; flex-direction: column; gap: 6px; border-left: 2px solid rgba(43,144,144,0.1); margin-left: 16px; }
+.mobile-mega-group { margin-bottom: 16px; }
 .mobile-mega-subtitle {
-  display: block; font-size: 0.85rem; font-weight: 700; color: #2F327D;
-  margin-bottom: 6px; text-transform: uppercase;
+  display: block; font-size: 0.8rem; font-weight: 800; color: #2F327D;
+  margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; padding-left: 14px;
 }
-.mobile-dropdown-list a { font-size: 0.95rem; font-weight: 500; }
+.mobile-dropdown-list a { 
+  font-size: 0.95rem; font-weight: 500; color: #5A7070; padding: 8px 14px; border-radius: 8px;
+}
+.mobile-dropdown-list a.active { color: #1A6B6B; background: rgba(43,144,144,0.06); }
 
 .mobile-lang {
-  display: flex; gap: 10px; padding-top: 20px; border-top: 1px solid rgba(43,144,144,0.1);
+  display: flex; background: #F4FAFA; padding: 6px; border-radius: 50px;
+  border: 1px solid rgba(43,144,144,0.15); margin-top: 20px;
 }
 .mobile-lang .lang-btn {
-  background: #F4FAFA; border: 1px solid rgba(43,144,144,0.2);
-  color: #1A6B6B; font-weight: 600; padding: 8px 16px; flex: 1;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
+  border: none; background: transparent;
+  color: #5A7070; font-weight: 700; padding: 12px 10px; border-radius: 50px;
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; 
+  font-size: 0.9rem; transition: all 0.3s;
 }
-.mobile-lang .lang-btn.active { background: #1A6B6B; color: white; }
+.mobile-lang .lang-btn img { width: 22px; height: auto; border-radius: 2px; filter: grayscale(0.5); transition: all 0.3s; }
+.mobile-lang .lang-btn.active { background: white; color: #1A6B6B; box-shadow: 0 4px 12px rgba(26,107,107,0.1); }
+.mobile-lang .lang-btn.active img { filter: grayscale(0); }
 
 @media (max-width: 960px) {
   .nav-links, .nav-cta, .lang-switch-wrapper { display: none; }
   .hamburger { display: flex; }
+  
+  .logo-image { height: 26px; }
+  .logo-name { font-size: 0.75rem; }
+  .logo-sub { font-size: 0.6rem; }
+  .nav-logo { gap: 8px; }
 }
 </style>

@@ -5,18 +5,7 @@
         <!-- Brand -->
         <div class="footer-brand">
           <router-link to="/" class="footer-logo">
-            <div class="logo-icon-sm">
-              <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
-                <path d="M16 2L4 10v12l12 8 12-8V10L16 2z" fill="url(#fLogoGrad)" opacity="0.9"/>
-                <path d="M16 13 L16 22 M13 16 L19 16" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                <defs>
-                  <linearGradient id="fLogoGrad" x1="0" y1="0" x2="32" y2="32">
-                    <stop offset="0%" stop-color="#2B9090"/>
-                    <stop offset="100%" stop-color="#1A6B6B"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+            <img src="/logo/logo-membrano.png" alt="Logo PT Hutan Harapan Memberamo" class="footer-logo-img">
             <div class="footer-logo-text">
               <span class="fl-name">PT Hutan Harapan Memberamo</span>
               <span class="fl-sub">Carbon Credit · Papua · Since 2026</span>
@@ -115,14 +104,10 @@ defineProps({ t: Object, lang: String })
   text-decoration: none;
 }
 
-.logo-icon-sm {
-  width: 38px;
+.footer-logo-img {
   height: 38px;
-  background: linear-gradient(135deg, #2B9090, #1A6B6B);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: auto;
+  object-fit: contain;
   flex-shrink: 0;
 }
 

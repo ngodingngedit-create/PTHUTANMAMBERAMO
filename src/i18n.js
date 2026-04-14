@@ -22,7 +22,7 @@ export const translations = {
       mission: 'Misi',
       manifesto: 'Manifesto',
       career_group: 'Karir',
-      life_at: 'Kehidupan di EKI',
+      life_at: 'Kehidupan di',
       values: 'Nilai Kami',
       openings: 'Lowongan Tersedia',
       media_group: 'Media & Blog',
