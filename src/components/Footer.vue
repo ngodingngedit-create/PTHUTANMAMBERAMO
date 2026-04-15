@@ -60,6 +60,39 @@
           </div>
         </div>
       </div>
+<!-- Associations & Accreditations -->
+      <!--  -->
+      <div class="footer-associations">
+        <div class="container">
+          <div class="assoc-header">
+            <span class="assoc-divider"></span>
+            <span class="assoc-title">{{ t.footer.associations_title }}</span>
+            <span class="assoc-divider"></span>
+          </div>
+          <div class="assoc-grid">
+            <div class="assoc-item">
+              <img src="/associtions/cmai.png" alt="CMAI" class="assoc-logo">
+              <!-- <span class="assoc-name">CMAI</span> -->
+            </div>
+            <div class="assoc-item">
+              <img src="/associtions/ch.png" alt="CH" class="assoc-logo">
+              <!-- <span class="assoc-name">CH</span> -->
+            </div>
+            <div class="assoc-item">
+              <img src="/associtions/ficci.png" alt="FICCI" class="assoc-logo">
+              <!-- <span class="assoc-name">FICCI</span> -->
+            </div>
+            <div class="assoc-item">
+              <img src="/associtions/icroa.png" alt="ICROA" class="assoc-logo">
+              <!-- <span class="assoc-name">ICROA</span> -->
+            </div>
+            <div class="assoc-item">
+              <img src="/associtions/sepc.png" alt="SEPC" class="assoc-logo">
+              <!-- <span class="assoc-name">SEPC</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Bottom Bar -->
@@ -213,6 +246,84 @@ defineProps({ t: Object, lang: String })
   color: #2B9090;
   margin-top: 2px;
   flex-shrink: 0;
+}
+
+/* Associations */
+.footer-associations {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(43,144,144,0.08);
+}
+
+.assoc-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.assoc-divider {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(43,144,144,0.15), transparent);
+}
+
+.assoc-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #8FA8A8;
+  white-space: nowrap;
+}
+
+.assoc-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.assoc-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: #1A2A2A;
+  border: 1px solid rgba(43,144,144,0.3);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.assoc-item:hover {
+  border-color: #2B9090;
+  box-shadow: 0 4px 12px rgba(26,107,107,0.06);
+  transform: translateY(-2px);
+}
+
+.assoc-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.assoc-name {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #8FA8A8;
+  letter-spacing: 0.05em;
+}
+
+.text-badge {
+  background: rgba(43, 144, 144, 0.03);
+  padding: 10px 18px;
+}
+
+.assoc-item:hover .assoc-name {
+  color: #FFFFFF;
 }
 
 /* Bottom */

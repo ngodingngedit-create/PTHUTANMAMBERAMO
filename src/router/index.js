@@ -17,6 +17,13 @@ import ManifestoView from '../views/ManifestoView.vue'
 import LifeAtView from '../views/LifeAtView.vue'
 import ValuesView from '../views/ValuesView.vue'
 import OpeningsView from '../views/OpeningsView.vue'
+import LoginView from '../views/LoginView.vue'
+import SignupView from '../views/SignupView.vue'
+import ProfileView from '../views/ProfileView.vue'
+import JobsView from '../views/JobsView.vue'
+import JobDetailView from '../views/JobDetailView.vue'
+import ApplyJobView from '../views/ApplyJobView.vue'
+import ApplySuccessView from '../views/ApplySuccessView.vue'
 const routes = [
   { path: '/', name: 'Home', component: HomeView },
   { path: '/about', name: 'About', component: AboutView },
@@ -36,6 +43,13 @@ const routes = [
   { path: '/life-at', name: 'LifeAt', component: LifeAtView },
   { path: '/values', name: 'Values', component: ValuesView },
   { path: '/openings', name: 'Openings', component: OpeningsView },
+  { path: '/login', name: 'Login', component: LoginView },
+  { path: '/signup', name: 'Signup', component: SignupView },
+  { path: '/profile', name: 'Profile', component: ProfileView },
+  { path: '/jobs', name: 'Jobs', component: JobsView },
+  { path: '/job-detail', name: 'JobDetail', component: JobDetailView },
+  { path: '/apply-job', name: 'ApplyJob', component: ApplyJobView },
+  { path: '/apply-success', name: 'ApplySuccess', component: ApplySuccessView }
 ]
 
 const router = createRouter({

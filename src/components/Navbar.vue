@@ -12,7 +12,7 @@
       <ul class="nav-links">
         <li v-for="link in navLinks" :key="link.id" :class="{ 'has-dropdown': link.children || link.megaMenu, 'is-mega': link.megaMenu }">
           <router-link v-if="!(link.children || link.megaMenu)" :to="link.path" active-class="active">
-            {{ t.nav[link.key] }}
+            {{ t.nav[link.key] || link.defaultLabel }}
           </router-link>
           
           <div v-else class="dropdown-toggle">
@@ -24,7 +24,7 @@
             <ul v-if="link.children && !link.megaMenu" class="dropdown-menu">
               <li v-for="child in link.children" :key="child.id">
                 <router-link :to="child.path" active-class="active">
-                  {{ t.nav[child.key] }}
+                  {{ t.nav[child.key] || child.defaultLabel }}
                 </router-link>
               </li>
             </ul>
@@ -68,6 +68,11 @@
             </li>
           </ul>
         </div>
+
+        <router-link to="/login" class="profile-btn" aria-label="User Profile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </router-link>
+
         <button class="hamburger" @click="menuOpen = true" :class="{ open: menuOpen }" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -86,7 +91,7 @@
       <ul class="nav-links-mobile">
         <li v-for="link in navLinks" :key="link.id">
           <template v-if="!(link.children || link.megaMenu)">
-            <router-link :to="link.path" @click="menuOpen = false" active-class="active">{{ t.nav[link.key] }}</router-link>
+            <router-link :to="link.path" @click="menuOpen = false" active-class="active">{{ t.nav[link.key] || link.defaultLabel }}</router-link>
           </template>
           
           <template v-else-if="link.children && !link.megaMenu">
@@ -131,6 +136,12 @@
           <img src="/button_leaguage/english.png" alt="English"> English
         </button>
       </div>
+
+      <router-link to="/login" class="mobile-profile-btn" @click="menuOpen = false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Login / Profile
+      </router-link>
+
     </div>
   </nav>
 </template>
@@ -197,12 +208,7 @@ const navLinks = [
       { id: 'methodology', key: 'methodology', path: '/methodology' }
     ]
   },
-  {
-    id: 'engage', key: 'engage',
-    children: [
-      // { id: 'partnership', key: 'partnership', path: '/partnership' }
-    ]
-  },
+  { id: 'career_btn', key: 'career', defaultLabel: 'Career', path: '/career' },
   { id: 'investor', key: 'investor', path: '/investor' },
   { id: 'contact', key: 'contact', path: '/contact' },
 ]
@@ -432,6 +438,26 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 }
 .lang-switch-wrapper:hover .dropdown-arrow { transform: rotate(180deg); }
 
+.profile-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white; transition: all 0.3s; backdrop-filter: blur(4px);
+}
+.navbar.scrolled .profile-btn {
+  background: #F4FAFA; border-color: rgba(43,144,144,0.2); color: #1A6B6B;
+}
+.profile-btn:hover {
+  background: rgba(255, 255, 255, 0.25); transform: translateY(-2px);
+}
+.navbar.scrolled .profile-btn:hover {
+  background: rgba(43,144,144,0.06);
+}
+.lang-active-btn img {
+  width: 34px; height: auto; border-radius: 3px; display: block;
+}
+.lang-switch-wrapper:hover .dropdown-arrow { transform: rotate(180deg); }
+
 .lang-dropdown {
   position: absolute; top: calc(100% + 15px); right: 0;
   background: rgba(255, 255, 255, 0.97); 
@@ -542,8 +568,18 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 .mobile-lang .lang-btn.active { background: white; color: #1A6B6B; box-shadow: 0 4px 12px rgba(26,107,107,0.1); }
 .mobile-lang .lang-btn.active img { filter: grayscale(0); }
 
+.mobile-profile-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: #1A6B6B; color: white; padding: 14px; border-radius: 12px;
+  text-decoration: none; font-weight: 700; font-size: 1rem;
+  margin-top: 15px; transition: all 0.3s; text-align: center;
+}
+.mobile-profile-btn:hover {
+  background: #2B9090; transform: translateY(-2px);
+}
+
 @media (max-width: 960px) {
-  .nav-links, .nav-cta, .lang-switch-wrapper { display: none; }
+  .nav-links, .nav-cta, .lang-switch-wrapper, .profile-btn { display: none; }
   .hamburger { display: flex; }
   
   .logo-image { height: 26px; }

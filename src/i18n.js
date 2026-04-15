@@ -176,6 +176,17 @@ export const translations = {
       quick_links: 'Tautan Cepat',
       methodology_label: 'Metodologi',
       contact_label: 'Kontak',
+      associations_title: 'Asosiasi & Akreditasi',
+    },
+    clients: {
+      section_tag: 'Klien Kami',
+      title: 'Kepercayaan Global untuk Masa Depan Hijau',
+      subtitle: 'Kami bangga bekerja sama dengan organisasi terkemuka dunia dalam upaya mitigasi krisis iklim.',
+      shell_desc: 'Raksasa energi global yang beralih ke solusi rendah karbon.',
+      vitol_desc: 'Pedagang komoditas energi terbesar di dunia.',
+      kec_desc: 'Pemimpin infrastruktur transmisi tenaga listrik global.',
+      nestle_desc: 'Perusahaan makanan terkemuka dengan target Net Zero ambisius.',
+      zomato_desc: 'Platform teknologi yang berkomitmen pada pengiriman ramah lingkungan.'
     },
   },
   en: {
@@ -354,6 +365,17 @@ export const translations = {
       quick_links: 'Quick Links',
       methodology_label: 'Methodology',
       contact_label: 'Contact',
+      associations_title: 'Associations & Accreditations',
+    },
+    clients: {
+      section_tag: 'Our Clients',
+      title: 'Global Trust for a Green Future',
+      subtitle: 'We are proud to collaborate with the world\'s leading organizations in climate crisis mitigation efforts.',
+      shell_desc: 'A global energy giant transitioning to low-carbon solutions.',
+      vitol_desc: 'The world\'s largest energy commodity trader.',
+      kec_desc: 'A global leader in power transmission infrastructure.',
+      nestle_desc: 'A leading food company with ambitious Net Zero targets.',
+      zomato_desc: 'A tech platform committed to eco-friendly delivery solutions.'
     },
   },
 }
