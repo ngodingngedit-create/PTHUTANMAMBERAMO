@@ -81,6 +81,8 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
+  margin-top: -60px;
 }
 
 .section-title {

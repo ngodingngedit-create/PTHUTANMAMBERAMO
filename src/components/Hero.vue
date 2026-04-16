@@ -103,7 +103,7 @@ defineProps({ t: Object, lang: String })
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 8vw, 5.2rem);
+  font-size: clamp(2rem, 9vw, 3rem);
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: 24px;

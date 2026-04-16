@@ -50,6 +50,7 @@ const clients = [
 .clients-section {
   background-color: var(--bg-section-alt);
   position: relative;
+  margin-top: -120px;
   overflow: hidden;
 }
 
