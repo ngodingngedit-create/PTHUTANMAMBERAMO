@@ -7,7 +7,9 @@
         
         <!-- Card 1 -->
         <article class="blog-card">
-          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1542601098369-7c0432c0fbdd?q=80&w=2070');"></div>
+          <div class="image-wrapper">
+            <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1542601098369-7c0432c0fbdd?q=80&w=2070');"></div>
+          </div>
           <div class="card-content">
             <div class="meta-info">
               <span class="author">
@@ -20,13 +22,15 @@
               </span>
             </div>
             <h3 class="blog-title">Recruitment Trends in 2026 for Climate & Carbon Markets</h3>
-            <a href="#" class="read-more">Read More <span class="arrow">&rarr;</span></a>
+            <router-link to="/blog" class="read-more">Read More <span class="arrow">&rarr;</span></router-link>
           </div>
         </article>
 
         <!-- Card 2 -->
         <article class="blog-card">
-          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=2070');"></div>
+          <div class="image-wrapper">
+            <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=2070');"></div>
+          </div>
           <div class="card-content">
             <div class="meta-info">
               <span class="author">
@@ -39,13 +43,15 @@
               </span>
             </div>
             <h3 class="blog-title">Our Power, Our Planet: Why Clean Energy is the Future We Must Build Together</h3>
-            <a href="#" class="read-more">Read More <span class="arrow">&rarr;</span></a>
+            <router-link to="/blog" class="read-more">Read More <span class="arrow">&rarr;</span></router-link>
           </div>
         </article>
 
         <!-- Card 3 -->
         <article class="blog-card">
-          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?q=80&w=2070');"></div>
+          <div class="image-wrapper">
+            <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?q=80&w=2070');"></div>
+          </div>
           <div class="card-content">
             <div class="meta-info">
               <span class="author">
@@ -58,7 +64,7 @@
               </span>
             </div>
             <h3 class="blog-title">India's Role in the Global Carbon Credit Market: An Emerging Leader?</h3>
-            <a href="#" class="read-more">Read More <span class="arrow">&rarr;</span></a>
+            <router-link to="/blog" class="read-more">Read More <span class="arrow">&rarr;</span></router-link>
           </div>
         </article>
 
@@ -73,8 +79,10 @@
 <style scoped>
 .latest-blog-section {
   padding: 100px 0;
-  background-color: #FAFCFC;
+  background-color: var(--bg-section-alt, #FAFCFC);
   font-family: 'Poppins', sans-serif;
+  position: relative;
+  z-index: 10;
 }
 
 .container {
@@ -102,41 +110,47 @@
 .blog-card {
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  border: 1px solid rgba(43,144,144,0.08);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
 }
 
 .blog-card:hover {
   transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(26,107,107,0.12);
+  border-color: rgba(43,144,144,0.2);
+}
+
+.image-wrapper {
+  overflow: hidden;
+  height: 240px;
+  width: 100%;
 }
 
 .card-image {
-  height: 250px;
-  border-radius: 20px;
+  height: 100%;
+  width: 100%;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 10px 30px rgba(26,107,107,0.1);
-  position: relative;
-  z-index: 1;
+  transition: transform 0.5s ease;
+}
+
+.blog-card:hover .card-image {
+  transform: scale(1.05);
 }
 
 .card-content {
-  background: white;
-  border-radius: 16px;
   padding: 30px 24px;
-  margin: -60px 20px 0;
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.06);
-  border: 1px solid rgba(43,144,144,0.1);
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
-}
-
-.blog-card:hover .card-content {
-  box-shadow: 0 20px 50px rgba(26,107,107,0.12);
-  border-color: rgba(43,144,144,0.2);
+  flex-grow: 1;
+  background: white;
+  position: relative;
+  z-index: 2;
 }
 
 .meta-info {
@@ -160,11 +174,16 @@
 }
 
 .blog-title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   color: #1A6B6B;
   font-weight: 700;
   line-height: 1.5;
   margin-bottom: 24px;
+  transition: color 0.3s;
+}
+
+.blog-card:hover .blog-title {
+  color: #2B9090;
 }
 
 .read-more {
@@ -194,13 +213,13 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .blog-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .blog-grid {
     grid-template-columns: 1fr;
   }
@@ -208,7 +227,7 @@
     font-size: 2.2rem;
     margin-bottom: 40px;
   }
-  .card-image {
+  .image-wrapper {
     height: 220px;
   }
 }
