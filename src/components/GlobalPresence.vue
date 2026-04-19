@@ -339,6 +339,6 @@ defineProps({ t: Object })
 
 @media (max-width: 480px) {
   .gp-mobile-stats { grid-template-columns: 1fr; }
-  .section-title { font-size: 1.8rem; }
+  .section-title { font-size: 1.35rem; }
 }
 </style>

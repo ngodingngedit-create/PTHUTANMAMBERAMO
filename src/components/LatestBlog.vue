@@ -5,66 +5,24 @@
       
       <div class="blog-grid">
         
-        <!-- Card 1 -->
-        <article class="blog-card">
+        <!-- Dynamic Blog Cards -->
+        <article v-for="post in latestPosts" :key="post.id" class="blog-card">
           <div class="image-wrapper">
-            <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1542601098369-7c0432c0fbdd?q=80&w=2070');"></div>
+            <div class="card-image" :style="{ backgroundImage: `url(${post.image})` }"></div>
           </div>
           <div class="card-content">
             <div class="meta-info">
               <span class="author">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                EKI Energy
+                {{ post.author }}
               </span>
               <span class="date">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                February 3, 2026
+                {{ post.date }}
               </span>
             </div>
-            <h3 class="blog-title">Recruitment Trends in 2026 for Climate & Carbon Markets</h3>
-            <router-link to="/blog" class="read-more">Read More <span class="arrow">&rarr;</span></router-link>
-          </div>
-        </article>
-
-        <!-- Card 2 -->
-        <article class="blog-card">
-          <div class="image-wrapper">
-            <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=2070');"></div>
-          </div>
-          <div class="card-content">
-            <div class="meta-info">
-              <span class="author">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                PT HHM
-              </span>
-              <span class="date">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                April 23, 2025
-              </span>
-            </div>
-            <h3 class="blog-title">Our Power, Our Planet: Why Clean Energy is the Future We Must Build Together</h3>
-            <router-link to="/blog" class="read-more">Read More <span class="arrow">&rarr;</span></router-link>
-          </div>
-        </article>
-
-        <!-- Card 3 -->
-        <article class="blog-card">
-          <div class="image-wrapper">
-            <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?q=80&w=2070');"></div>
-          </div>
-          <div class="card-content">
-            <div class="meta-info">
-              <span class="author">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                EKI Energy
-              </span>
-              <span class="date">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                April 11, 2025
-              </span>
-            </div>
-            <h3 class="blog-title">India's Role in the Global Carbon Credit Market: An Emerging Leader?</h3>
-            <router-link to="/blog" class="read-more">Read More <span class="arrow">&rarr;</span></router-link>
+            <h3 class="blog-title">{{ post.title[lang] || post.title.en }}</h3>
+            <router-link :to="'/blog/' + post.id" class="read-more-btn">Read More <span class="arrow">→</span></router-link>
           </div>
         </article>
 
@@ -74,6 +32,17 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { blogPosts } from '../data/blogPosts';
+
+const props = defineProps({
+  t: Object,
+  lang: { type: String, default: 'en' }
+});
+
+const latestPosts = computed(() => {
+  return blogPosts.slice(0, 3);
+});
 </script>
 
 <style scoped>
@@ -186,33 +155,40 @@
   color: #2B9090;
 }
 
-.read-more {
+.read-more-btn {
   margin-top: auto;
   align-self: flex-start;
-  color: #1A6B6B;
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
+  color: #1A6B6B;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1.5px solid #2B9090;
+  border-radius: 8px;
   transition: all 0.3s ease;
+  background: transparent;
+}
+
+.read-more-btn:hover {
+  background: #1A6B6B;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(26,107,107,0.2);
+}
+
+.read-more-btn:hover .arrow {
+  transform: translateX(3px);
+  display: inline-block;
 }
 
 .arrow {
   transition: transform 0.3s ease;
+  display: inline-block;
 }
 
-.read-more:hover {
-  color: #2B9090;
-}
-
-.read-more:hover .arrow {
-  transform: translateX(5px);
-  color: #D4F442;
-}
-
-/* Responsive Design */
 @media (max-width: 1024px) {
   .blog-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -221,14 +197,50 @@
 
 @media (max-width: 768px) {
   .blog-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 14px;
+    scrollbar-width: thin;
+    scrollbar-color: #1A6B6B rgba(26, 107, 107, 0.08);
+  }
+  .blog-grid::-webkit-scrollbar {
+    height: 3px;
+  }
+  .blog-grid::-webkit-scrollbar-track {
+    background: rgba(26, 107, 107, 0.05);
+    border-radius: 10px;
+  }
+  .blog-grid::-webkit-scrollbar-thumb {
+    background: #1A6B6B;
+    border-radius: 10px;
+  }
+  .blog-card {
+    min-width: 210px;
+    max-width: 210px;
   }
   .section-title {
-    font-size: 2.2rem;
-    margin-bottom: 40px;
+    font-size: 1.5rem;
+    margin-bottom: 28px;
   }
   .image-wrapper {
-    height: 220px;
+    height: 150px;
+  }
+  .card-content {
+    padding: 16px 14px;
+  }
+  .blog-title {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  .meta-info {
+    font-size: 0.72rem;
+    margin-bottom: 10px;
+  }
+  .read-more-btn {
+    font-size: 0.78rem;
+    padding: 6px 12px;
   }
 }
 </style>

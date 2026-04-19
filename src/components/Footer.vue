@@ -7,8 +7,8 @@
           <router-link to="/" class="footer-logo">
             <img src="/logo/logo-membrano.png" alt="Logo PT Hutan Harapan Memberamo" class="footer-logo-img">
             <div class="footer-logo-text">
-              <span class="fl-name">PT Hutan Harapan Memberamo</span>
-              <span class="fl-sub">Carbon Credit · Papua · Since 2026</span>
+              <span class="fl-name">PT Hutan Harapan</span>
+              <span class="fl-sub">Memberamo</span>
             </div>
           </router-link>
           <p class="footer-tagline">{{ t.footer.tagline }}</p>
@@ -18,6 +18,9 @@
             </a>
             <a href="#" class="social-link" aria-label="Email">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             </a>
           </div>
         </div>
@@ -151,16 +154,17 @@ defineProps({ t: Object, lang: String })
 
 .fl-name {
   font-family: 'Poppins', sans-serif;
-  font-size: 0.82rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #1A2A2A;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 .fl-sub {
-  font-size: 0.65rem;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: #6A8080;
-  margin-top: 2px;
+  line-height: 1.1;
 }
 
 .footer-tagline {
@@ -280,21 +284,22 @@ defineProps({ t: Object, lang: String })
 
 .assoc-grid {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 10px;
 }
 
 .assoc-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 16px;
+  gap: 8px;
+  padding: 6px 10px;
   background: #1A2A2A;
   border: 1px solid rgba(43,144,144,0.3);
   border-radius: 8px;
   transition: all 0.3s ease;
+  flex-shrink: 1;
 }
 
 .assoc-item:hover {
@@ -304,7 +309,7 @@ defineProps({ t: Object, lang: String })
 }
 
 .assoc-logo {
-  height: 48px;
+  height: 36px;
   width: auto;
   object-fit: contain;
   transition: all 0.3s ease;
@@ -367,5 +372,17 @@ defineProps({ t: Object, lang: String })
 @media (max-width: 600px) {
   .footer-inner { grid-template-columns: 1fr; gap: 32px; }
   .footer-bottom-inner { flex-direction: column; text-align: center; }
+
+  .assoc-grid {
+    gap: 6px;
+  }
+  .assoc-item {
+    flex-shrink: 1;
+    padding: 3px 6px;
+    border-radius: 5px;
+  }
+  .assoc-logo {
+    height: 18px;
+  }
 }
 </style>

@@ -128,14 +128,6 @@
           </template>
         </li>
       </ul>
-      <div class="mobile-lang">
-        <button @click="$emit('set-lang', 'id'); menuOpen = false" :class="['lang-btn', { active: lang === 'id' }]">
-          <img src="/button_leaguage/indo.png" alt="Bahasa"> Bahasa
-        </button>
-        <button @click="$emit('set-lang', 'en'); menuOpen = false" :class="['lang-btn', { active: lang === 'en' }]">
-          <img src="/button_leaguage/english.png" alt="English"> English
-        </button>
-      </div>
 
       <router-link to="/login" class="mobile-profile-btn" @click="menuOpen = false">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -157,7 +149,7 @@ const isScrolled = ref(false)
 const menuOpen = ref(false)
 const activeAccordion = ref(null)
 const route = useRoute()
-const isHome = computed(() => route.path === '/')
+const isHome = computed(() => ['/', '/career', '/teams'].includes(route.path))
 
 function toggleAccordion(key) {
   activeAccordion.value = activeAccordion.value === key ? null : key
@@ -302,15 +294,16 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   gap: 20px;
 }
 
-.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; min-width: 0; }
 .logo-image {
   height: 32px;
   width: auto;
   object-fit: contain;
+  flex-shrink: 0;
 }
 .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
-.logo-name { font-family: 'Poppins', sans-serif; font-size: 0.84rem; font-weight: 700; }
-.logo-sub { font-size: 0.68rem; font-weight: 600; }
+.logo-name { font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700; }
+.logo-sub { font-size: 0.8rem; font-weight: 600; }
 
 .nav-links { display: flex; list-style: none; gap: 2px; }
 .nav-links li { position: relative; }
@@ -491,8 +484,8 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 
 .nav-cta { padding: 9px 18px; font-size: 0.82rem; font-weight: 700; }
 
-.hamburger { display: none; flex-direction: column; gap: 5px; background: transparent; border: none; cursor: pointer; padding: 6px; border-radius: 8px; }
-.hamburger span { display: block; width: 21px; height: 2px; border-radius: 2px; }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: transparent; border: none; cursor: pointer; padding: 5px; border-radius: 8px; flex-shrink: 0; }
+.hamburger span { display: block; width: 20px; height: 2px; border-radius: 2px; }
 
 /* SIDEBAR LAYOUT */
 .sidebar-overlay {
@@ -554,20 +547,6 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 }
 .mobile-dropdown-list a.active { color: #1A6B6B; background: rgba(43,144,144,0.06); }
 
-.mobile-lang {
-  display: flex; background: #F4FAFA; padding: 6px; border-radius: 50px;
-  border: 1px solid rgba(43,144,144,0.15); margin-top: 20px;
-}
-.mobile-lang .lang-btn {
-  border: none; background: transparent;
-  color: #5A7070; font-weight: 700; padding: 12px 10px; border-radius: 50px;
-  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; 
-  font-size: 0.9rem; transition: all 0.3s;
-}
-.mobile-lang .lang-btn img { width: 22px; height: auto; border-radius: 2px; filter: grayscale(0.5); transition: all 0.3s; }
-.mobile-lang .lang-btn.active { background: white; color: #1A6B6B; box-shadow: 0 4px 12px rgba(26,107,107,0.1); }
-.mobile-lang .lang-btn.active img { filter: grayscale(0); }
-
 .mobile-profile-btn {
   display: flex; align-items: center; justify-content: center; gap: 10px;
   background: #1A6B6B; color: white; padding: 14px; border-radius: 12px;
@@ -579,12 +558,23 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 }
 
 @media (max-width: 960px) {
-  .nav-links, .nav-cta, .lang-switch-wrapper, .profile-btn { display: none; }
+  .nav-links, .nav-cta, .profile-btn { display: none; }
   .hamburger { display: flex; }
-  
+  .navbar { padding: 14px 0; }
+  .navbar.scrolled { padding: 10px 0; }
+
+  .nav-logo { gap: 7px; }
   .logo-image { height: 26px; }
-  .logo-name { font-size: 0.75rem; }
-  .logo-sub { font-size: 0.6rem; }
-  .nav-logo { gap: 8px; }
+  .logo-text { line-height: 1.15; }
+  .logo-name { font-size: 0.78rem; }
+  .logo-sub { font-size: 0.65rem; }
+
+  .nav-controls { gap: 8px; }
+  .lang-active-btn { padding: 6px 8px; border-radius: 9px; gap: 5px; }
+  .lang-active-btn img { width: 22px; height: auto; }
+  .lang-active-btn .dropdown-arrow { width: 8px; height: 5px; }
+
+  .hamburger { padding: 4px; gap: 4px; }
+  .hamburger span { width: 18px; }
 }
 </style>

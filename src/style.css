@@ -247,6 +247,6 @@ body {
 @media (max-width: 768px) {
   :root { --section-padding: 56px; }
   .container { padding: 0 18px; }
-  .section-title { font-size: 1.75rem; }
-  .section-subtitle { font-size: 0.95rem; }
+  .section-title { font-size: 1.45rem; }
+  .section-subtitle { font-size: 0.9rem; }
 }

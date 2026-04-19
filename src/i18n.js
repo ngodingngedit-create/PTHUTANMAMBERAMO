@@ -188,6 +188,16 @@ export const translations = {
       nestle_desc: 'Perusahaan makanan terkemuka dengan target Net Zero ambisius.',
       zomato_desc: 'Platform teknologi yang berkomitmen pada pengiriman ramah lingkungan.'
     },
+    career: {
+      view_all_team: 'Lihat Semua Tim',
+      teams_hero_desc: 'Tim kami adalah perpaduan dinamis dari para ahli lingkungan, analis, dan pemimpin yang bekerja sama untuk Papua yang berkelanjutan.',
+      cat_executive: 'Kepemimpinan Eksekutif',
+      cat_conservation: 'Konservasi & Lapangan',
+      cat_operations: 'Operasional & Dukungan',
+      cat_sustainability: 'Keberlanjutan & Dampak',
+      join_title: 'Bergabunglah dengan Misi Kami',
+      join_desc: 'Temukan tempat Anda di PT Hutan Harapan Memberamo dan mulyai bangun masa depan yang lebih hijau.'
+    },
   },
   en: {
     nav: {
@@ -376,6 +386,16 @@ export const translations = {
       kec_desc: 'A global leader in power transmission infrastructure.',
       nestle_desc: 'A leading food company with ambitious Net Zero targets.',
       zomato_desc: 'A tech platform committed to eco-friendly delivery solutions.'
+    },
+    career: {
+      view_all_team: 'View All Team',
+      teams_hero_desc: 'Our teams are a vibrant mix of environmentalists, analysts, and leaders working together for a sustainable Papua.',
+      cat_executive: 'Executive Leadership',
+      cat_conservation: 'Conservation & Field',
+      cat_operations: 'Operations & Support',
+      cat_sustainability: 'Sustainability & Impact',
+      join_title: 'Join our mission',
+      join_desc: 'Find your place at PT Hutan Harapan Memberamo and help us build a greener future.'
     },
   },
 }

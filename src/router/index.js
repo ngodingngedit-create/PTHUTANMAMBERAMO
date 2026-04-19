@@ -24,6 +24,10 @@ import JobsView from '../views/JobsView.vue'
 import JobDetailView from '../views/JobDetailView.vue'
 import ApplyJobView from '../views/ApplyJobView.vue'
 import ApplySuccessView from '../views/ApplySuccessView.vue'
+import BlogDetailView from '../views/BlogDetailView.vue'
+import AllTeamsView from '../views/AllTeamsView.vue'
+
+
 const routes = [
   { path: '/', name: 'Home', component: HomeView },
   { path: '/about', name: 'About', component: AboutView },
@@ -32,6 +36,7 @@ const routes = [
   { path: '/partnership', name: 'Partnership', component: PartnershipView },
   { path: '/contact', name: 'Contact', component: ContactView },
   { path: '/blog', name: 'Blog', component: BlogView },
+  { path: '/blog/:id', name: 'BlogDetail', component: BlogDetailView },
   { path: '/career', name: 'Career', component: CareerView },
   { path: '/investor', name: 'Investor', component: InvestorView },
   { path: '/leadership', name: 'Leadership', component: LeadershipView },
@@ -49,7 +54,8 @@ const routes = [
   { path: '/jobs', name: 'Jobs', component: JobsView },
   { path: '/job-detail', name: 'JobDetail', component: JobDetailView },
   { path: '/apply-job', name: 'ApplyJob', component: ApplyJobView },
-  { path: '/apply-success', name: 'ApplySuccess', component: ApplySuccessView }
+  { path: '/apply-success', name: 'ApplySuccess', component: ApplySuccessView },
+  { path: '/teams', name: 'AllTeams', component: AllTeamsView }
 ]
 
 const router = createRouter({
