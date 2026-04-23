@@ -26,10 +26,15 @@ import ApplyJobView from '../views/ApplyJobView.vue'
 import ApplySuccessView from '../views/ApplySuccessView.vue'
 import BlogDetailView from '../views/BlogDetailView.vue'
 import AllTeamsView from '../views/AllTeamsView.vue'
-
+import OurApproachView from '../views/OurApproachView.vue'
+import EnvironmentView from '../views/EnvironmentView.vue'
+import ForestryView from '../views/ForestryView.vue'
+import WhoWeAreView from '../views/WhoWeAreView.vue'
+import CommunityView from '../views/CommunityView.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: HomeView },
+  { path: '/who-we-are', name: 'WhoWeAre', component: WhoWeAreView },
   { path: '/about', name: 'About', component: AboutView },
   { path: '/projects', name: 'Projects', component: ProjectsView },
   { path: '/methodology', name: 'Methodology', component: MethodologyView },
@@ -55,7 +60,11 @@ const routes = [
   { path: '/job-detail', name: 'JobDetail', component: JobDetailView },
   { path: '/apply-job', name: 'ApplyJob', component: ApplyJobView },
   { path: '/apply-success', name: 'ApplySuccess', component: ApplySuccessView },
-  { path: '/teams', name: 'AllTeams', component: AllTeamsView }
+  { path: '/teams', name: 'AllTeams', component: AllTeamsView },
+  { path: '/our-approach', name: 'OurApproach', component: OurApproachView },
+  { path: '/environment', name: 'Environment', component: EnvironmentView },
+  { path: '/forestry', name: 'Forestry', component: ForestryView },
+  { path: '/community', name: 'Community', component: CommunityView }
 ]
 
 const router = createRouter({

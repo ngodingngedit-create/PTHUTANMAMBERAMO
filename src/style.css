@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
   /* Primary Colors */
@@ -15,8 +15,9 @@
   --slate-gray: #6A8080;
   --muted: #8FA8A8;
 
-  /* Background system - LIGHT */
+  /* Background system - LIGHT & ECO */
   --bg-main: #FFFFFF;
+  --bg-eco-neutral: #FAF9F6; /* Warm paper tone */
   --bg-section-alt: #F4FAFA;
   --bg-section-alt2: #EEF7F7;
   --bg-card: #FFFFFF;
@@ -136,6 +137,37 @@ body {
   margin-top: 14px;
 }
 
+/* Editorial Typography */
+.editorial-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--dark-charcoal);
+  letter-spacing: -0.02em;
+}
+
+.editorial-subtitle {
+  font-family: var(--font-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--medium-teal);
+  opacity: 1;
+}
+
+/* Texture Overlays */
+.film-grain-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.15;
+  pointer-events: none;
+  filter: contrast(120%) brightness(120%);
+  z-index: 10;
+}
+
 /* Gradient Text */
 .gradient-text {
   background: linear-gradient(135deg, var(--dark-teal) 0%, var(--medium-teal) 60%, var(--light-teal) 100%);
@@ -240,6 +272,18 @@ body {
 }
 
 /* Responsive */
+/* Reveal Animations */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (max-width: 1024px) {
   :root { --section-padding: 72px; }
 }

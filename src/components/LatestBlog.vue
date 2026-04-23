@@ -20,6 +20,10 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                 {{ post.date }}
               </span>
+              <span v-if="post.source" class="source">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                {{ post.source }}
+              </span>
             </div>
             <h3 class="blog-title">{{ post.title[lang] || post.title.en }}</h3>
             <router-link :to="'/blog/' + post.id" class="read-more-btn">Read More <span class="arrow">→</span></router-link>
@@ -124,9 +128,10 @@ const latestPosts = computed(() => {
 
 .meta-info {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-start;
+  font-size: 0.75rem;
   color: #8FA8A8;
   margin-bottom: 16px;
   font-weight: 500;

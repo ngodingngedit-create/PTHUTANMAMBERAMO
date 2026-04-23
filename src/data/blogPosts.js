@@ -1,8 +1,63 @@
 export const blogPosts = [
   {
+    id: 7,
+    author: 'Market Insights',
+    date: 'April 22, 2026',
+    source: 'Katadata & Liputan6',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070',
+    slug: 'carbon-market-june-2026-announcement',
+    title: {
+      en: "Carbon Market Fully Operational by June 2026, Billion Dollar Inflow Predicted",
+      id: 'Pasar Karbon Beroperasi Penuh Juni 2026, Aliran Dana Miliaran Dolar Diprediksi'
+    },
+    excerpt: {
+      en: "Hashim Djojohadikusumo announces a significant milestone for Indonesia's green economy, targeting full market readiness and systems integration...",
+      id: 'Hashim Djojohadikusumo mengumumkan tonggak sejarah bagi ekonomi hijau Indonesia, menargetkan kesiapan pasar dan integrasi sistem...'
+    },
+    content: {
+      en: `
+        <p>Indonesia is poised to become a global powerhouse in the carbon economy. In a recent announcement, Hashim Djojohadikusumo, the President's Special Envoy for Climate Change, revealed that the national carbon market is targeted to be fully operational by June 2026.</p>
+        
+        <h3>A Billion-Dollar Opportunity</h3>
+        <p>This development is expected to attract significant foreign direct investment. Early estimates suggest that billions of dollars could flow into the country as international investors seek high-quality nature-based carbon credits. This capital inflow will be crucial for funding large-scale conservation and restoration projects across the archipelago, particularly in carbon-rich regions like Papua.</p>
+        
+        <h3>Streamlining the Process</h3>
+        <p>One of the key hurdles in the past has been the complexity of registration and certification. Hashim explained that the government is currently working to merge and synchronize various carbon registration systems into a single, efficient platform. This integration will provide much-needed clarity and security for both project developers and international buyers.</p>
+        
+        <p>For projects like PT Hutan Harapan Memberamo, this operational roadmap provides the regulatory certainty required to scale operations and deepen our impact on the ground. We remain committed to aligning our forest protection strategies with these national objectives.</p>
+
+        <hr>
+        <p><strong>Sources:</strong></p>
+        <ul>
+          <li><a href="https://katadata.co.id/ekonomi-hijau/investasi-hijau/6981b5c1310fd/pasar-karbon-beroperasi-penuh-juni-hashim-prediksi-duit-miliaran-dolar-masuk" target="_blank">Katadata: Pasar Karbon Beroperasi Penuh Juni</a></li>
+          <li><a href="https://www.liputan6.com/bisnis/read/6271036/hashim-djojohadikusumo-pasar-karbon-jalan-juni-2026-tarik-miliaran-dolar-as" target="_blank">Liputan6: Tarik Miliaran Dolar AS ke Pasar Karbon</a></li>
+        </ul>
+      `,
+      id: `
+        <p>Indonesia bersiap menjadi pemain utama global dalam ekonomi karbon. Dalam pengumuman terbaru, Hashim Djojohadikusumo, Utusan Khusus Presiden untuk Perubahan Iklim, mengungkapkan bahwa pasar karbon nasional ditargetkan akan beroperasi penuh pada Juni 2026.</p>
+        
+        <h3>Peluang Miliaran Dolar</h3>
+        <p>Perkembangan ini diharapkan dapat menarik investasi asing langsung yang signifikan. Estimasi awal menunjukkan bahwa miliaran dolar dapat mengalir ke dalam negeri seiring investor internasional mencari kredit karbon berbasis alam berkualitas tinggi. Aliran modal ini akan sangat krusial untuk mendanai proyek konservasi dan restorasi skala besar di seluruh kepulauan, terutama di wilayah kaya karbon seperti Papua.</p>
+        
+        <h3>Menyederhanakan Proses</h3>
+        <p>Salah satu hambatan utama di masa lalu adalah kompleksitas registrasi dan sertifikasi. Hashim menjelaskan bahwa pemerintah saat ini sedang berupaya menggabungkan dan mensinkronisasikan berbagai sistem registrasi karbon ke dalam satu platform yang efisien. Integrasi ini akan memberikan kejelasan dan keamanan yang sangat dibutuhkan bagi pengembang proyek maupun pembeli internasional.</p>
+        
+        <p>Bagi proyek seperti PT Hutan Harapan Memberamo, peta jalan operasional ini memberikan kepastian regulasi yang diperlukan untuk meningkatkan skala operasi dan memperdalam dampak kami di lapangan. Kami tetap berkomitmen untuk menyelaraskan strategi perlindungan hutan kami dengan tujuan nasional ini.</p>
+
+        <hr>
+        <p><strong>Sumber:</strong></p>
+        <ul>
+          <li><a href="https://katadata.co.id/ekonomi-hijau/investasi-hijau/6981b5c1310fd/pasar-karbon-beroperasi-penuh-juni-hashim-prediksi-duit-miliaran-dolar-masuk" target="_blank">Katadata: Pasar Karbon Beroperasi Penuh Juni</a></li>
+          <li><a href="https://www.liputan6.com/bisnis/read/6271036/hashim-djojohadikusumo-pasar-karbon-jalan-juni-2026-tarik-miliaran-dolar-as" target="_blank">Liputan6: Tarik Miliaran Dolar AS ke Pasar Karbon</a></li>
+        </ul>
+      `
+    }
+  },
+  {
     id: 1,
     author: 'EKI Energy',
     date: 'February 3, 2026',
+    source: 'EKI Energy Services',
     image: 'https://images.unsplash.com/photo-1542601098369-7c0432c0fbdd?q=80&w=2070',
     slug: 'recruitment-trends-climate-carbon-markets',
     title: {
@@ -87,6 +142,7 @@ export const blogPosts = [
     id: 3,
     author: 'EKI Energy',
     date: 'April 11, 2025',
+    source: 'EKI Energy',
     image: 'https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?q=80&w=2070',
     slug: 'india-role-global-carbon-credit-market',
     title: {

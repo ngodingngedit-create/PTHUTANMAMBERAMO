@@ -1,23 +1,21 @@
 <template>
   <div class="all-teams-view">
     <!-- HERO SECTION -->
-    <section class="teams-hero">
-      <div class="container hero-container">
-        <div class="hero-content">
-          <h1 class="hero-title">
-            Meet the 
-            <span class="outline-text block-outline">Heart of HHM</span>
-          </h1>
-          <p class="hero-desc">
-            {{ t?.career?.teams_hero_desc || 'Our teams are a vibrant mix of environmentalists, analysts, and leaders working together for a sustainable Papua.' }}
-          </p>
-        </div>
-        <div class="hero-visual">
-          <div class="visual-blob"></div>
-          <div class="visual-img"></div>
-        </div>
-      </div>
-    </section>
+    <Hero 
+      :t="t" 
+      :lang="lang" 
+      backgroundType="image"
+      backgroundImage="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071"
+      height="80vh"
+    >
+      <h1 class="hero-title">
+        Meet the 
+        <span class="outline-text block-outline">Heart of HHM</span>
+      </h1>
+      <p class="hero-subtitle" style="max-width: 600px; margin: 0 auto;">
+        {{ t?.career?.teams_hero_desc || 'Our teams are a vibrant mix of environmentalists, analysts, and leaders working together for a sustainable Papua.' }}
+      </p>
+    </Hero>
 
     <!-- TEAMS GRID -->
     <section class="teams-grid-section">
@@ -54,6 +52,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import Hero from '../components/Hero.vue'
 
 const props = defineProps({
   t: { type: Object, default: () => ({}) },
@@ -101,61 +100,13 @@ const filteredTeams = computed(() => {
   padding: 0 24px;
 }
 
-/* 1. HERO SECTION */
-.teams-hero {
-  padding: 100px 0;
-  background: #F4FBFC;
-  position: relative;
-  overflow: hidden;
-}
-.hero-container {
-  display: flex;
-  align-items: center;
-  gap: 60px;
-}
-.hero-content { flex: 1; }
-.hero-title {
-  font-size: 4.5rem;
-  color: #1A6B6B;
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 24px;
-}
+/* 1. HERO SECTION HELPER CLASSES */
 .outline-text {
   color: transparent;
   -webkit-text-stroke: 1.5px #1A6B6B;
 }
 .block-outline { display: block; }
-.hero-desc {
-  font-size: 1.25rem;
-  color: #5A7070;
-  max-width: 540px;
-  line-height: 1.6;
-}
-.hero-visual {
-  flex: 1;
-  position: relative;
-  height: 400px;
-}
-.visual-blob {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(26,107,107,0.08) 0%, transparent 70%);
-  border-radius: 50%;
-  z-index: 1;
-}
-.visual-img {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071');
-  background-size: cover;
-  background-position: center;
-  border-radius: 40px;
-  box-shadow: 0 40px 80px rgba(26,107,107,0.1);
-  z-index: 2;
-}
+
 
 /* 2. TEAMS GRID */
 .teams-grid-section {

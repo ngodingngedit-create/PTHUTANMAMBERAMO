@@ -5,7 +5,7 @@
         <img :src="(isScrolled || !isHome) ? '/logo/logo-membrano.png' : '/logo/logo-putih.png'" alt="Logo PT Hutan Harapan" class="logo-image">
         <div class="logo-text">
           <span class="logo-name">PT Hutan Harapan</span>
-          <span class="logo-sub">Memberamo</span>
+          <span class="logo-sub">Mamberamo</span>
         </div>
       </router-link>
 
@@ -47,7 +47,7 @@
       <div class="nav-controls">
         <div class="lang-switch-wrapper">
           <button class="lang-active-btn" :title="lang === 'id' ? 'Bahasa' : 'English'">
-            <img :src="lang === 'id' ? '/button_leaguage/indo.png' : '/button_leaguage/english.png'" alt="Language">
+            <img :src="lang === 'id' ? '/button_language/indo.png' : '/button_language/english.png'" alt="Language">
             <svg class="dropdown-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -56,13 +56,13 @@
           <ul class="lang-dropdown">
             <li>
               <button @click="$emit('set-lang', 'id')" :class="{ active: lang === 'id' }">
-                <img src="/button_leaguage/indo.png" alt="Bahasa">
+                <img src="/button_language/indo.png" alt="Bahasa">
                 <span>Bahasa</span>
               </button>
             </li>
             <li>
               <button @click="$emit('set-lang', 'en')" :class="{ active: lang === 'en' }">
-                <img src="/button_leaguage/english.png" alt="English">
+                <img src="/button_language/english.png" alt="English">
                 <span>English</span>
               </button>
             </li>
@@ -149,7 +149,7 @@ const isScrolled = ref(false)
 const menuOpen = ref(false)
 const activeAccordion = ref(null)
 const route = useRoute()
-const isHome = computed(() => ['/', '/career', '/teams'].includes(route.path))
+const isHome = computed(() => ['/', '/career', '/teams', '/who-we-are', '/blog', '/our-approach', '/environment', '/forestry', '/community'].includes(route.path))
 
 function toggleAccordion(key) {
   activeAccordion.value = activeAccordion.value === key ? null : key
@@ -157,47 +157,14 @@ function toggleAccordion(key) {
 
 const navLinks = [
   { id: 'home', key: 'home', path: '/' },
-  {
-    id: 'who_we_are', key: 'who_we_are',
-    megaMenu: true,
-    groups: [
-      {
-        key: 'about_us_group',
-        children: [
-          { id: 'leadership', key: 'leadership', path: '/leadership' },
-          { id: 'subsidiaries', key: 'subsidiaries', path: '/subsidiaries' },
-          { id: 'milestones', key: 'milestones', path: '/milestones' }
-        ]
-      },
-      {
-        key: 'philosophy_group',
-        children: [
-          { id: 'vision', key: 'vision', path: '/vision' },
-          { id: 'mission', key: 'mission', path: '/mission' },
-          { id: 'manifesto', key: 'manifesto', path: '/manifesto' }
-        ]
-      },
-      {
-        key: 'career_group',
-        children: [
-          { id: 'life_at', key: 'life_at', path: '/life-at' },
-          { id: 'values', key: 'values', path: '/values' },
-          { id: 'openings', key: 'openings', path: '/openings' }
-        ]
-      },
-      {
-        key: 'media_group',
-        children: [
-          { id: 'blog', key: 'blog', path: '/blog' }
-        ]
-      }
-    ]
-  },
+  { id: 'who_we_are', key: 'who_we_are', path: '/who-we-are' },
   {
     id: 'what_we_do', key: 'what_we_do',
     children: [
-      { id: 'projects', key: 'projects', path: '/projects' },
-      { id: 'methodology', key: 'methodology', path: '/methodology' }
+      { id: 'our_approach', key: 'our_approach', path: '/our-approach' },
+      { id: 'environment', key: 'environment', path: '/environment' },
+      { id: 'forestry', key: 'forestry', path: '/forestry' },
+      { id: 'community', key: 'community', path: '/community' }
     ]
   },
   { id: 'career_btn', key: 'career', defaultLabel: 'Career', path: '/career' },

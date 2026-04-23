@@ -50,7 +50,7 @@
               </defs>
             </svg>
             <div class="map-label">
-              <span class="label-dot"></span>Memberamo Raya, Papua
+              <span class="label-dot"></span>Mamberamo Raya, Papua
             </div>
           </div>
           <div class="floating-card card-ha">

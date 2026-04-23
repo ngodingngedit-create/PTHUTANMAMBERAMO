@@ -12,6 +12,7 @@
           <div class="article-meta-top">
             <span class="category-badge">{{ post.author }}</span>
             <span class="article-date">{{ post.date }}</span>
+            <span v-if="post.source" class="article-source">Source: {{ post.source }}</span>
           </div>
           <h1 class="article-title">{{ post.title[lang] || post.title.en }}</h1>
         </div>
@@ -105,8 +106,9 @@ onMounted(() => {
   background-size: cover;
   background-position: center;
   display: flex;
-  align-items: flex-end;
-  padding-bottom: 80px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   color: white;
 }
 
@@ -120,6 +122,8 @@ onMounted(() => {
   position: relative;
   z-index: 2;
   max-width: 900px;
+  text-align: center;
+  width: 100%;
 }
 
 .back-link {
@@ -142,6 +146,7 @@ onMounted(() => {
 .article-meta-top {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
   margin-bottom: 16px;
 }
@@ -157,7 +162,7 @@ onMounted(() => {
   letter-spacing: 0.05em;
 }
 
-.article-date {
+.article-date, .article-source {
   font-size: 0.9rem;
   opacity: 0.9;
 }

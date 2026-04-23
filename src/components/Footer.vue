@@ -8,7 +8,7 @@
             <img src="/logo/logo-membrano.png" alt="Logo PT Hutan Harapan Memberamo" class="footer-logo-img">
             <div class="footer-logo-text">
               <span class="fl-name">PT Hutan Harapan</span>
-              <span class="fl-sub">Memberamo</span>
+              <span class="fl-sub">Mamberamo</span>
             </div>
           </router-link>
           <p class="footer-tagline">{{ t.footer.tagline }}</p>
@@ -54,11 +54,11 @@
           <div class="footer-contact">
             <div class="fc-item">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Memberamo Raya, Papua, Indonesia
+              Mamberamo Raya, Papua, Indonesia
             </div>
             <div class="fc-item">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              info@hutanharapanmemberamo.com
+              info@hutanharapanmamberamo.com
             </div>
           </div>
         </div>
@@ -74,23 +74,26 @@
           </div>
           <div class="assoc-grid">
             <div class="assoc-item">
-              <img src="/associtions/cmai.png" alt="CMAI" class="assoc-logo">
+              <img src="/associations/kementrianLIngkunganHidup.png" alt="kementrianLingkunganHidup" class="assoc-logo logo-klhk">
+            </div>
+            <div class="assoc-item">
+              <img src="/associations/cmai.png" alt="CMAI" class="assoc-logo">
               <!-- <span class="assoc-name">CMAI</span> -->
             </div>
             <div class="assoc-item">
-              <img src="/associtions/ch.png" alt="CH" class="assoc-logo">
+              <img src="/associations/ch.png" alt="CH" class="assoc-logo">
               <!-- <span class="assoc-name">CH</span> -->
             </div>
             <div class="assoc-item">
-              <img src="/associtions/ficci.png" alt="FICCI" class="assoc-logo">
+              <img src="/associations/ficci.png" alt="FICCI" class="assoc-logo">
               <!-- <span class="assoc-name">FICCI</span> -->
             </div>
             <div class="assoc-item">
-              <img src="/associtions/icroa.png" alt="ICROA" class="assoc-logo">
+              <img src="/associations/icroa.png" alt="ICROA" class="assoc-logo">
               <!-- <span class="assoc-name">ICROA</span> -->
             </div>
             <div class="assoc-item">
-              <img src="/associtions/sepc.png" alt="SEPC" class="assoc-logo">
+              <img src="/associations/sepc.png" alt="SEPC" class="assoc-logo">
               <!-- <span class="assoc-name">SEPC</span> -->
             </div>
           </div>
@@ -315,6 +318,8 @@ defineProps({ t: Object, lang: String })
   transition: all 0.3s ease;
 }
 
+
+
 .assoc-name {
   font-size: 0.65rem;
   font-weight: 700;
@@ -374,15 +379,16 @@ defineProps({ t: Object, lang: String })
   .footer-bottom-inner { flex-direction: column; text-align: center; }
 
   .assoc-grid {
-    gap: 6px;
+    gap: 8px;
+    flex-wrap: wrap;
   }
   .assoc-item {
     flex-shrink: 1;
-    padding: 3px 6px;
-    border-radius: 5px;
+    padding: 5px 8px;
+    border-radius: 6px;
   }
   .assoc-logo {
-    height: 18px;
+    height: 28px;
   }
 }
 </style>

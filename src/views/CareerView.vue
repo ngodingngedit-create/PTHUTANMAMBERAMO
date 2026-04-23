@@ -1,33 +1,23 @@
 <template>
   <div class="career-view">
     <!-- HERO SECTION -->
-    <section class="hero-section">
-      <!-- Background Video -->
-      <div class="hero-video-container">
-        <video class="hero-video" autoplay muted loop playsinline>
-          <source src="/carerr/carerr_vidio.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
+    <Hero 
+      :t="t" 
+      :lang="lang" 
+      videoSrc="/career/career_video.mp4"
+    >
+      <h1 class="hero-title">
+        Grow Your Career<br />
+        <span class="hero-title-outline">With Purpose</span>
+      </h1>
+      <p class="hero-subtitle">
+        Join a team protecting 300,000 Ha of Papua's rainforest.<br />
+        We're looking for bold minds across Papua and Jakarta.
+      </p>
+      <div class="hero-actions">
+        <router-link to="/jobs" class="hero-btn-primary">Explore Open Roles</router-link>
       </div>
-      <!-- Content -->
-      <div class="container hero-wrapper">
-        <div class="hero-content">
-          <div class="hero-glass-panel">
-            <h1 class="hero-title">
-              Grow Your Career<br />
-              <span class="hero-title-outline">With Purpose</span>
-            </h1>
-            <p class="hero-subtitle">
-              Join a team protecting 300,000 Ha of Papua's rainforest.<br />
-              We're looking for bold minds across Papua and Jakarta.
-            </p>
-            <div class="hero-actions">
-              <router-link to="/jobs" class="hero-btn-primary">Explore Open Roles</router-link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </Hero>
 
     <!-- MISSION & VALUES -->
     <section class="values-section" id="values">
@@ -171,6 +161,7 @@ We offer diverse opportunities, from field conservation to strategic roles, for 
 
 <script setup>
 import { ref, computed } from 'vue'
+import Hero from '../components/Hero.vue'
 
 const props = defineProps({
   t: { type: Object, default: () => ({}) },
@@ -306,263 +297,12 @@ const teammates = ref([
 }
 
 /* 1. HERO SECTION */
-.hero-section {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-  overflow: hidden;
-  text-align: center;
-}
-.hero-video-container {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-.hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.05);
-}
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.45) 100%);
-  backdrop-filter: blur(2px);
-}
-.hero-wrapper {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-}
-.hero-content {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.hero-glass-panel {
-  padding: 40px;
-  animation: heroFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-@keyframes heroFadeUp {
-  from { opacity: 0; transform: translateY(50px); filter: blur(10px); }
-  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-}
-.hero-title {
-  font-size: clamp(2.2rem, 7vw, 4rem);
-  font-weight: 900;
-  color: #ffffff;
-  line-height: 1.1;
-  margin-bottom: 24px;
-  letter-spacing: -0.02em;
-}
 .hero-title-outline {
   color: transparent;
   -webkit-text-stroke: 2px #ffffff;
   display: block;
 }
-.hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: rgba(255,255,255,0.9);
-  max-width: 680px;
-  margin: 0 auto 48px;
-  line-height: 1.7;
-  font-weight: 400;
-}
-.hero-actions {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.hero-btn-primary {
-  display: inline-block;
-  background: #1A6B6B;
-  color: white;
-  padding: 16px 44px;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: all 0.3s;
-  box-shadow: 0 10px 30px rgba(26,107,107,0.35);
-}
-.hero-btn-primary:hover {
-  background: #2B9090;
-  transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(26,107,107,0.4);
-}
-/* Scroll indicator */
-.hero-scroll {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-.hero-mouse {
-  width: 22px;
-  height: 36px;
-  border: 2px solid rgba(255,255,255,0.5);
-  border-radius: 12px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 5px;
-}
-.hero-wheel {
-  width: 3px;
-  height: 8px;
-  background: rgba(255,255,255,0.8);
-  border-radius: 2px;
-  animation: wheelScroll 1.6s ease-in-out infinite;
-}
-@keyframes wheelScroll {
-  0% { transform: translateY(0); opacity: 1; }
-  80% { transform: translateY(10px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 0; }
-}
-.hero-scroll-text {
-  font-size: 0.65rem;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 0.25em;
-  font-weight: 600;
-}
 
-
-
-.bg-waves {
-  position: absolute;
-  top: -50%; left: -10%; right: -10%; bottom: -50%;
-  background: radial-gradient(circle at 80% 20%, rgba(43,144,144,0.06) 0%, transparent 40%),
-              radial-gradient(circle at 20% 80%, rgba(26,107,107,0.04) 0%, transparent 50%);
-  border-radius: 50%;
-  z-index: 0;
-}
-.hero-container {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 60px;
-}
-.hero-content {
-  flex: 1;
-}
-.hero-title {
-  font-size: 2.7rem;
-  color: #ffffff;
-  font-weight: 800;
-  line-height: 1.05;
-  margin-bottom: 24px;
-}
-.hero-desc {
-  font-size: 1.15rem;
-  color: #5A7070;
-  margin-bottom: 36px;
-  max-width: 480px;
-  line-height: 1.6;
-}
-.search-box {
-  display: flex;
-  align-items: center;
-  background: white;
-  border-radius: 50px;
-  padding: 6px 10px 6px 24px;
-  box-shadow: 0 10px 30px rgba(26,107,107,0.08);
-  border: 1px solid rgba(43,144,144,0.15);
-  max-width: 500px;
-}
-.search-input {
-  border: none;
-  background: transparent;
-  padding: 14px 0;
-  font-size: 1rem;
-  color: #1A2A2A;
-  flex: 1;
-  min-width: 0;
-  font-family: inherit;
-}
-.search-input:focus { outline: none; }
-.search-divider {
-  width: 1px;
-  height: 24px;
-  background: rgba(43,144,144,0.2);
-  margin: 0 16px;
-}
-.search-btn {
-  background: #1A6B6B;
-  color: white;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s;
-  flex-shrink: 0;
-}
-.search-btn:hover { background: #2B9090; }
-
-.hero-media {
-  flex: 1.1;
-}
-.media-grid {
-  position: relative;
-  height: 550px;
-  width: 100%;
-}
-.media-card {
-  position: absolute;
-  border-radius: 30px;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  border: 5px solid white;
-}
-.card-1 {
-  width: 240px; height: 180px;
-  top: 40px; left: 0;
-  background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013&auto=format&fit=crop');
-}
-.card-2 {
-  width: 200px; height: 280px;
-  top: 0; right: 20px;
-  background-image: url('https://images.unsplash.com/photo-1579208575657-c595a05383b7?q=80&w=2070&auto=format&fit=crop');
-}
-.card-3 {
-  width: 320px; height: 240px;
-  bottom: 30px; left: 50px;
-  background-image: url('https://images.unsplash.com/photo-1542314831-c6a4203251f8?q=80&w=2070&auto=format&fit=crop');
-  z-index: 2;
-  display: flex; align-items: center; justify-content: center;
-}
-.card-4 {
-  width: 180px; height: 220px;
-  bottom: 0; right: 0;
-  background-image: url('https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1932&auto=format&fit=crop');
-}
-.play-btn {
-  width: 65px; height: 65px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.95);
-  color: #1A6B6B;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.play-btn:hover {
-  transform: scale(1.1);
-  background: white;
-}
 
 /* 2. VALUES SECTION */
 .values-section {

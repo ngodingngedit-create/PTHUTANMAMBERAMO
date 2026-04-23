@@ -1,16 +1,23 @@
 <template>
-  <section id="home" class="hero">
-    <!-- Video Background -->
+  <section id="home" class="hero" :style="{ minHeight: height }">
+    <!-- Background -->
     <div class="video-container">
       <video
+        v-if="backgroundType === 'video'"
         autoplay
         muted
         loop
         playsinline
         class="bg-video"
       >
-        <source src="/home/home.mp4" type="video/mp4" />
+        <source :src="videoSrc" type="video/mp4" />
       </video>
+      <div 
+        v-else 
+        class="bg-image" 
+        :style="{ backgroundImage: `url(${backgroundImage})` }"
+      ></div>
+      
       <!-- Subtle Overlay for contrast -->
       <div class="video-overlay"></div>
     </div>
@@ -18,28 +25,30 @@
     <div class="container hero-wrapper">
       <div class="hero-content">
         <div class="hero-glass-panel">
-          <h1 class="hero-title">
-            {{ t.hero.tagline }}
-          </h1>
+          <slot>
+            <h1 class="hero-title">
+              {{ title || t.hero.tagline }}
+            </h1>
 
-          <p class="hero-subtitle">{{ t.hero.subtitle }}</p>
+            <p class="hero-subtitle">{{ subtitle || t.hero.subtitle }}</p>
 
-          <!-- <div class="hero-actions">
-            <router-link to="/projects" class="btn-primary">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="16" y2="12"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="12" y1="12" x2="12" y2="16"/></svg>
-              {{ t.hero.cta_primary }}
-            </router-link>
-            <router-link to="/contact" class="btn-secondary">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              {{ t.hero.cta_secondary }}
-            </router-link>
-          </div> -->
+            <!-- <div class="hero-actions">
+              <router-link to="/projects" class="btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="16" y2="12"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="12" y1="12" x2="12" y2="16"/></svg>
+                {{ t.hero.cta_primary }}
+              </router-link>
+              <router-link to="/contact" class="btn-secondary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                {{ t.hero.cta_secondary }}
+              </router-link>
+            </div> -->
+          </slot>
         </div>
       </div>
     </div>
 
     <!-- Scroll Indicator -->
-    <div class="scroll-indicator">
+    <div v-if="showScrollIndicator" class="scroll-indicator">
       <div class="scroll-mouse">
         <div class="mouse-wheel"></div>
       </div>
@@ -49,13 +58,22 @@
 </template>
 
 <script setup>
-defineProps({ t: Object, lang: String })
+defineProps({
+  t: Object,
+  lang: String,
+  videoSrc: { type: String, default: '/home/home.mp4' },
+  backgroundType: { type: String, default: 'video' }, // 'video' or 'image'
+  backgroundImage: { type: String, default: '' },
+  title: String,
+  subtitle: String,
+  height: { type: String, default: '100vh' },
+  showScrollIndicator: { type: Boolean, default: true }
+})
 </script>
 
 <style scoped>
 .hero {
   position: relative;
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,11 +88,16 @@ defineProps({ t: Object, lang: String })
   z-index: 0;
 }
 
-.bg-video {
+.bg-video, .bg-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transform: scale(1.05);
+}
+
+.bg-image {
+  background-size: cover;
+  background-position: center;
 }
 
 .video-overlay {
@@ -94,62 +117,38 @@ defineProps({ t: Object, lang: String })
 .hero-content {
   max-width: 1000px;
   margin: 0 auto;
+  transform: translateX(30px);
 }
 
 .hero-glass-panel {
   padding: 40px;
   animation: fadeUpIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 9vw, 3rem);
+  font-size: clamp(2.6rem, 5vw, 4rem);
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: 24px;
   color: #ffffff;
   letter-spacing: -0.02em;
+  text-align: center;
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 2vw, 1.3rem);
   color: #ffffff;
   max-width: 850px;
-  margin: 0 auto 56px;
+  margin: 0 auto 30px;
   line-height: 1.7;
   font-weight: 400;
   opacity: 0.95;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.hero-actions .btn-primary {
-  padding: 18px 48px;
-  font-size: 1.1rem;
-  border-radius: 20px;
-  min-width: 220px;
-  box-shadow: 0 10px 40px rgba(26,107,107,0.3);
-}
-
-.hero-actions .btn-secondary {
-  padding: 17px 48px;
-  font-size: 1.1rem;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.4);
-  color: #ffffff;
-  min-width: 220px;
-}
-
-.hero-actions .btn-secondary:hover {
-  background: white;
-  color: var(--dark-teal);
 }
 
 @keyframes fadeUpIn {
@@ -158,56 +157,18 @@ defineProps({ t: Object, lang: String })
 }
 
 @media (max-width: 768px) {
-  .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center !important;
-    padding: 0 20px;
-  }
-  .hero-wrapper { 
-    padding: 0;
-    width: 100%;
-    margin: 0 !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-  .hero-content { 
-    width: 100%; 
-    max-width: 100%;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
   .hero-glass-panel { 
     padding: 24px 10px; 
-    display: flex !important; 
-    flex-direction: column !important; 
-    align-items: center !important; 
-    justify-content: center !important; 
-    text-align: center !important;
-    width: 100% !important;
-    margin: 0 auto !important;
-    background: transparent; /* Remove background on mobile for cleaner look if needed */
-    box-shadow: none;
+  }
+  .hero-content {
+    transform: translateX(60px);
   }
   .hero-title { 
-    font-size: clamp(1.8rem, 8.5vw, 2.8rem); 
-    text-align: center !important; 
-    width: 100% !important;
-    margin-bottom: 20px;
-    letter-spacing: -0.01em;
-    display: block !important;
+    font-size: clamp(2rem, 8vw, 3rem); 
   }
   .hero-subtitle { 
-    text-align: center !important; 
     font-size: 0.95rem;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 auto 30px !important;
-    line-height: 1.6;
-    display: block !important;
+    margin-bottom: 20px !important;
   }
 }
 </style>
