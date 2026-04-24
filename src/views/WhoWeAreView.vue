@@ -4,7 +4,7 @@
     <Hero 
       :t="t" 
       :lang="lang" 
-      videoSrc="/pahasyim/PaHasyimMp4.mp4" 
+      videoSrc="/pahasyim/pahasyim.mp4" 
       :title="t.who_we_are_page.hero_title"
       :subtitle="t.who_we_are_page.hero_subtitle"
     />
