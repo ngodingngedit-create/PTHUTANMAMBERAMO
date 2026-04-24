@@ -1,214 +1,303 @@
 <template>
-  <div class="auth-container">
-    <div class="auth-card">
-      <div class="auth-header">
-        <h1>Welcome Back</h1>
-        <p>Login to your account to continue</p>
+  <div class="login-split-layout">
+    <div class="login-container">
+      <!-- LEFT SIDE: MAMBERAMO IMAGE SLIDESHOW -->
+      <div class="login-visual">
+        <div class="visual-wrapper">
+          <transition-group name="fade">
+            <img 
+              v-for="(img, index) in backgroundImages" 
+              :key="img"
+              v-show="index === currentImageIndex"
+              :src="img" 
+              alt="Mamberamo Visual" 
+              class="visual-bg" 
+            />
+          </transition-group>
+          <div class="visual-overlay"></div>
+        </div>
       </div>
-      <form class="auth-form" @submit.prevent="handleAuth">
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" v-model="email" placeholder="Enter your email" required />
+
+      <!-- RIGHT SIDE: LOGIN FORM CONTAINER -->
+      <div class="login-form-container">
+        <div class="login-card">
+          <div class="form-header">
+            <!-- Logo & Brand Text (Replicated from Header) -->
+            <div class="brand-logo-container">
+              <img src="/logo/logo-membrano.png" alt="Logo PT Hutan Harapan" class="brand-logo" />
+              <div class="brand-logo-text">
+                <span class="brand-logo-name">PT Hutan Harapan</span>
+                <span class="brand-logo-sub">Mamberamo</span>
+              </div>
+            </div>
+            
+            <h1>Masuk sebagai Creator/Staff</h1>
+            <p class="subtitle">
+              Belum punya akun? <router-link to="/signup" class="link">Daftar Akun</router-link>
+            </p>
+          </div>
+
+          <form class="auth-form" @submit.prevent="handleAuth">
+            <div class="input-group">
+              <label>Email</label>
+              <input type="email" v-model="email" placeholder="Masukan Email" required />
+            </div>
+
+            <div class="input-group">
+              <label>Password</label>
+              <div class="password-wrapper">
+                <input 
+                  :type="showPassword ? 'text' : 'password'" 
+                  v-model="password" 
+                  placeholder="Masukan Password" 
+                  required 
+                />
+                <button type="button" class="visibility-toggle" @click="showPassword = !showPassword">
+                  <!-- Eye Open Icon -->
+                  <svg v-if="!showPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <!-- Eye Closed Icon -->
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+                </button>
+              </div>
+              <div class="forgot-password-row">
+                <a href="#" class="link forgot-link">Lupa Password?</a>
+              </div>
+            </div>
+
+            <button class="btn-submit" type="submit">Selanjutnya</button>
+          </form>
         </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" v-model="password" placeholder="Enter your password" required />
-        </div>
-        <div class="auth-actions">
-          <label class="remember">
-            <input type="checkbox" /> Remember me
-          </label>
-          <a href="#" class="forgot-link">Forgot Password?</a>
-        </div>
-        <button class="auth-btn primary" @click="handleAuth">Login</button>
-      </form>
-      <div class="auth-divider"><span>OR</span></div>
-      <button class="auth-btn google" @click="handleGoogle">
-        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-        Continue with Google
-      </button>
-      <div class="auth-footer">
-        Don't have an account? <router-link to="/signup">Sign up here</router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-
-defineProps({ t: Object, lang: String })
 
 const router = useRouter()
 const email = ref('')
 const password = ref('')
+const showPassword = ref(false)
+
+const backgroundImages = [
+  '/backgrounds/forestry.png',
+  '/backgrounds/community.png',
+  '/backgrounds/environment.png',
+  '/backgrounds/m_biodiversity.png',
+  '/backgrounds/patrol.png'
+]
+const currentImageIndex = ref(0)
+let intervalId
+
+onMounted(() => {
+  intervalId = setInterval(() => {
+    currentImageIndex.value = (currentImageIndex.value + 1) % backgroundImages.length
+  }, 4000) // Change image every 4 seconds
+})
+
+onUnmounted(() => {
+  if (intervalId) clearInterval(intervalId)
+})
 
 function handleAuth() {
-  const existingName = localStorage.getItem('user_name') || 'User'
-  localStorage.setItem('user_name', existingName)
-  localStorage.setItem('user_email', email.value || 'user@example.com')
-  router.push('/profile')
-}
-
-function handleGoogle() {
-  localStorage.setItem('user_name', 'Google User')
-  localStorage.setItem('user_email', 'googleuser@example.com')
-  router.push('/profile')
+  localStorage.setItem('user_name', 'Admin Staff')
+  localStorage.setItem('user_email', email.value || 'admin@hhmr.co.id')
+  router.push('/dashboard')
 }
 </script>
 
 <style scoped>
-.auth-container {
-  min-height: calc(100vh - 120px);
+.login-split-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background: #F4FAFA; 
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.login-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #F4FAFA;
-  padding: 140px 20px 80px;
-}
-.auth-card {
-  background: white;
-  padding: 45px 40px;
-  border-radius: 24px;
-  box-shadow: 0 16px 40px rgba(26,107,107,0.06);
+  gap: 20px; /* Tighter gap between image and card */
+  max-width: 1100px;
   width: 100%;
-  max-width: 440px;
-  border: 1px solid rgba(43,144,144,0.1);
+  margin-top: 40px; /* Lowering the whole thing */
 }
-.auth-header {
-  text-align: center;
-  margin-bottom: 35px;
+
+/* LEFT SIDE VISUAL */
+.login-visual {
+  flex: 1.3;
+  display: none; 
 }
-.auth-header h1 {
-  font-family: 'Poppins', sans-serif;
-  color: #1A2A2A;
-  font-size: 1.8rem;
-  margin-bottom: 8px;
+@media (min-width: 900px) {
+  .login-visual {
+    display: block;
+  }
 }
-.auth-header p {
-  color: #5A7070;
-  font-size: 0.95rem;
-}
-.form-group {
-  margin-bottom: 20px;
-}
-.form-group label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #1A6B6B;
-  margin-bottom: 8px;
-}
-.form-group input {
+.visual-wrapper {
+  position: relative;
   width: 100%;
-  padding: 14px 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(43,144,144,0.2);
-  background: #FAFCFC;
-  color: #1A2A2A;
-  font-family: inherit;
-  font-size: 0.95rem;
-  transition: all 0.3s;
+  height: 560px; /* Height to match the card */
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(26,107,107,0.1);
 }
-.form-group input:focus {
-  outline: none;
-  border-color: #2B9090;
-  box-shadow: 0 0 0 4px rgba(43,144,144,0.1);
-  background: white;
+.visual-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.auth-actions {
+.visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10,30,30,0.3) 0%, rgba(20,50,50,0.1) 100%);
+  z-index: 1;
+}
+
+/* Image Transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.5s ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-leave-active {
+  position: absolute;
+  z-index: -1;
+}
+
+/* RIGHT SIDE FORM CONTAINER */
+.login-form-container {
+  flex: 1;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-  font-size: 0.85rem;
+  justify-content: center;
 }
-.remember {
-  color: #5A7070;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  font-weight: 500;
-}
-.forgot-link {
-  color: #2B9090;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s;
-}
-.forgot-link:hover {
-  color: #1A6B6B;
-}
-.auth-btn {
+
+/* CENTERED LOGIN CARD */
+.login-card {
+  background: #ffffff;
   width: 100%;
-  padding: 15px;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 360px;
+  height: 560px; /* Same height as visual wrapper */
+  padding: 40px 32px;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(26,107,107,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center form vertically within card */
+  animation: fadeUpIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeUpIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* BRAND LOGO */
+.brand-logo-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  border: none;
+  margin-bottom: 24px;
 }
-.auth-btn.primary {
-  background: linear-gradient(135deg, #1A6B6B, #2B9090);
-  color: white;
-  box-shadow: 0 4px 15px rgba(26,107,107,0.2);
+.brand-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
 }
-.auth-btn.primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(26,107,107,0.3);
-}
-.auth-divider {
+.brand-logo-text {
   display: flex;
-  align-items: center;
-  text-align: center;
-  margin: 24px 0;
-  color: #8FA8A8;
-  font-size: 0.8rem;
-  font-weight: 700;
+  flex-direction: column;
+  line-height: 1.1;
+  text-align: left;
 }
-.auth-divider::before, .auth-divider::after {
-  content: '';
-  flex: 1;
-  border-bottom: 1px solid rgba(43,144,144,0.15);
-}
-.auth-divider span {
-  padding: 0 14px;
-}
-.auth-btn.google {
-  background: white;
-  color: #1A2A2A;
-  border: 1px solid rgba(43,144,144,0.2);
-}
-.auth-btn.google:hover {
-  background: #F4FAFA;
-  border-color: #2B9090;
-  color: #1A6B6B;
-}
-.auth-footer {
-  text-align: center;
-  margin-top: 30px;
+.brand-logo-name {
+  font-family: 'Poppins', sans-serif;
   font-size: 0.95rem;
-  color: #5A7070;
-}
-.auth-footer a {
-  color: #1A6B6B;
   font-weight: 700;
-  text-decoration: none;
-  transition: color 0.2s;
+  color: #1A2A2A;
 }
-.auth-footer a:hover {
+.brand-logo-sub {
+  font-size: 0.75rem;
+  font-weight: 600;
   color: #2B9090;
 }
-@media (max-width: 600px) {
-  .auth-card {
-    padding: 35px 24px;
-  }
+
+.form-header {
+  margin-bottom: 25px;
+  text-align: center;
+}
+.form-header h1 {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  color: var(--dark-charcoal, #1A2A2A);
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+.form-header .subtitle {
+  color: var(--slate-gray, #5A7070);
+  font-size: 0.85rem;
+}
+.link {
+  color: var(--primary-teal, #1A6B6B);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* INPUT GROUPS */
+.input-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+.input-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1A2A2A;
+  margin-bottom: 6px;
+}
+.input-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  background: #F8FAFC;
+}
+
+.password-wrapper { position: relative; }
+.visibility-toggle {
+  position: absolute;
+  right: 12px; top: 50%;
+  transform: translateY(-50%);
+  background: none; border: none; color: #94A3B8; cursor: pointer;
+}
+.forgot-password-row { display: flex; justify-content: flex-end; margin-top: 8px; }
+.forgot-link { font-size: 0.8rem; }
+
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  border-radius: 50px;
+  background: #1A6B6B;
+  color: white;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+  .login-container { flex-direction: column; padding: 20px; }
+  .login-card { height: auto; max-width: 100%; }
 }
 </style>

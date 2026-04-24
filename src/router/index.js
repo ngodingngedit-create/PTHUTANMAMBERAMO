@@ -31,6 +31,7 @@ import EnvironmentView from '../views/EnvironmentView.vue'
 import ForestryView from '../views/ForestryView.vue'
 import WhoWeAreView from '../views/WhoWeAreView.vue'
 import CommunityView from '../views/CommunityView.vue'
+import DashboardView from '../views/DashboardView.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: HomeView },
@@ -53,8 +54,8 @@ const routes = [
   { path: '/life-at', name: 'LifeAt', component: LifeAtView },
   { path: '/values', name: 'Values', component: ValuesView },
   { path: '/openings', name: 'Openings', component: OpeningsView },
-  { path: '/login', name: 'Login', component: LoginView },
-  { path: '/signup', name: 'Signup', component: SignupView },
+  { path: '/login', name: 'Login', component: LoginView, meta: { hideNavigation: true } },
+  { path: '/signup', name: 'Signup', component: SignupView, meta: { hideNavigation: true } },
   { path: '/profile', name: 'Profile', component: ProfileView },
   { path: '/jobs', name: 'Jobs', component: JobsView },
   { path: '/job-detail', name: 'JobDetail', component: JobDetailView },
@@ -64,7 +65,16 @@ const routes = [
   { path: '/our-approach', name: 'OurApproach', component: OurApproachView },
   { path: '/environment', name: 'Environment', component: EnvironmentView },
   { path: '/forestry', name: 'Forestry', component: ForestryView },
-  { path: '/community', name: 'Community', component: CommunityView }
+  { path: '/community', name: 'Community', component: CommunityView },
+  
+  // Dashboard routes
+  { path: '/dashboard', name: 'Dashboard', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/proyek-karbon', name: 'Dashboard_Proyek', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/lahan', name: 'Dashboard_Lahan', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/blog-media', name: 'Dashboard_BlogMedia', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/pesan', name: 'Dashboard_Pesan', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/laporan', name: 'Dashboard_Laporan', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/akun-saya', name: 'Dashboard_Akun', component: DashboardView, meta: { hideNavigation: true } }
 ]
 
 const router = createRouter({

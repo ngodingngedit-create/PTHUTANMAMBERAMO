@@ -1,10 +1,10 @@
 <template>
   <div id="app-root">
-    <Navbar :t="t" :lang="lang" @set-lang="setLang" />
+    <Navbar v-if="!route.meta.hideNavigation" :t="t" :lang="lang" @set-lang="setLang" />
     <main>
       <router-view :t="t" :lang="lang"></router-view>
     </main>
-    <Footer :t="t" :lang="lang" />
+    <Footer v-if="!route.meta.hideNavigation" :t="t" :lang="lang" />
   </div>
 </template>
 
@@ -13,11 +13,12 @@ import { ref, computed, onMounted } from 'vue'
 import { translations } from './i18n.js'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 const lang = ref('id')
 const t = computed(() => translations[lang.value])
 const router = useRouter()
+const route = useRoute()
 
 function setLang(l) {
   lang.value = l

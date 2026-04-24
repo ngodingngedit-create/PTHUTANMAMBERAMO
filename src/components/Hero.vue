@@ -12,6 +12,14 @@
       >
         <source :src="videoSrc" type="video/mp4" />
       </video>
+      <iframe
+        v-else-if="backgroundType === 'youtube'"
+        class="bg-video youtube-bg"
+        :src="`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&showinfo=0&rel=0`"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
       <div 
         v-else 
         class="bg-image" 
@@ -62,7 +70,8 @@ defineProps({
   t: Object,
   lang: String,
   videoSrc: { type: String, default: '/home/home.mp4' },
-  backgroundType: { type: String, default: 'video' }, // 'video' or 'image'
+  youtubeId: { type: String, default: '' },
+  backgroundType: { type: String, default: 'video' }, // 'video', 'image', or 'youtube'
   backgroundImage: { type: String, default: '' },
   title: String,
   subtitle: String,
@@ -93,6 +102,18 @@ defineProps({
   height: 100%;
   object-fit: cover;
   transform: scale(1.05);
+}
+
+.youtube-bg {
+  width: 100vw;
+  height: 56.25vw; /* 16:9 Aspect Ratio */
+  min-height: 100vh;
+  min-width: 177.77vh; /* 16:9 Aspect Ratio */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.05);
+  pointer-events: none; /* Prevents pausing by clicking */
 }
 
 .bg-image {

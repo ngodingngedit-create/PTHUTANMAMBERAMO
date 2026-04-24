@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { blogPosts } from '../data/blogPosts';
 
 const props = defineProps({
@@ -44,8 +44,15 @@ const props = defineProps({
   lang: { type: String, default: 'en' }
 });
 
+const allPosts = ref([...blogPosts]);
+
+onMounted(() => {
+  const customBlogs = JSON.parse(localStorage.getItem('custom_blogs') || '[]');
+  allPosts.value = [...customBlogs, ...blogPosts];
+});
+
 const latestPosts = computed(() => {
-  return blogPosts.slice(0, 3);
+  return allPosts.value.slice(0, 3);
 });
 </script>
 

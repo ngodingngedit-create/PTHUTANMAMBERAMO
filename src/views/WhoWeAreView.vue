@@ -1,16 +1,9 @@
 <template>
   <div class="who-we-are-view">
-    <!-- HERO SECTION -->
-    <Hero 
-      :t="t" 
-      :lang="lang" 
-      videoSrc="/pahasyim/pahasyim.mp4" 
-      :title="t.who_we_are_page.hero_title"
-      :subtitle="t.who_we_are_page.hero_subtitle"
-    />
-
-    <!-- vidio overlay -->
-    <div class="video-overlay"></div>
+    <Hero backgroundType="youtube" youtubeId="jjg8d3Bja3A">
+      <h1 class="hero-title">{{ t.who_we_are_page.hero_title }}</h1>
+      <p class="hero-subtitle">{{ t.who_we_are_page.hero_subtitle }}</p>
+    </Hero>
 
     <!-- BASIN GEOGRAPHY (THE SYSTEM) -->
     <section class="section geography-basin">
@@ -125,6 +118,29 @@ defineProps({ t: Object, lang: String })
   background: var(--bg-eco-neutral);
   color: var(--dark-charcoal);
   overflow-x: hidden;
+}
+
+/* --- HERO STYLES --- */
+.hero-title {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: #ffffff;
+  max-width: 850px;
+  margin: 0 auto 30px;
+  line-height: 1.7;
+  font-weight: 400;
+  opacity: 0.95;
+  text-align: center;
 }
 
 

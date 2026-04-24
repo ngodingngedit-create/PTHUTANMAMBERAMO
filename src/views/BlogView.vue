@@ -53,13 +53,21 @@
 </template>
 
 <script setup>
-import { blogPosts } from '../data/blogPosts';
+import { ref, onMounted } from 'vue';
+import { blogPosts as staticPosts } from '../data/blogPosts';
 import Hero from '../components/Hero.vue'
 
 defineProps({
   t: Object,
   lang: String
 })
+
+const blogPosts = ref([...staticPosts]);
+
+onMounted(() => {
+  const customBlogs = JSON.parse(localStorage.getItem('custom_blogs') || '[]');
+  blogPosts.value = [...customBlogs, ...staticPosts];
+});
 </script>
 
 <style scoped>
