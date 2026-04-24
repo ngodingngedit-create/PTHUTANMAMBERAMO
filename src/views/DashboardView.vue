@@ -32,20 +32,47 @@
       </div>
 
       <nav class="sidebar-nav">
-        <router-link 
-          v-for="menu in menus" 
-          :key="menu.name" 
-          :to="menu.path" 
-          class="nav-item" 
-          :class="{ 'active': isActiveRoute(menu.path) }"
-          @click="closeMobileMenu"
-        >
-          <span class="icon" v-html="getIcon(menu.icon)"></span>
-          <span class="label" v-if="!isCollapsed">{{ menu.name }}</span>
-          <span class="chevron-right" v-if="!isCollapsed && menu.hasChevron">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-          </span>
-        </router-link>
+        <template v-for="menu in menus" :key="menu.name">
+          <!-- Normal Link -->
+          <router-link 
+            v-if="!menu.children"
+            :to="menu.path" 
+            class="nav-item" 
+            :class="{ 'active': isActiveRoute(menu.path) }"
+            @click="closeMobileMenu"
+          >
+            <span class="icon" v-html="getIcon(menu.icon)"></span>
+            <span class="label" v-if="!isCollapsed">{{ menu.name }}</span>
+          </router-link>
+
+          <!-- Accordion Menu -->
+          <div v-else class="nav-group">
+            <div 
+              class="nav-item accordion-toggle" 
+              :class="{ 'active': isActiveRoute(menu.path) }"
+              @click="toggleAccordion(menu.name)"
+            >
+              <span class="icon" v-html="getIcon(menu.icon)"></span>
+              <span class="label" v-if="!isCollapsed">{{ menu.name }}</span>
+              <span class="chevron-right" :class="{ 'rotated': openAccordion === menu.name }" v-if="!isCollapsed">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </span>
+            </div>
+            
+            <div class="nav-children" v-show="openAccordion === menu.name && !isCollapsed">
+              <router-link 
+                v-for="child in menu.children" 
+                :key="child.name"
+                :to="child.path"
+                class="nav-child-item"
+                :class="{ 'active': route.path === child.path }"
+                @click="closeMobileMenu"
+              >
+                {{ child.name }}
+              </router-link>
+            </div>
+          </div>
+        </template>
       </nav>
 
       <div class="sidebar-footer">
@@ -64,17 +91,27 @@
     <!-- MAIN CONTENT -->
     <main class="main-content">
       <!-- Top Header -->
-      <header class="top-header">
-        <div class="header-left">
-          <button class="back-btn" @click="goBack" v-if="!isMobile">
+      <header class="top-header" :class="{ 'mobile-header-style': isMobile }">
+        <!-- Desktop Left -->
+        <div class="header-left" v-if="!isMobile">
+          <button class="back-btn" @click="goBack">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
           </button>
-          <button class="hamburger-btn" @click="isMobileMenuOpen = true" v-if="isMobile">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0a2540" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-          </button>
+        </div>
+
+        <!-- Mobile Left (Logo) -->
+        <div class="header-left mobile-logo-left" v-if="isMobile">
+          <router-link to="/" class="nav-logo" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
+            <img src="/logo/logo-membrano.png" alt="Logo PT Hutan Harapan" style="height: 32px; width: auto;">
+            <div style="display: flex; flex-direction: column; line-height: 1.1;">
+              <span style="font-weight: 700; color: #0F2D2D; font-size: 14px;">PT Hutan Harapan</span>
+              <span style="font-weight: 500; color: #1A6B6B; font-size: 11px;">Mamberamo</span>
+            </div>
+          </router-link>
         </div>
         
-        <div class="header-right">
+        <!-- Desktop Right -->
+        <div class="header-right" v-if="!isMobile">
           <button class="header-icon-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a2540" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></button>
           <button class="header-icon-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a2540" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
           <button class="header-icon-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a2540" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></button>
@@ -82,6 +119,22 @@
           <div class="header-avatar">
             <img :src="`https://ui-avatars.com/api/?name=${userName}&background=f1f5f9&color=0a2540`" alt="Avatar" />
           </div>
+        </div>
+
+        <!-- Mobile Right -->
+        <div class="header-right mobile-controls-right" v-if="isMobile">
+          <!-- Language Selector -->
+          <div class="k-lang-selector" @click="lang = lang === 'id' ? 'en' : 'id'">
+            <div class="flag-wrapper">
+              <img :src="lang === 'id' ? '/button_language/indo.png' : '/button_language/english.png'" alt="Flag">
+            </div>
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="#1A6B6B" stroke-width="2"><path d="M1 1L5 5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+
+          <!-- Hamburger -->
+          <button class="k-hamburger" @click="isMobileMenuOpen = true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A6B6B" stroke-width="2.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+          </button>
         </div>
       </header>
 
@@ -94,19 +147,325 @@
 
         <!-- Dynamic Content Slot -->
         <div class="content-area">
+          
+          <!-- DASHBOARD -->
+          <!-- DASHBOARD (Reference Image Layout) -->
           <div v-if="isActiveRoute('/dashboard')" class="dashboard-home">
-            <p class="current-date">{{ currentDate }}</p>
-            <h2 class="greeting">Halo, {{ userName }}</h2>
-            <p class="subtitle">Pantau dan kelola event, lowongan, dan merchandise</p>
+            <div class="page-header" style="margin-bottom: 24px;">
 
-            <div class="action-card mt-8">
-              <div class="card-content">
-                <h3>Rekap Semua Event</h3>
+            </div>
+
+            <!-- Top Cards -->
+            <div class="k-grid-4">
+              <!-- Card 1 -->
+              <div class="k-card k-stat-card">
+                <div class="k-stat-header">
+                  <span class="k-stat-title">Total Proyek</span>
+                  <div class="k-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+                </div>
+                <div class="k-stat-value">12</div>
+                <div class="k-stat-trend positive">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                  <span>8.2%</span> <span class="trend-text">since last month</span>
+                </div>
               </div>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              
+              <!-- Card 2 -->
+              <div class="k-card k-stat-card">
+                <div class="k-stat-header">
+                  <span class="k-stat-title">Lahan Aktif (Ha)</span>
+                  <div class="k-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                </div>
+                <div class="k-stat-value">4.890</div>
+                <div class="k-stat-trend positive">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                  <span>3.4%</span> <span class="trend-text">since last month</span>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="k-card k-stat-card">
+                <div class="k-stat-header">
+                  <span class="k-stat-title">Serapan Karbon (Ton)</span>
+                  <div class="k-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                </div>
+                <div class="k-stat-value">25.410</div>
+                <div class="k-stat-trend negative">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                  <span>0.2%</span> <span class="trend-text">since last month</span>
+                </div>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="k-card k-stat-card">
+                <div class="k-stat-header">
+                  <span class="k-stat-title">Pesan Baru</span>
+                  <div class="k-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                </div>
+                <div class="k-stat-value">36</div>
+                <div class="k-stat-trend positive">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                  <span>1.2%</span> <span class="trend-text">since last month</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Middle Row -->
+            <div class="k-grid-charts mt-6">
+              <!-- Bar Chart -->
+              <div class="k-card">
+                 <div class="k-card-header">
+                   <h3>Dinamika Penyerapan</h3>
+                   <span class="k-dropdown-text">2026 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>
+                 </div>
+                 <div class="css-bar-chart">
+                    <div class="bar-col"><div class="bar" style="height: 40%"></div><span class="bar-label">Jan</span></div>
+                    <div class="bar-col"><div class="bar" style="height: 55%"></div><span class="bar-label">Feb</span></div>
+                    <div class="bar-col"><div class="bar" style="height: 45%"></div><span class="bar-label">Mar</span></div>
+                    <div class="bar-col"><div class="bar" style="height: 70%"></div><span class="bar-label">Apr</span></div>
+                    <div class="bar-col"><div class="bar" style="height: 60%"></div><span class="bar-label">Mei</span></div>
+                    <div class="bar-col"><div class="bar" style="height: 85%"></div><span class="bar-label">Jun</span></div>
+                    <div class="bar-col"><div class="bar" style="height: 30%"></div><span class="bar-label">Jul</span></div>
+                 </div>
+              </div>
+
+              <!-- Circular Progress / Status -->
+              <div class="k-card">
+                <div class="k-card-header">
+                   <h3>Status Kondisi Lahan</h3>
+                </div>
+                <div class="k-donut-chart-container">
+                  <div class="k-donut-chart"></div>
+                  <div class="k-donut-legend">
+                     <div class="legend-item"><span class="dot" style="background:#4ade80"></span> 70% Aman</div>
+                     <div class="legend-item"><span class="dot" style="background:#facc15"></span> 20% Rawan</div>
+                     <div class="legend-item"><span class="dot" style="background:#f87171"></span> 10% Bahaya</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Row: Table -->
+            <div class="k-card mt-6" style="overflow-x: auto;">
+               <div class="k-card-header">
+                 <h3>Aktivitas Proyek Terbaru</h3>
+                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+               </div>
+               <table class="k-table">
+                  <thead>
+                    <tr>
+                      <th>Nama Proyek</th>
+                      <th>Lokasi</th>
+                      <th>Tanggal</th>
+                      <th>Status</th>
+                      <th>Luas (Ha)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="flex-td"><div class="avatar-small">H</div> <span style="font-weight:600; color:#0f172a">Hutan Konservasi</span></td>
+                      <td>Papua</td>
+                      <td>22.08.2026</td>
+                      <td><span class="k-badge success">Aktif</span></td>
+                      <td style="font-weight:600; color:#0f172a">1,200</td>
+                    </tr>
+                    <tr>
+                      <td class="flex-td"><div class="avatar-small">G</div> <span style="font-weight:600; color:#0f172a">Restorasi Gambut</span></td>
+                      <td>Kalteng</td>
+                      <td>24.08.2026</td>
+                      <td><span class="k-badge warning">Proses</span></td>
+                      <td style="font-weight:600; color:#0f172a">452</td>
+                    </tr>
+                    <tr>
+                      <td class="flex-td"><div class="avatar-small">M</div> <span style="font-weight:600; color:#0f172a">Mangrove Center</span></td>
+                      <td>Maluku</td>
+                      <td>18.08.2026</td>
+                      <td><span class="k-badge danger">Batal</span></td>
+                      <td style="font-weight:600; color:#0f172a">850</td>
+                    </tr>
+                  </tbody>
+               </table>
             </div>
           </div>
           
+          <!-- DAFTAR PROYEK KARBON -->
+          <div v-else-if="route.path === '/proyek-karbon/daftar'" class="view-proyek">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Nama Proyek</th>
+                    <th>Lokasi</th>
+                    <th>Status</th>
+                    <th>Tanggal Dibuat</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Konservasi Hutan Mamberamo</td><td>Mamberamo Raya, Papua</td><td><span class="badge active">Aktif</span></td><td>12 Jan 2026</td></tr>
+                  <tr><td>Restorasi Ekosistem Gambut</td><td>Katingan, Kalteng</td><td><span class="badge pending">Pending</span></td><td>05 Mar 2026</td></tr>
+                  <tr><td>Pengelolaan Hutan Desa</td><td>Kapuas, Kalteng</td><td><span class="badge active">Aktif</span></td><td>20 Mar 2026</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- PENGAJUAN BARU -->
+          <div v-else-if="route.path === '/proyek-karbon/pengajuan'" class="view-pengajuan">
+            <div class="form-container">
+              <h3>Form Pengajuan Proyek Karbon Baru</h3>
+              <div class="form-group"><label>Nama Proyek</label><input type="text" placeholder="Masukkan nama proyek" /></div>
+              <div class="form-group"><label>Lokasi</label><input type="text" placeholder="Masukkan lokasi" /></div>
+              <div class="form-group"><label>Deskripsi</label><textarea placeholder="Deskripsi proyek"></textarea></div>
+              <button class="btn-primary">Ajukan Proyek</button>
+            </div>
+          </div>
+
+          <!-- PETA LAHAN -->
+          <div v-else-if="route.path === '/lahan/peta'" class="view-peta">
+            <div class="map-placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <p>Peta Interaktif Hutan Harapan Mamberamo</p>
+              <span>(Map Component Placeholder)</span>
+            </div>
+          </div>
+
+          <!-- LEGALITAS LAHAN -->
+          <div v-else-if="route.path === '/lahan/legalitas'" class="view-legalitas">
+            <div class="doc-list">
+              <div class="doc-card" v-for="i in 3" :key="i">
+                <div class="doc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A6B6B" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+                <div class="doc-info"><h4>Sertifikat Hak Guna Usaha {{i}}</h4><p>Diperbarui: 10 Apr 2026</p></div>
+                <button class="btn-outline">Unduh PDF</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- BLOG & MEDIA -->
+          <div v-else-if="isActiveRoute('/blog-media')" class="view-blog">
+            <!-- MODE: LIST -->
+            <div v-if="blogViewMode === 'list'">
+              <div class="blog-header-creative">
+                <h3>Manajemen Artikel</h3>
+                <button class="btn-primary" @click="createNewBlog">Tulis Artikel Baru</button>
+              </div>
+              <div class="blog-grid-real">
+                <article v-for="post in blogPosts" :key="post.id" class="real-blog-card" @click="viewBlogDetail(post)">
+                  <div class="image-wrapper">
+                    <div class="card-image" :style="{ backgroundImage: `url(${post.image})` }"></div>
+                    <div v-if="post.status === 'draft'" class="draft-badge">Draft</div>
+                  </div>
+                  <div class="card-content">
+                    <div class="meta-info">
+                      <span class="date">{{ post.date }}</span>
+                    </div>
+                    <h3 class="blog-title">{{ typeof post.title === 'string' ? post.title : (post.title[lang] || post.title.en) }}</h3>
+                    <p class="blog-excerpt">{{ typeof post.excerpt === 'string' ? post.excerpt : (post.excerpt[lang] || post.excerpt.en) }}</p>
+                    <span class="read-more">Lihat Detail <span class="arrow">&rarr;</span></span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <!-- MODE: DETAIL -->
+            <div v-else-if="blogViewMode === 'detail' && selectedBlog" class="blog-detail-view">
+              <div class="detail-header-actions">
+                <button class="btn-outline btn-sm" @click="goBackToList">&larr; Kembali</button>
+                <button class="btn-primary btn-sm" @click="editBlog">Edit Artikel</button>
+              </div>
+              <div class="detail-content">
+                <div class="detail-hero-wrapper">
+                  <img :src="selectedBlog.image" class="detail-hero-img" alt="Blog cover" />
+                  <div v-if="selectedBlog.status === 'draft'" class="draft-badge large">DRAFT</div>
+                </div>
+                <h1 class="detail-title">{{ typeof selectedBlog.title === 'string' ? selectedBlog.title : (selectedBlog.title[lang] || selectedBlog.title.en) }}</h1>
+                <div class="detail-meta">
+                  <span><strong>Penulis:</strong> {{ selectedBlog.author }}</span>
+                  <span><strong>Tanggal:</strong> {{ selectedBlog.date }}</span>
+                  <span v-if="selectedBlog.source"><strong>Sumber:</strong> {{ selectedBlog.source }}</span>
+                </div>
+                <div class="detail-body">
+                  <div class="content-html" v-html="typeof selectedBlog.content === 'string' ? selectedBlog.content : (selectedBlog.content?.[lang] || selectedBlog.content?.en || (typeof selectedBlog.excerpt === 'string' ? selectedBlog.excerpt : (selectedBlog.excerpt[lang] || selectedBlog.excerpt.en)))"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- MODE: EDIT / NEW -->
+            <div v-else-if="blogViewMode === 'edit'" class="blog-edit-view">
+              <div class="form-container full-width">
+                <h3>{{ selectedBlog ? 'Edit Artikel' : 'Tulis Artikel Baru' }}</h3>
+                <div class="form-group">
+                  <label>Judul Artikel</label>
+                  <input type="text" v-model="editForm.title[lang]" placeholder="Masukkan judul" />
+                </div>
+                <div class="form-group">
+                  <label>Deskripsi / Konten Singkat</label>
+                  <textarea v-model="editForm.excerpt[lang]" placeholder="Tuliskan cuplikan artikel" style="min-height: 80px;"></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Konten Lengkap</label>
+                  <textarea v-model="editForm.content[lang]" placeholder="Tuliskan isi artikel lengkap"></textarea>
+                </div>
+                <div class="form-row" style="display: flex; gap: 20px;">
+                  <div class="form-group" style="flex: 1;">
+                    <label>Tanggal Publikasi</label>
+                    <input type="text" v-model="editForm.date" placeholder="Contoh: 12 Apr 2026" />
+                  </div>
+                  <div class="form-group" style="flex: 1;">
+                    <label>Sumber (Opsional)</label>
+                    <input type="text" v-model="editForm.source" placeholder="Contoh: Reuters" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Gambar Banner</label>
+                  <div class="drag-drop-zone">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <p><strong>Drag and drop</strong> gambar di sini atau <span class="browse-link">telusuri</span></p>
+                    <p class="file-hint">Mendukung format JPG, PNG</p>
+                    <input type="file" accept=".jpg,.jpeg,.png" class="file-input-hidden" />
+                  </div>
+                </div>
+                
+                <div class="form-actions-stack mt-6">
+                  <div class="primary-row">
+                    <button class="btn-outline" @click="saveBlog('draft')">Simpan ke Draft</button>
+                    <button class="btn-primary" @click="saveBlog('published')">Publikasikan</button>
+                  </div>
+                  <button class="btn-text-center" @click="cancelEdit">Batal</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PESAN -->
+          <div v-else-if="isActiveRoute('/pesan')" class="view-pesan">
+            <div class="message-list">
+              <div class="message-item unread">
+                <div class="msg-avatar">K</div>
+                <div class="msg-body"><h4>Kementerian LHK</h4><p>Pembaruan Regulasi Karbon 2026...</p></div>
+                <div class="msg-time">10:00 AM</div>
+              </div>
+              <div class="message-item">
+                <div class="msg-avatar">D</div>
+                <div class="msg-body"><h4>Dinas Kehutanan Papua</h4><p>Jadwal Inspeksi Lahan Bulan Mei...</p></div>
+                <div class="msg-time">Kemarin</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- LAPORAN -->
+          <div v-else-if="isActiveRoute('/laporan')" class="view-laporan">
+            <div class="dashboard-grid">
+              <div class="action-card">
+                <div class="card-content"><h3>Laporan Tahunan 2025</h3><p class="subtitle">PDF • 2.4 MB</p></div>
+                <button class="btn-outline">Unduh</button>
+              </div>
+              <div class="action-card">
+                <div class="card-content"><h3>Laporan Q1 2026</h3><p class="subtitle">PDF • 1.1 MB</p></div>
+                <button class="btn-outline">Unduh</button>
+              </div>
+            </div>
+          </div>
+
           <div v-else class="placeholder-content">
             <h2 class="greeting">Halaman {{ currentMenuName }}</h2>
             <p class="subtitle">Area ini bersifat modular dan dapat diisi dengan komponen sesuai kebutuhan.</p>
@@ -121,6 +480,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { blogPosts as staticPosts } from '../data/blogPosts'
 
 const router = useRouter()
 const route = useRoute()
@@ -130,20 +490,62 @@ const isMobile = ref(false)
 const isMobileMenuOpen = ref(false)
 const userName = ref('Moofeet') // Dynamic via localStorage
 const currentDate = ref('')
+const openAccordion = ref('')
+
+// Blog Management State
+const blogPosts = ref([])
+const blogViewMode = ref('list') // 'list' | 'detail' | 'edit'
+const selectedBlog = ref(null)
+const editForm = ref({
+  id: '',
+  title: { en: '', id: '' },
+  excerpt: { en: '', id: '' },
+  content: { en: '', id: '' },
+  author: '',
+  date: '',
+  source: '',
+  image: '',
+  status: 'published'
+})
+const lang = ref('id') // Default lang for display
 
 const menus = [
   { name: 'Dashboard', path: '/dashboard', icon: 'home', hasChevron: false },
-  { name: 'Proyek Karbon', path: '/proyek-karbon', icon: 'box', hasChevron: true },
-  { name: 'Status Lahan', path: '/lahan', icon: 'map-pin', hasChevron: true },
+  { 
+    name: 'Proyek Karbon', path: '/proyek-karbon', icon: 'box', hasChevron: true,
+    children: [
+      { name: 'Daftar Proyek', path: '/proyek-karbon/daftar' },
+      { name: 'Pengajuan Baru', path: '/proyek-karbon/pengajuan' }
+    ]
+  },
+  { 
+    name: 'Status Lahan', path: '/lahan', icon: 'map-pin', hasChevron: true,
+    children: [
+      { name: 'Peta Lahan', path: '/lahan/peta' },
+      { name: 'Legalitas', path: '/lahan/legalitas' }
+    ]
+  },
   { name: 'Blog & Media', path: '/blog-media', icon: 'file-text', hasChevron: false },
   { name: 'Pesan', path: '/pesan', icon: 'message-square', hasChevron: false },
   { name: 'Laporan', path: '/laporan', icon: 'calendar', hasChevron: false },
   { name: 'Akun Saya', path: '/akun-saya', icon: 'user', hasChevron: false }
 ]
 
+function toggleAccordion(name) {
+  openAccordion.value = openAccordion.value === name ? '' : name
+}
+
 const currentMenuName = computed(() => {
-  const active = menus.find(m => route.path === m.path || route.path.startsWith(m.path + '/'))
-  return active ? active.name : 'Dashboard'
+  for (const m of menus) {
+    if (m.children) {
+      const child = m.children.find(c => route.path === c.path)
+      if (child) return child.name
+      if (route.path.startsWith(m.path)) return m.name
+    } else {
+      if (route.path === m.path || route.path.startsWith(m.path + '/')) return m.name
+    }
+  }
+  return 'Dashboard'
 })
 
 function isActiveRoute(path) {
@@ -183,10 +585,60 @@ function handleResize() {
   isMobile.value = window.innerWidth <= 1024
 }
 
+function loadBlogs() {
+  const customBlogs = JSON.parse(localStorage.getItem('custom_blogs') || '[]')
+  const customIds = customBlogs.map(b => b.id)
+  const filteredStatic = staticPosts.filter(p => !customIds.includes(p.id))
+  blogPosts.value = [...customBlogs, ...filteredStatic]
+}
+
+function viewBlogDetail(post) {
+  selectedBlog.value = post
+  blogViewMode.value = 'detail'
+}
+
+function goBackToList() {
+  blogViewMode.value = 'list'
+  selectedBlog.value = null
+}
+
+function editBlog() {
+  editForm.value = JSON.parse(JSON.stringify(selectedBlog.value))
+  blogViewMode.value = 'edit'
+}
+
+function cancelEdit() {
+  blogViewMode.value = 'detail'
+}
+
+function saveBlog(status) {
+  editForm.value.status = status // 'published' or 'draft'
+  const customBlogs = JSON.parse(localStorage.getItem('custom_blogs') || '[]')
+  
+  const index = customBlogs.findIndex(b => b.id === editForm.value.id)
+  if (index !== -1) {
+    customBlogs[index] = editForm.value
+  } else {
+    customBlogs.push(editForm.value)
+  }
+  
+  localStorage.setItem('custom_blogs', JSON.stringify(customBlogs))
+  loadBlogs()
+  
+  selectedBlog.value = editForm.value
+  blogViewMode.value = 'detail'
+}
+
 onMounted(() => {
   handleResize()
   window.addEventListener('resize', handleResize)
+  loadBlogs()
   
+  const activeMenu = menus.find(m => route.path.startsWith(m.path))
+  if (activeMenu && activeMenu.children) {
+    openAccordion.value = activeMenu.name
+  }
+
   // Dynamic User Name logic
   const name = localStorage.getItem('user_name')
   if (name) {
@@ -428,6 +880,42 @@ onUnmounted(() => {
 .nav-item .chevron-right {
   margin-left: auto;
   opacity: 0.5;
+  transition: transform 0.3s ease;
+}
+
+.chevron-right.rotated {
+  transform: rotate(90deg);
+}
+
+.nav-children {
+  background: #0B2222; /* Slightly darker inner background */
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-child-item {
+  padding: 10px 24px 10px 60px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.nav-child-item:hover {
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+}
+
+.nav-child-item.active {
+  color: #fff;
+  font-weight: 500;
+  border-left-color: #4FD1C5; /* Distinct color for child active */
+  background: rgba(255,255,255,0.02);
+}
+
+.accordion-toggle {
+  user-select: none;
 }
 
 .sidebar-footer {
@@ -474,14 +962,18 @@ onUnmounted(() => {
 
 /* TOP HEADER */
 .top-header {
-  height: 60px;
+  height: 64px;
   background: white;
   border-bottom: 1px solid #f1f5f9;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 20px;
   flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
 
 .header-left .back-btn, .header-left .hamburger-btn {
@@ -607,5 +1099,513 @@ onUnmounted(() => {
   padding: 40px;
   text-align: center;
   border-radius: 4px;
+}
+
+/* DASHBOARD CONTENT STYLES */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.action-card .big-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0F2D2D;
+  margin-top: 8px;
+}
+
+.icon-wrapper {
+  background: #F4FAFA;
+  padding: 16px;
+  border-radius: 50%;
+}
+
+.table-container {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.data-table th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.badge {
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.badge.active { background: #dcfce7; color: #166534; }
+.badge.pending { background: #fef9c3; color: #854d0e; }
+
+.form-container {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 32px;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+.form-container.full-width {
+  max-width: 100%;
+}
+
+.form-container h3 { margin-bottom: 24px; color: #0F2D2D; }
+
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; }
+.form-group input, .form-group textarea {
+  width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;
+}
+.form-group textarea { min-height: 120px; }
+
+/* DRAG AND DROP ZONE */
+.drag-drop-zone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.drag-drop-zone:hover {
+  border-color: #1A6B6B;
+  background: #f0fdfa;
+}
+.drag-drop-zone svg {
+  margin-bottom: 12px;
+}
+.drag-drop-zone p {
+  color: #475569;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+.drag-drop-zone .browse-link {
+  color: #1A6B6B;
+  font-weight: 600;
+}
+.drag-drop-zone .file-hint {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+.file-input-hidden {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #1A6B6B; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.2s;
+}
+.btn-primary:hover { background: #0F2D2D; }
+
+.btn-outline {
+  background: transparent; color: #1A6B6B; border: 1px solid #1A6B6B; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.2s;
+}
+.btn-outline:hover { background: #F4FAFA; }
+
+/* NEW MOBILE HEADER STYLES */
+.mobile-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.k-lang-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background: #f8fdfd;
+  border: 1px solid rgba(26, 107, 107, 0.15);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.k-lang-selector:hover {
+  background: #f0fafa;
+  border-color: rgba(26, 107, 107, 0.3);
+}
+
+.flag-wrapper {
+  width: 28px;
+  height: 18px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.flag-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.k-hamburger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  color: #1A6B6B;
+}
+
+.mobile-logo-left .nav-logo img {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+}
+
+.view-peta .map-placeholder {
+  height: 500px; background: #e2e8f0; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #64748b; margin-top: 20px;
+}
+
+.doc-list { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+.doc-card {
+  background: white; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; display: flex; align-items: center; gap: 20px;
+}
+.doc-info { flex: 1; }
+.doc-info h4 { margin-bottom: 4px; color: #0F2D2D; }
+.doc-info p { font-size: 0.85rem; color: #64748b; }
+
+/* ================= DASHBOARD BLOG CARD DESIGN ================= */
+.blog-header-creative { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+
+.blog-grid-real {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.real-blog-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  border: 1px solid rgba(43,144,144,0.08);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.real-blog-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(26,107,107,0.12);
+  border-color: rgba(43,144,144,0.2);
+}
+
+.real-blog-card .image-wrapper {
+  overflow: hidden;
+  height: 160px;
+  width: 100%;
+  position: relative;
+}
+
+.real-blog-card .card-image {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+}
+
+.real-blog-card:hover .card-image {
+  transform: scale(1.05); 
+}
+
+.draft-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #fef9c3;
+  color: #854d0e;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  z-index: 10;
+}
+
+.draft-badge.large {
+  font-size: 0.9rem;
+  padding: 6px 16px;
+}
+
+.real-blog-card .card-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background: white;
+  position: relative;
+  z-index: 2;
+}
+
+.real-blog-card .meta-info {
+  font-size: 0.75rem;
+  color: #8FA8A8;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.real-blog-card .blog-title {
+  font-size: 1rem;
+  color: #1A6B6B;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  transition: color 0.3s;
+}
+
+.real-blog-card .blog-excerpt {
+  color: #5A7070;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.real-blog-card:hover .blog-title {
+  color: #2B9090;
+}
+
+.real-blog-card .read-more {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #1A6B6B;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* ================= DASHBOARD BLOG DETAIL ================= */
+.blog-detail-view {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  border: 1px solid #e2e8f0;
+}
+
+.detail-header-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 12px;
+}
+
+.btn-sm {
+  padding: 6px 12px !important;
+  font-size: 0.85rem !important;
+}
+
+/* FORM ACTIONS STACK */
+.form-actions-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.primary-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-text-center {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 8px;
+}
+
+
+.detail-hero-wrapper {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.detail-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-title {
+  font-size: 2rem;
+  color: #0F2D2D;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 24px;
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.detail-body .content-html p {
+  color: #334155;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 1.2rem;
+}
+.message-list { background: white; border: 1px solid #e2e8f0; border-radius: 8px; margin-top: 20px;}
+.message-item { display: flex; align-items: center; gap: 16px; padding: 20px; border-bottom: 1px solid #e2e8f0; }
+.message-item.unread { background: #f8fafc; }
+.msg-avatar { width: 40px; height: 40px; background: #1A6B6B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+.msg-body { flex: 1; }
+.msg-body h4 { color: #0F2D2D; margin-bottom: 4px; }
+.msg-body p { font-size: 0.9rem; color: #64748b; }
+.msg-time { font-size: 0.8rem; color: #94a3b8; }
+/* K-DASHBOARD STYLES (Matching Image Reference) */
+.k-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.k-grid-charts { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+.mt-6 { margin-top: 24px; }
+
+.k-card { 
+  background: #ffffff; 
+  border-radius: 12px; 
+  padding: 24px; 
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.03); 
+}
+
+/* STAT CARD */
+.k-stat-card { display: flex; flex-direction: column; gap: 16px; }
+.k-stat-header { display: flex; justify-content: space-between; align-items: center; }
+.k-stat-title { font-size: 0.9rem; font-weight: 600; color: #334155; }
+.k-stat-icon { 
+  border: 1px solid #e2e8f0; 
+  border-radius: 8px; 
+  width: 36px; height: 36px; 
+  display: flex; align-items: center; justify-content: center; 
+  color: #0F2D2D; 
+}
+.k-stat-value { font-size: 2.2rem; font-weight: 700; color: #0f172a; line-height: 1; }
+.k-stat-trend { display: flex; align-items: center; gap: 4px; font-size: 0.8rem; font-weight: 600; }
+.k-stat-trend.positive { color: #22c55e; }
+.k-stat-trend.negative { color: #ef4444; }
+.trend-text { color: #94a3b8; font-weight: 400; margin-left: 4px; }
+
+/* CHARTS HEADER */
+.k-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.k-card-header h3 { font-size: 1.05rem; font-weight: 600; color: #0f172a; }
+.k-dropdown-text { font-size: 0.85rem; color: #64748b; display: flex; align-items: center; gap: 4px; font-weight: 500; cursor: pointer; }
+
+/* DONUT CHART */
+.k-donut-chart-container { display: flex; flex-direction: column; align-items: center; gap: 30px; margin-top: 10px; }
+.k-donut-chart {
+  width: 140px; height: 140px; border-radius: 50%;
+  background: conic-gradient(#4ade80 0% 70%, #facc15 70% 90%, #f87171 90% 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.k-donut-chart::before {
+  content: ''; width: 90px; height: 90px; border-radius: 50%; background: #ffffff;
+}
+.k-donut-legend { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; width: 100%;}
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; color: #64748b; }
+
+/* TABLE */
+.k-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+.k-table th { text-align: left; padding: 12px 16px; font-size: 0.8rem; color: #94a3b8; font-weight: 500; border-bottom: 1px solid #f1f5f9; }
+.k-table td { padding: 16px; font-size: 0.85rem; color: #64748b; border-bottom: 1px solid #f1f5f9; font-weight: 500; }
+.flex-td { display: flex; align-items: center; gap: 16px; }
+.avatar-small { width: 36px; height: 36px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: #0F2D2D; }
+.k-badge { padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; display: inline-block; }
+.k-badge.success { background: #dcfce7; color: #166534; }
+.k-badge.warning { background: #fef9c3; color: #854d0e; }
+.k-badge.danger { background: #fee2e2; color: #991b1b; }
+
+/* BAR CHART overrides for new layout */
+.css-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 220px;
+  width: 100%;
+}
+.bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+  justify-content: flex-end;
+  flex: 1;
+}
+.bar {
+  width: 24px;
+  background: #3b82f6; /* Blue matching the reference */
+  border-radius: 4px 4px 0 0;
+  transition: height 1s ease-out;
+}
+.bar-col:hover .bar {
+  background: #1d4ed8;
+}
+.bar-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+  .k-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .k-grid-charts { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .k-grid-4 { grid-template-columns: 1fr; }
+  .form-actions {
+    gap: 8px !important;
+    justify-content: center !important;
+  }
+  .form-actions button {
+    padding: 8px 12px !important;
+    font-size: 0.8rem !important;
+    white-space: nowrap;
+  }
 }
 </style>

@@ -70,7 +70,11 @@ const routes = [
   // Dashboard routes
   { path: '/dashboard', name: 'Dashboard', component: DashboardView, meta: { hideNavigation: true } },
   { path: '/proyek-karbon', name: 'Dashboard_Proyek', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/proyek-karbon/daftar', name: 'Dashboard_Proyek_Daftar', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/proyek-karbon/pengajuan', name: 'Dashboard_Proyek_Pengajuan', component: DashboardView, meta: { hideNavigation: true } },
   { path: '/lahan', name: 'Dashboard_Lahan', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/lahan/peta', name: 'Dashboard_Lahan_Peta', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/lahan/legalitas', name: 'Dashboard_Lahan_Legalitas', component: DashboardView, meta: { hideNavigation: true } },
   { path: '/blog-media', name: 'Dashboard_BlogMedia', component: DashboardView, meta: { hideNavigation: true } },
   { path: '/pesan', name: 'Dashboard_Pesan', component: DashboardView, meta: { hideNavigation: true } },
   { path: '/laporan', name: 'Dashboard_Laporan', component: DashboardView, meta: { hideNavigation: true } },
