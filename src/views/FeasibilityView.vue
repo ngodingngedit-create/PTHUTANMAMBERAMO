@@ -1,63 +1,87 @@
 <template>
-  <div class="corporate-view">
+  <div class="corporate-view simple-premium">
     <Hero 
       :t="t"
       :lang="lang"
       backgroundType="image"
       backgroundImage="/backgrounds/our_approach.png"
       :title="lang === 'en' ? 'Feasibility Study' : 'Studi Kelayakan'"
-      :subtitle="lang === 'en' ? 'In-depth evaluation of technical, economic, and environmental aspects.' : 'Evaluasi mendalam terhadap aspek teknis, ekonomi, dan lingkungan.'"
-      height="60vh"
+      :subtitle="lang === 'en' ? 'Scientific validation and financial modeling for long-term ecosystem viability.' : 'Validasi ilmiah dan pemodelan finansial untuk kelangsungan ekosistem jangka panjang.'"
+      height="70vh"
     />
 
+    <!-- SECTION 1: OVERVIEW -->
     <section class="section">
       <div class="container">
-        <div class="corp-content-card" v-reveal>
-          <header class="corp-header">
-            <h2 class="heading-lg">Feasibility Study (Studi Kelayakan)</h2>
-            <p class="body-lg">Kami melakukan evaluasi komprehensif untuk memastikan setiap inisiatif konservasi dan proyek karbon memiliki landasan yang kuat secara teknis dan finansial.</p>
-          </header>
-
-          <div class="corp-grid">
-            <div class="corp-visual" v-reveal>
-              <img src="/feasibility_graphic_1777102406702.png" alt="Feasibility Analysis" class="graphic-img">
-              <div class="visual-caption">Technical & Economic Projection Overlay</div>
-            </div>
-            
-            <div class="corp-details">
-              <div class="corp-item">
-                <h3>Project Overview</h3>
-                <p>Mencakup detail lokasi di Mamberamo Raya dengan luas estimasi 300.000+ Hektar, meliputi ekosistem hutan hujan tropis dan lahan basah yang krusial.</p>
+        <div class="editorial-layout" v-reveal>
+          <div class="editorial-image">
+            <img src="/backgrounds/our_approach.png" alt="Project Overview" class="rounded-img">
+          </div>
+          <div class="editorial-text">
+            <span class="tag">Foundation</span>
+            <h2 class="heading-lg">Mamberamo Basin Overview</h2>
+            <p class="body-lg">The Feasibility Study maps over 300,000 hectares of primary swamp forest in the Mamberamo Basin. We assess carbon stocks and biodiversity with precision to ensure a robust foundation for all conservation activities.</p>
+            <div class="stat-row">
+              <div class="simple-stat">
+                <span class="s-val">300K+</span>
+                <span class="s-lbl">Hectares</span>
               </div>
-              <div class="corp-item">
-                <h3>Objectives</h3>
-                <p>Tujuan utama kami adalah proteksi biodiversitas Papua melalui mekanisme Carbon Credit (NBS) yang memberdayakan masyarakat adat.</p>
-              </div>
-              <div class="corp-item">
-                <h3>Technical Feasibility</h3>
-                <p>Menggunakan metodologi Verra VM0007, didukung teknologi LiDAR dan satelit Sentinel untuk pemantauan karbon yang akurat (MRV).</p>
+              <div class="simple-stat">
+                <span class="s-val">98%</span>
+                <span class="s-lbl">Primary Forest</span>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="stats-row" v-reveal>
-            <div class="stat-box">
-              <span class="stat-value">92%</span>
-              <span class="stat-label">Technical Viability</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-value">12.5M</span>
-              <span class="stat-label">tCO2e Capacity</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-value">25Y</span>
-              <span class="stat-label">Project Lifespan</span>
-            </div>
+    <!-- SECTION 2: THE PILLARS -->
+    <section class="section bg-light">
+      <div class="container">
+        <div class="section-header centered" v-reveal>
+          <h2 class="heading-md">The Four Pillars</h2>
+          <p class="body-md">Our assessment covers every critical dimension of the project ecosystem.</p>
+        </div>
+
+        <div class="simple-grid">
+          <div class="pillar-box" v-reveal>
+            <div class="pillar-icon-simple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+            <h3>Technical Integrity</h3>
+            <p>Adherence to global MRV standards and Verra methodologies (VM0007 / VM0015).</p>
           </div>
+          <div class="pillar-box" v-reveal>
+            <div class="pillar-icon-simple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <h3>Financial Viability</h3>
+            <p>Ensuring long-term funding through high-integrity carbon credits in global markets.</p>
+          </div>
+          <div class="pillar-box" v-reveal>
+            <div class="pillar-icon-simple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>Environmental Safety</h3>
+            <p>Predictive modeling of climate benefits and rigorous zero-deforestation policies.</p>
+          </div>
+          <div class="pillar-box" v-reveal>
+            <div class="pillar-icon-simple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><circle cx="19" cy="11" r="4"/></svg></div>
+            <h3>Social Equity</h3>
+            <p>Maintaining FPIC standards and direct economic benefits for local communities.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="corp-full-section" v-reveal>
-            <h3>Environmental Feasibility</h3>
-            <p>Penilaian dampak positif terhadap penyerapan karbon global dan perlindungan habitat endemik yang tidak tergantikan. Proyek ini memenuhi standar tinggi untuk integritas lingkungan dan keadilan sosial.</p>
+    <!-- SECTION 3: ECONOMIC -->
+    <section class="section">
+      <div class="container">
+        <div class="economic-simple-card" v-reveal>
+          <div class="esc-content">
+            <h2 class="heading-md">Economic Permanence</h2>
+            <p>Our projects are designed to be self-sustaining, utilizing the Voluntary Carbon Market (VCM) to generate the capital required to maintain forest protection for decades.</p>
+          </div>
+          <div class="esc-visual">
+            <div class="value-box">
+              <span class="v-label">Longevity</span>
+              <span class="v-main">25+ Years</span>
+            </div>
           </div>
         </div>
       </div>
@@ -71,53 +95,98 @@ defineProps({ t: Object, lang: String })
 </script>
 
 <style scoped>
-.corporate-view { background: #fff; }
-.corp-content-card {
+.simple-premium { background: #fff; color: #1e293b; }
+.bg-light { background: #f8fafc; }
+
+.section { padding: 100px 0; }
+
+.tag {
+  display: inline-block;
+  color: var(--medium-teal);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+}
+
+.heading-lg {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--dark-teal);
+  margin-bottom: 24px;
+}
+
+.body-lg {
+  font-size: 1.15rem;
+  color: var(--slate-gray);
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.editorial-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.rounded-img {
+  width: 100%;
+  border-radius: 32px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.stat-row { display: flex; gap: 40px; }
+.simple-stat { display: flex; flex-direction: column; }
+.s-val { font-family: var(--font-display); font-size: 2.5rem; color: var(--dark-teal); font-weight: 800; }
+.s-lbl { font-size: 0.85rem; color: var(--slate-gray); font-weight: 600; text-transform: uppercase; }
+
+/* PILLARS */
+.section-header.centered { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+.simple-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+.pillar-box {
   background: white;
+  padding: 40px;
   border-radius: 24px;
-  padding: 60px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.05);
-  margin-top: -100px;
-  position: relative;
-  z-index: 10;
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s;
 }
-.corp-header { margin-bottom: 48px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; }
-.heading-lg { font-family: var(--font-display); font-size: 2.5rem; color: var(--dark-teal); margin-bottom: 20px; }
-.body-lg { font-size: 1.1rem; color: var(--slate-gray); line-height: 1.6; }
+.pillar-box:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+.pillar-icon-simple { color: var(--medium-teal); margin-bottom: 24px; }
+.pillar-box h3 { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 12px; color: var(--dark-teal); }
+.pillar-box p { font-size: 0.95rem; color: var(--slate-gray); line-height: 1.6; }
 
-.corp-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; margin-top: 40px; }
-.corp-visual { border-radius: 16px; overflow: hidden; background: #f8fafc; border: 1px solid #e2e8f0; }
-.graphic-img { width: 100%; height: auto; display: block; object-fit: cover; }
-.visual-caption { padding: 12px; font-size: 0.8rem; color: #94a3b8; text-align: center; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
-
-.corp-details { display: flex; flex-direction: column; gap: 32px; }
-.corp-item h3 { font-family: var(--font-display); font-size: 1.25rem; color: var(--dark-charcoal); margin-bottom: 12px; border-left: 4px solid var(--medium-teal); padding-left: 15px; }
-.corp-item p { font-size: 1rem; color: var(--slate-gray); line-height: 1.7; }
-
-.stats-row { 
-  display: flex; 
-  justify-content: space-between; 
-  gap: 24px; 
-  margin: 48px 0; 
-  padding: 32px; 
-  background: linear-gradient(135deg, #0F2D2D, #1A6B6B); 
-  border-radius: 16px;
+/* ECONOMIC */
+.economic-simple-card {
+  background: var(--dark-teal);
   color: white;
+  padding: 60px 80px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
 }
-.stat-box { display: flex; flex-direction: column; align-items: center; flex: 1; text-align: center; }
-.stat-value { font-size: 2.5rem; font-weight: 800; font-family: var(--font-display); }
-.stat-label { font-size: 0.85rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+.esc-content { flex: 1; }
+.esc-content p { font-size: 1.1rem; opacity: 0.8; line-height: 1.6; margin-top: 16px; }
+.value-box {
+  background: rgba(255,255,255,0.1);
+  padding: 30px 50px;
+  border-radius: 20px;
+  text-align: center;
+}
+.v-label { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 8px; }
+.v-main { font-family: var(--font-display); font-size: 2rem; font-weight: 800; }
 
-.corp-full-section { margin-top: 60px; padding: 40px; background: var(--bg-eco-neutral); border-radius: 16px; }
-.corp-full-section h3 { font-family: var(--font-display); font-size: 1.4rem; color: var(--dark-teal); margin-bottom: 16px; }
-.corp-full-section p { font-size: 1.05rem; color: var(--slate-gray); line-height: 1.8; }
+@media (max-width: 1024px) {
+  .editorial-layout { grid-template-columns: 1fr; gap: 40px; }
+  .simple-grid { grid-template-columns: repeat(2, 1fr); }
+  .economic-simple-card { flex-direction: column; text-align: center; padding: 40px 24px; }
+}
 
-@media (max-width: 960px) {
-  .corp-content-card { padding: 40px 24px; margin-top: -60px; }
-  .heading-lg { font-size: 1.8rem; }
-  .corp-grid { grid-template-columns: 1fr; gap: 40px; }
-  .stats-row { flex-direction: column; gap: 32px; padding: 40px 24px; }
-  .stat-value { font-size: 2rem; }
+@media (max-width: 640px) {
+  .simple-grid { grid-template-columns: 1fr; }
+  .heading-lg { font-size: 2.2rem; }
 }
 </style>

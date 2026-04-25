@@ -354,36 +354,50 @@
               </header>
               
               <div class="corp-grid">
-                <div class="corp-visual">
-                  <img src="/feasibility_graphic_1777102406702.png" alt="Feasibility Analysis" class="graphic-img">
-                </div>
+                <section class="corp-section">
+                  <h4>Project Overview</h4>
+                  <p>Gambaran umum proyek yang mencakup aspek geografis dan fisik lahan yang akan dikonservasi.</p>
+                  <ul>
+                    <li><strong>Lokasi:</strong> Mamberamo Raya, Papua, Indonesia.</li>
+                    <li><strong>Luas:</strong> Estimasi 300.000+ Hektar.</li>
+                    <li><strong>Ekosistem:</strong> Hutan hujan tropis murni, lahan gambut, dan riparian.</li>
+                  </ul>
+                </section>
 
-                <div class="corp-details">
-                  <section class="corp-section">
-                    <h4>Project Overview</h4>
-                    <p>Mencakup detail lokasi di Mamberamo Raya dengan luas estimasi 300.000+ Hektar.</p>
-                    <ul>
-                      <li><strong>Lokasi:</strong> Mamberamo Raya, Papua.</li>
-                      <li><strong>Ekosistem:</strong> Hutan hujan tropis murni.</li>
-                    </ul>
-                  </section>
+                <section class="corp-section">
+                  <h4>Objectives</h4>
+                  <p>Tujuan utama dari inisiatif ini adalah untuk menciptakan dampak positif yang terukur melalui mekanisme pasar karbon.</p>
+                  <ul>
+                    <li>Konservasi biodiversitas endemik Papua.</li>
+                    <li>Pengembangan proyek karbon berbasis ekosistem (NBS).</li>
+                    <li>Pemberdayaan ekonomi masyarakat adat sekitar.</li>
+                  </ul>
+                </section>
 
-                  <section class="corp-section">
-                    <h4>Objectives</h4>
-                    <p>Proteksi biodiversitas melalui mekanisme Carbon Credit (NBS).</p>
-                  </section>
-                </div>
-              </div>
+                <section class="corp-section">
+                  <h4>Technical Feasibility</h4>
+                  <p>Metodologi dan teknologi yang digunakan untuk memastikan integritas data dan verifikasi hasil.</p>
+                  <ul>
+                    <li><strong>Metode:</strong> Metodologi Verra VM0007 / VM0015.</li>
+                    <li><strong>Teknologi:</strong> Pemantauan LiDAR, Satelit Sentinel-2, dan AI Analysis.</li>
+                    <li><strong>MRV:</strong> Monitoring, Reporting, and Verification berstandar internasional.</li>
+                  </ul>
+                </section>
 
-              <div class="stats-row">
-                <div class="stat-box">
-                  <span class="stat-value">92%</span>
-                  <span class="stat-label">Viability</span>
-                </div>
-                <div class="stat-box">
-                  <span class="stat-value">12.5M</span>
-                  <span class="stat-label">Capacity</span>
-                </div>
+                <section class="corp-section">
+                  <h4>Economic Feasibility</h4>
+                  <p>Analisis nilai ekonomi proyek dan potensi pendapatan dari kredit karbon.</p>
+                  <ul>
+                    <li>Estimasi penyerapan karbon tahunan yang signifikan.</li>
+                    <li>Akses ke pasar karbon sukarela global (VCM).</li>
+                    <li>Efisiensi operasional melalui integrasi teknologi digital.</li>
+                  </ul>
+                </section>
+
+                <section class="corp-section full-width">
+                  <h4>Environmental Feasibility</h4>
+                  <p>Penilaian dampak positif terhadap lingkungan hidup dan pencegahan degradasi hutan. Proyek ini dinilai sangat layak karena memiliki kontribusi langsung terhadap target NDC Indonesia dan penurunan emisi global melalui pencegahan deforestasi di area berisiko tinggi.</p>
+                </section>
               </div>
             </div>
           </div>
@@ -394,23 +408,48 @@
               <header class="corp-header">
                 <span class="corp-tag">Environmental Study</span>
                 <h2 class="corp-headline">Studi Lingkungan (Environmental Study)</h2>
+                <p class="corp-subheadline">Analisis komprehensif terhadap kondisi baseline ekosistem dan strategi pengelolaan dampak lingkungan.</p>
               </header>
 
-              <div class="environmental-hero-visual">
-                <img src="/environmental_monitoring_1777102421059.png" alt="Monitoring" class="monitoring-main-img">
-              </div>
+              <div class="corp-grid">
+                <section class="corp-section">
+                  <h4>Baseline Environment</h4>
+                  <p>Pendataan kondisi awal ekosistem sebelum dimulainya intervensi proyek.</p>
+                  <ul>
+                    <li>Inventarisasi flora dan fauna endemik.</li>
+                    <li>Analisis kualitas air dan kesehatan tanah.</li>
+                    <li>Pemetaan stok karbon baseline di atas dan di bawah tanah.</li>
+                  </ul>
+                </section>
 
-              <div class="impact-grid">
-                <div class="impact-card">
-                  <div class="impact-icon">🌿</div>
-                  <h4>Baseline</h4>
-                  <p>Pendataan flora, fauna, dan kualitas air awal.</p>
-                </div>
-                <div class="impact-card">
-                  <div class="impact-icon">📊</div>
-                  <h4>Impact</h4>
-                  <p>Evaluasi dampak positif restorasi hutan.</p>
-                </div>
+                <section class="corp-section">
+                  <h4>Impact Assessment</h4>
+                  <p>Evaluasi terhadap potensi dampak yang dihasilkan dari aktivitas proyek di lapangan.</p>
+                  <ul>
+                    <li><strong>Dampak Positif:</strong> Pemulihan habitat, peningkatan serapan karbon.</li>
+                    <li><strong>Potensi Dampak Negatif:</strong> Perubahan pola akses lahan, risiko introduksi spesies non-lokal.</li>
+                  </ul>
+                </section>
+
+                <section class="corp-section">
+                  <h4>Mitigation Plan</h4>
+                  <p>Strategi sistematis untuk mengelola dan memitigasi dampak lingkungan.</p>
+                  <ul>
+                    <li>Reforestasi pada area terdegradasi.</li>
+                    <li>Pembangunan koridor satwa liar.</li>
+                    <li>Sistem deteksi dini kebakaran hutan (early warning system).</li>
+                  </ul>
+                </section>
+
+                <section class="corp-section">
+                  <h4>Community Engagement</h4>
+                  <p>Keterlibatan masyarakat lokal sebagai mitra utama dalam menjaga keberlanjutan lingkungan.</p>
+                  <ul>
+                    <li>Program FPIC (Free, Prior and Informed Consent).</li>
+                    <li>Pelatihan masyarakat sebagai jagawana desa.</li>
+                    <li>Pengembangan sistem pertanian berkelanjutan berbasis agroforestri.</li>
+                  </ul>
+                </section>
               </div>
             </div>
           </div>
@@ -421,30 +460,59 @@
               <header class="corp-header">
                 <span class="corp-tag">Risk Analysis</span>
                 <h2 class="corp-headline">Analisis Risiko (Risk Analysis)</h2>
+                <p class="corp-subheadline">Identifikasi proaktif terhadap variabel risiko dan implementasi strategi mitigasi untuk mengamankan integritas proyek.</p>
               </header>
 
-              <div class="risk-dashboard">
-                <div class="risk-matrix">
-                  <div class="matrix-cell red">Critical</div>
-                  <div class="matrix-cell orange">High</div>
-                  <div class="matrix-cell yellow">Med</div>
-                  <div class="matrix-cell orange">High</div>
-                  <div class="matrix-cell yellow">Med</div>
-                  <div class="matrix-cell green">Low</div>
-                </div>
-              </div>
-
               <div class="corp-grid">
-                <div class="risk-card">
-                  <div class="risk-icon">🌡️</div>
-                  <h4>Env & Ops</h4>
-                  <p>Mitigasi kebakaran dan logistik Papua.</p>
-                </div>
-                <div class="risk-card">
-                  <div class="risk-icon">📉</div>
-                  <h4>Market</h4>
-                  <p>Analisis volatilitas harga karbon global.</p>
-                </div>
+                <section class="corp-section">
+                  <h4>Environmental Risks</h4>
+                  <p>Faktor eksternal alam yang dapat mempengaruhi performa proyek.</p>
+                  <ul>
+                    <li>Kebakaran hutan akibat kemarau ekstrem.</li>
+                    <li>Perubahan pola curah hujan yang mempengaruhi pertumbuhan vegetasi.</li>
+                  </ul>
+                </section>
+
+                <section class="corp-section">
+                  <h4>Operational Risks</h4>
+                  <p>Tantangan teknis dalam pelaksanaan proyek di medan yang sulit.</p>
+                  <ul>
+                    <li>Aksesibilitas lokasi di pedalaman Papua.</li>
+                    <li>Logistik peralatan monitoring dan ketersediaan tenaga ahli lapangan.</li>
+                  </ul>
+                </section>
+
+                <section class="corp-section">
+                  <h4>Regulatory Risks</h4>
+                  <p>Ketidakpastian hukum dan perubahan kebijakan yang dapat berdampak pada status proyek.</p>
+                  <ul>
+                    <li>Perubahan regulasi pasar karbon nasional (SRN PPI).</li>
+                    <li>Kebijakan ekspor kredit karbon internasional.</li>
+                  </ul>
+                </section>
+
+                <section class="corp-section">
+                  <h4>Market Risks</h4>
+                  <p>Fluktuasi pasar yang dapat mempengaruhi nilai ekonomi dari output proyek.</p>
+                  <ul>
+                    <li>Volatilitas harga kredit karbon di pasar global.</li>
+                    <li>Perubahan standar kualitas (misal: integritas tinggi) dari pembeli global.</li>
+                  </ul>
+                </section>
+
+                <section class="corp-section">
+                  <h4>Social Risks</h4>
+                  <p>Potensi gesekan sosial yang dapat menghambat jalannya operasional.</p>
+                  <ul>
+                    <li>Konflik tumpang tindih hak ulayat/lahan.</li>
+                    <li>Ekspektasi ekonomi masyarakat yang tidak terpenuhi secara instan.</li>
+                  </ul>
+                </section>
+
+                <section class="corp-section">
+                  <h4>Mitigation Strategy</h4>
+                  <p>Pendekatan strategis untuk meminimalkan probabilitas dan dampak dari risiko yang teridentifikasi melalui diversifikasi strategi, komunikasi intensif dengan pemerintah, dan asuransi risiko lingkungan.</p>
+                </section>
               </div>
             </div>
           </div>
@@ -2569,36 +2637,11 @@ onUnmounted(() => {
   line-height: 1.6;
 }
 
-.corp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
-.corp-visual { border-radius: 12px; overflow: hidden; border: 1px solid #f1f5f9; }
-.graphic-img { width: 100%; height: auto; display: block; object-fit: cover; }
-
-.environmental-hero-visual { border-radius: 12px; overflow: hidden; margin-bottom: 32px; height: 250px; }
-.monitoring-main-img { width: 100%; height: 100%; object-fit: cover; }
-
-.impact-grid, .risk-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.impact-card, .risk-card { padding: 20px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; }
-.impact-icon, .risk-icon { font-size: 1.5rem; margin-bottom: 12px; }
-
-.stats-row { 
-  display: flex; gap: 20px; margin-top: 32px; padding: 24px; 
-  background: #0F2D2D; border-radius: 12px; color: white;
+.corp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
 }
-.stat-box { flex: 1; text-align: center; }
-.stat-value { font-size: 1.8rem; font-weight: 800; display: block; }
-.stat-label { font-size: 0.75rem; opacity: 0.7; text-transform: uppercase; }
-
-.risk-dashboard { margin-bottom: 32px; }
-.risk-matrix { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.matrix-cell { 
-  height: 60px; border-radius: 6px; display: flex; 
-  align-items: center; justify-content: center; 
-  color: white; font-weight: 700; font-size: 0.7rem; 
-}
-.matrix-cell.red { background: #ef4444; }
-.matrix-cell.orange { background: #f97316; }
-.matrix-cell.yellow { background: #eab308; }
-.matrix-cell.green { background: #22c55e; }
 
 .corp-section {
   display: flex;

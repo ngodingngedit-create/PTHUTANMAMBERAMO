@@ -1,69 +1,85 @@
 <template>
-  <div class="corporate-view">
+  <div class="corporate-view simple-premium risk-theme">
     <Hero 
       :t="t"
       :lang="lang"
       backgroundType="image"
       backgroundImage="/backgrounds/forestry.png"
       :title="lang === 'en' ? 'Risk Analysis' : 'Analisis Risiko'"
-      :subtitle="lang === 'en' ? 'Identification and mitigation strategies for sustainable project operations.' : 'Identifikasi dan strategi mitigasi untuk operasional proyek yang berkelanjutan.'"
-      height="60vh"
+      :subtitle="lang === 'en' ? 'Strategic foresight and proactive mitigation to ensure project permanence.' : 'Pandangan strategis dan mitigasi proaktif untuk memastikan permanensi proyek.'"
+      height="70vh"
     />
 
+    <!-- SECTION 1: FORESIGHT -->
     <section class="section">
       <div class="container">
-        <div class="corp-content-card" v-reveal>
-          <div class="risk-dashboard" v-reveal>
-            <div class="risk-matrix-container">
-              <div class="matrix-header">
-                <h3>Project Risk Matrix</h3>
-                <p>Visualisasi probabilitas vs dampak untuk setiap kategori risiko.</p>
-              </div>
-              <div class="risk-matrix">
-                <div class="matrix-cell red" title="Market Risks">Critical</div>
-                <div class="matrix-cell orange">High</div>
-                <div class="matrix-cell yellow">Medium</div>
-                <div class="matrix-cell orange">High</div>
-                <div class="matrix-cell yellow" title="Operational Risks">Medium</div>
-                <div class="matrix-cell green">Low</div>
-                <div class="matrix-cell yellow">Medium</div>
-                <div class="matrix-cell green" title="Regulatory Risks">Low</div>
-                <div class="matrix-cell green">Low</div>
-              </div>
-              <div class="matrix-labels">
-                <span class="y-label">Dampak ➔</span>
-                <span class="x-label">Probabilitas ➔</span>
-              </div>
-            </div>
-
-            <div class="risk-legend">
-              <div class="legend-item"><span class="dot red"></span> Critical</div>
-              <div class="legend-item"><span class="dot orange"></span> High</div>
-              <div class="legend-item"><span class="dot yellow"></span> Medium</div>
-              <div class="legend-item"><span class="dot green"></span> Low</div>
+        <div class="editorial-layout" v-reveal>
+          <div class="editorial-image">
+            <div class="risk-simple-visual">
+              <svg width="200" height="200" viewBox="0 0 100 100" opacity="0.1">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="1"/>
+                <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="1"/>
+              </svg>
+              <div class="risk-label-centered">Permanence 100%</div>
             </div>
           </div>
+          <div class="editorial-text">
+            <span class="tag">Security & Integrity</span>
+            <h2 class="heading-lg">Proactive Risk Management</h2>
+            <p class="body-lg">We identify and neutralize potential disruptions across five key domains to ensure zero interruption to our conservation mission. Every project is built for permanence and absolute integrity.</p>
+            <div class="stat-row">
+              <div class="simple-stat">
+                <span class="s-val">0%</span>
+                <span class="s-lbl">Illegal Logging</span>
+              </div>
+              <div class="simple-stat">
+                <span class="s-val">25Y+</span>
+                <span class="s-lbl">Guaranteed Safety</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="corp-grid">
-            <div class="risk-card" v-reveal>
-              <div class="risk-icon">🌡️</div>
-              <h3>Environmental & Operational</h3>
-              <p>Mitigasi terhadap risiko kebakaran hutan, dampak perubahan iklim, serta tantangan logistik di medan terpencil Papua.</p>
+    <!-- SECTION 2: RISK DOMAINS -->
+    <section class="section bg-dark">
+      <div class="container">
+        <div class="section-header centered light" v-reveal>
+          <h2 class="heading-md white-text">Risk Domains</h2>
+          <p class="body-md gray-text">Comprehensive monitoring across five critical dimensions.</p>
+        </div>
+
+        <div class="simple-grid">
+          <div class="pillar-box dark-box" v-reveal v-for="(risk, idx) in riskDomains" :key="idx">
+            <div class="pillar-icon-simple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--medium-teal)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/></svg></div>
+            <h3 class="white-text">{{ risk.title }}</h3>
+            <p class="gray-text">{{ risk.desc }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: PROTOCOLS -->
+    <section class="section">
+      <div class="container">
+        <div class="protocol-simple-card" v-reveal>
+          <div class="psc-header">
+            <h2 class="heading-md">Mitigation Protocols</h2>
+            <p>Our "Defense in Depth" strategy ensures multi-layered protection for all project hectares.</p>
+          </div>
+          <div class="psc-list">
+            <div class="p-item-simple">
+              <span class="p-tag">01</span>
+              <p>24/7 Satellite Surveillance</p>
             </div>
-            <div class="risk-card" v-reveal>
-              <div class="risk-icon">⚖️</div>
-              <h3>Regulatory & Social</h3>
-              <p>Kepatuhan terhadap kebijakan karbon nasional (SRN PPI) dan manajemen hubungan harmonis dengan masyarakat adat.</p>
+            <div class="p-item-simple">
+              <span class="p-tag">02</span>
+              <p>Indigenous Community Rangers</p>
             </div>
-            <div class="risk-card" v-reveal>
-              <div class="risk-icon">📉</div>
-              <h3>Market Risks</h3>
-              <p>Analisis volatilitas harga karbon global dan strategi penjaminan mutu kredit karbon integritas tinggi.</p>
-            </div>
-            <div class="risk-card" v-reveal>
-              <div class="risk-icon">🛡️</div>
-              <h3>Mitigation Strategy</h3>
-              <p>Implementasi sistem monitoring real-time dan audit independen berkala untuk meminimalkan potensi gangguan.</p>
+            <div class="p-item-simple">
+              <span class="p-tag">03</span>
+              <p>Independent 3rd-Party Audits</p>
             </div>
           </div>
         </div>
@@ -75,90 +91,113 @@
 <script setup>
 import Hero from '../components/Hero.vue'
 defineProps({ t: Object, lang: String })
+
+const riskDomains = [
+  { title: 'Environmental', desc: 'Counteracting fire risks and biodiversity shifts through early warning systems.' },
+  { title: 'Operational', desc: 'Ensuring logistics and field safety in remote jungle environments.' },
+  { title: 'Regulatory', desc: '100% compliance with Indonesian SRN PPI and global carbon laws.' },
+  { title: 'Market', desc: 'Protection against price volatility through long-term off-take agreements.' },
+  { title: 'Social', desc: 'Maintaining strong FPIC standards with indigenous land owners.' }
+]
 </script>
 
 <style scoped>
-.corporate-view { background: #fff; }
-.corp-content-card {
-  background: white;
-  border-radius: 24px;
-  padding: 60px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.05);
-  margin-top: -100px;
-  position: relative;
-  z-index: 10;
-  border: 1px solid rgba(0,0,0,0.05);
-}
-.corp-header { margin-bottom: 48px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; }
-.heading-lg { font-family: var(--font-display); font-size: 2.5rem; color: var(--dark-teal); margin-bottom: 20px; }
-.body-lg { font-size: 1.1rem; color: var(--slate-gray); line-height: 1.6; }
+.simple-premium { background: #fff; color: var(--dark-charcoal); }
+.bg-dark { background: var(--dark-teal); }
+.white-text { color: white; }
+.gray-text { color: rgba(255,255,255,0.7); }
 
-.risk-dashboard {
-  background: #f8fafc;
-  padding: 40px;
-  border-radius: 24px;
-  border: 1px solid #e2e8f0;
-  margin-bottom: 60px;
-  display: flex;
-  gap: 40px;
+.section { padding: 100px 0; }
+
+.tag {
+  display: inline-block;
+  color: var(--medium-teal);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+}
+
+.heading-lg {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--dark-teal);
+  margin-bottom: 24px;
+}
+
+.body-lg {
+  font-size: 1.15rem;
+  color: var(--slate-gray);
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.editorial-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 80px;
   align-items: center;
 }
 
-.risk-matrix-container { flex: 1; }
-.matrix-header { margin-bottom: 24px; }
-.matrix-header h3 { font-family: var(--font-display); font-size: 1.4rem; color: var(--dark-teal); margin-bottom: 4px; }
-.matrix-header p { font-size: 0.9rem; color: #64748b; }
-
-.risk-matrix {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 16px;
-}
-.matrix-cell {
-  height: 80px;
+.risk-simple-visual {
+  background: #f0fafa;
+  border-radius: 32px;
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  font-weight: 700;
+  position: relative;
+  color: var(--medium-teal);
+}
+
+.risk-label-centered {
+  position: absolute;
+  font-weight: 800;
+  font-size: 1.2rem;
   text-transform: uppercase;
-  color: white;
+  letter-spacing: 1px;
 }
-.matrix-cell.red { background: #ef4444; }
-.matrix-cell.orange { background: #f97316; }
-.matrix-cell.yellow { background: #eab308; }
-.matrix-cell.green { background: #22c55e; }
 
-.matrix-labels { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
+.stat-row { display: flex; gap: 40px; }
+.simple-stat { display: flex; flex-direction: column; }
+.s-val { font-family: var(--font-display); font-size: 2.5rem; color: var(--medium-teal); font-weight: 800; }
+.s-lbl { font-size: 0.85rem; color: var(--slate-gray); font-weight: 600; text-transform: uppercase; }
 
-.risk-legend { display: flex; flex-direction: column; gap: 16px; min-width: 150px; }
-.legend-item { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; font-weight: 600; color: #475569; }
-.dot { width: 12px; height: 12px; border-radius: 50%; }
-.dot.red { background: #ef4444; }
-.dot.orange { background: #f97316; }
-.dot.yellow { background: #eab308; }
-.dot.green { background: #22c55e; }
-
-.corp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
-.risk-card { 
-  padding: 32px; 
-  background: white; 
-  border-radius: 20px; 
-  border: 1px solid #f1f5f9; 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-  transition: all 0.3s ease;
+/* DOMAINS */
+.section-header.centered { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+.simple-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.pillar-box {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s;
 }
-.risk-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.06); border-color: var(--medium-teal); }
-.risk-icon { font-size: 2rem; margin-bottom: 20px; }
-.risk-card h3 { font-family: var(--font-display); font-size: 1.25rem; color: var(--dark-teal); margin-bottom: 12px; }
-.risk-card p { font-size: 0.95rem; color: var(--slate-gray); line-height: 1.6; }
+.dark-box { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+.pillar-box h3 { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 12px; color: var(--dark-teal); }
+.pillar-box p { font-size: 0.95rem; line-height: 1.6; color: var(--slate-gray); }
 
-@media (max-width: 960px) {
-  .corp-content-card { padding: 40px 24px; margin-top: -60px; }
-  .risk-dashboard { flex-direction: column; padding: 24px; gap: 30px; }
-  .corp-grid { grid-template-columns: 1fr; }
-  .matrix-cell { height: 60px; font-size: 0.7rem; }
+/* PROTOCOLS */
+.protocol-simple-card {
+  border: 1px solid #f1f5f9;
+  padding: 60px;
+  border-radius: 40px;
+}
+.psc-header { margin-bottom: 40px; }
+.psc-header p { color: var(--slate-gray); font-size: 1.1rem; margin-top: 10px; }
+.psc-list { display: flex; flex-direction: column; gap: 20px; }
+.p-item-simple { display: flex; align-items: center; gap: 20px; padding: 20px; background: #f0fafa; border-radius: 12px; }
+.p-tag { font-weight: 900; color: var(--medium-teal); font-size: 1.2rem; }
+.p-item-simple p { font-weight: 600; color: var(--dark-teal); }
+
+@media (max-width: 1024px) {
+  .editorial-layout { grid-template-columns: 1fr; gap: 40px; }
+  .simple-grid { grid-template-columns: repeat(2, 1fr); }
+  .protocol-simple-card { padding: 30px 24px; }
+}
+
+@media (max-width: 640px) {
+  .simple-grid { grid-template-columns: 1fr; }
 }
 </style>
