@@ -152,7 +152,7 @@
                   <span>{{ lang === 'id' ? 'Notifikasi' : 'Notifications' }}</span>
                 </div>
                 <div class="divider"></div>
-                <div class="dropdown-item logout" @click="isProfileMenuOpen = false">
+                <div class="dropdown-item logout" @click="isProfileMenuOpen = false; router.push('/')">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
                   <span>{{ lang === 'id' ? 'Keluar' : 'Logout' }}</span>
                 </div>
@@ -344,22 +344,107 @@
             </div>
           </div>
 
-          <!-- PETA LAHAN -->
-          <div v-else-if="route.path === '/lahan/peta'" class="view-peta">
-            <div class="map-placeholder">
-              <img src="/home/map.png" class="map-placeholder-img" alt="HHM Map" />
-              <p>Peta Interaktif Hutan Harapan Mamberamo</p>
-              <span>(Map Component Placeholder)</span>
+          <!-- WHAT WE DO: FEASIBILITY STUDY -->
+          <div v-else-if="route.path === '/what-we-do/feasibility'" class="view-corporate-detail">
+            <div class="corporate-card">
+              <header class="corp-header">
+                <span class="corp-tag">Feasibility Study</span>
+                <h2 class="corp-headline">Studi Kelayakan (Feasibility Study)</h2>
+                <p class="corp-subheadline">Evaluasi mendalam terhadap aspek teknis, ekonomi, dan lingkungan untuk memastikan keberlanjutan proyek jangka panjang.</p>
+              </header>
+              
+              <div class="corp-grid">
+                <div class="corp-visual">
+                  <img src="/feasibility_graphic_1777102406702.png" alt="Feasibility Analysis" class="graphic-img">
+                </div>
+
+                <div class="corp-details">
+                  <section class="corp-section">
+                    <h4>Project Overview</h4>
+                    <p>Mencakup detail lokasi di Mamberamo Raya dengan luas estimasi 300.000+ Hektar.</p>
+                    <ul>
+                      <li><strong>Lokasi:</strong> Mamberamo Raya, Papua.</li>
+                      <li><strong>Ekosistem:</strong> Hutan hujan tropis murni.</li>
+                    </ul>
+                  </section>
+
+                  <section class="corp-section">
+                    <h4>Objectives</h4>
+                    <p>Proteksi biodiversitas melalui mekanisme Carbon Credit (NBS).</p>
+                  </section>
+                </div>
+              </div>
+
+              <div class="stats-row">
+                <div class="stat-box">
+                  <span class="stat-value">92%</span>
+                  <span class="stat-label">Viability</span>
+                </div>
+                <div class="stat-box">
+                  <span class="stat-value">12.5M</span>
+                  <span class="stat-label">Capacity</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- LEGALITAS LAHAN -->
-          <div v-else-if="route.path === '/lahan/legalitas'" class="view-legalitas">
-            <div class="doc-list">
-              <div class="doc-card" v-for="i in 3" :key="i">
-                <div class="doc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A6B6B" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-                <div class="doc-info"><h4>Sertifikat Hak Guna Usaha {{i}}</h4><p>Diperbarui: 10 Apr 2026</p></div>
-                <button class="btn-outline">Unduh PDF</button>
+          <!-- WHAT WE DO: ENVIRONMENTAL STUDY -->
+          <div v-else-if="route.path === '/what-we-do/environmental'" class="view-corporate-detail">
+            <div class="corporate-card">
+              <header class="corp-header">
+                <span class="corp-tag">Environmental Study</span>
+                <h2 class="corp-headline">Studi Lingkungan (Environmental Study)</h2>
+              </header>
+
+              <div class="environmental-hero-visual">
+                <img src="/environmental_monitoring_1777102421059.png" alt="Monitoring" class="monitoring-main-img">
+              </div>
+
+              <div class="impact-grid">
+                <div class="impact-card">
+                  <div class="impact-icon">🌿</div>
+                  <h4>Baseline</h4>
+                  <p>Pendataan flora, fauna, dan kualitas air awal.</p>
+                </div>
+                <div class="impact-card">
+                  <div class="impact-icon">📊</div>
+                  <h4>Impact</h4>
+                  <p>Evaluasi dampak positif restorasi hutan.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WHAT WE DO: RISK ANALYSIS -->
+          <div v-else-if="route.path === '/what-we-do/risk'" class="view-corporate-detail">
+            <div class="corporate-card">
+              <header class="corp-header">
+                <span class="corp-tag">Risk Analysis</span>
+                <h2 class="corp-headline">Analisis Risiko (Risk Analysis)</h2>
+              </header>
+
+              <div class="risk-dashboard">
+                <div class="risk-matrix">
+                  <div class="matrix-cell red">Critical</div>
+                  <div class="matrix-cell orange">High</div>
+                  <div class="matrix-cell yellow">Med</div>
+                  <div class="matrix-cell orange">High</div>
+                  <div class="matrix-cell yellow">Med</div>
+                  <div class="matrix-cell green">Low</div>
+                </div>
+              </div>
+
+              <div class="corp-grid">
+                <div class="risk-card">
+                  <div class="risk-icon">🌡️</div>
+                  <h4>Env & Ops</h4>
+                  <p>Mitigasi kebakaran dan logistik Papua.</p>
+                </div>
+                <div class="risk-card">
+                  <div class="risk-icon">📉</div>
+                  <h4>Market</h4>
+                  <p>Analisis volatilitas harga karbon global.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -528,11 +613,10 @@
                 
               </div>
 
-              <!-- EDIT BOTTOM BAR -->
               <div class="fixed-bottom-bar edit-bar">
                 <div class="bar-container">
-                  <button class="btn-bar-outline" @click="cancelEdit">{{ lang === 'id' ? 'Batal' : 'Cancel' }}</button>
-                  <div class="bar-actions">
+                  <div class="bar-actions" style="margin-left: auto; display: flex; gap: 12px;">
+                    <button class="btn-bar-outline" @click="cancelEdit">{{ lang === 'id' ? 'Batal' : 'Cancel' }}</button>
                     <button class="btn-bar-primary" @click="saveBlog(editForm.status)">{{ lang === 'id' ? 'Simpan Perubahan' : 'Save Changes' }}</button>
                   </div>
                 </div>
@@ -631,10 +715,11 @@ const menus = [
     ]
   },
   { 
-    name: 'Status Lahan', path: '/lahan', icon: 'map-pin', hasChevron: true,
+    name: 'Apa yang Kami Lakukan', path: '/what-we-do', icon: 'activity', hasChevron: true,
     children: [
-      { name: 'Peta Lahan', path: '/lahan/peta' },
-      { name: 'Legalitas', path: '/lahan/legalitas' }
+      { name: 'Feasibility Study', path: '/what-we-do/feasibility' },
+      { name: 'Environmental Study', path: '/what-we-do/environmental' },
+      { name: 'Risk Analysis', path: '/what-we-do/risk' }
     ]
   },
   { name: 'Blog & Media', path: '/blog-media', icon: 'file-text', hasChevron: false },
@@ -685,6 +770,7 @@ function getIcon(name) {
     'calendar': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
     'box': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
     'map-pin': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+    'activity': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
     'file-text': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>',
     'message-square': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
     'user': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
@@ -2384,8 +2470,6 @@ onUnmounted(() => {
      z-index: 1000;
   }
 }
-</style>
-
 /* ================= MOBILE REFINEMENTS ================= */
 @media (max-width: 1024px) {
   .table-container {
@@ -2396,7 +2480,7 @@ onUnmounted(() => {
   }
   
   .data-table {
-    min-width: 600px; /* Force visibility of all columns via scroll */
+    min-width: 600px;
   }
 
   /* Blog Detail Refinements */
@@ -2436,3 +2520,186 @@ onUnmounted(() => {
     display: block;
   }
 }
+
+/* ================= CORPORATE DETAIL STYLES ================= */
+.view-corporate-detail {
+  padding-bottom: 40px;
+}
+
+.corporate-card {
+  background: white;
+  border-radius: 20px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.04);
+  padding: 40px;
+  overflow: hidden;
+}
+
+.corp-header {
+  margin-bottom: 48px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 32px;
+}
+
+.corp-tag {
+  display: inline-block;
+  background: #f0fafa;
+  color: #1A6B6B;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.corp-headline {
+  font-size: 2.2rem;
+  color: #0F2D2D;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.corp-subheadline {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+.corp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+.corp-visual { border-radius: 12px; overflow: hidden; border: 1px solid #f1f5f9; }
+.graphic-img { width: 100%; height: auto; display: block; object-fit: cover; }
+
+.environmental-hero-visual { border-radius: 12px; overflow: hidden; margin-bottom: 32px; height: 250px; }
+.monitoring-main-img { width: 100%; height: 100%; object-fit: cover; }
+
+.impact-grid, .risk-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.impact-card, .risk-card { padding: 20px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; }
+.impact-icon, .risk-icon { font-size: 1.5rem; margin-bottom: 12px; }
+
+.stats-row { 
+  display: flex; gap: 20px; margin-top: 32px; padding: 24px; 
+  background: #0F2D2D; border-radius: 12px; color: white;
+}
+.stat-box { flex: 1; text-align: center; }
+.stat-value { font-size: 1.8rem; font-weight: 800; display: block; }
+.stat-label { font-size: 0.75rem; opacity: 0.7; text-transform: uppercase; }
+
+.risk-dashboard { margin-bottom: 32px; }
+.risk-matrix { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.matrix-cell { 
+  height: 60px; border-radius: 6px; display: flex; 
+  align-items: center; justify-content: center; 
+  color: white; font-weight: 700; font-size: 0.7rem; 
+}
+.matrix-cell.red { background: #ef4444; }
+.matrix-cell.orange { background: #f97316; }
+.matrix-cell.yellow { background: #eab308; }
+.matrix-cell.green { background: #22c55e; }
+
+.corp-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.corp-section.full-width {
+  grid-column: span 2;
+  background: #f8fafc;
+  padding: 32px;
+  border-radius: 12px;
+}
+
+.corp-section h4 {
+  font-size: 1.1rem;
+  color: #0F2D2D;
+  font-weight: 700;
+  margin-bottom: 16px;
+  position: relative;
+  padding-left: 16px;
+}
+
+.corp-section h4::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 4px;
+  background: #1A6B6B;
+  border-radius: 2px;
+}
+
+.corp-section p {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.corp-section ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.corp-section ul li {
+  font-size: 0.9rem;
+  color: #334155;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+}
+
+.corp-section ul li::before {
+  content: '•';
+  color: #1A6B6B;
+  font-weight: 900;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+@media (max-width: 1024px) {
+  .corporate-card {
+    padding: 24px;
+  }
+  .corp-headline {
+    font-size: 1.8rem;
+  }
+  .corp-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .corp-section.full-width {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .corp-header {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+  }
+  .corp-headline {
+    font-size: 1.5rem;
+  }
+  .corp-subheadline {
+    font-size: 1rem;
+  }
+  .corporate-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+  .corp-section h4 {
+    font-size: 1rem;
+  }
+  .corp-section p, .corp-section ul li {
+    font-size: 0.88rem;
+  }
+}
+</style>

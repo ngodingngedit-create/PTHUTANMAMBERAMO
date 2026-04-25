@@ -31,6 +31,9 @@ import EnvironmentView from '../views/EnvironmentView.vue'
 import ForestryView from '../views/ForestryView.vue'
 import WhoWeAreView from '../views/WhoWeAreView.vue'
 import CommunityView from '../views/CommunityView.vue'
+import FeasibilityView from '../views/FeasibilityView.vue'
+import EnvironmentalView from '../views/EnvironmentalView.vue'
+import RiskView from '../views/RiskView.vue'
 import DashboardView from '../views/DashboardView.vue'
 
 const routes = [
@@ -66,15 +69,19 @@ const routes = [
   { path: '/environment', name: 'Environment', component: EnvironmentView },
   { path: '/forestry', name: 'Forestry', component: ForestryView },
   { path: '/community', name: 'Community', component: CommunityView },
+  { path: '/feasibility', name: 'Feasibility', component: FeasibilityView },
+  { path: '/environmental', name: 'Environmental', component: EnvironmentalView },
+  { path: '/risk', name: 'Risk', component: RiskView },
   
   // Dashboard routes
   { path: '/dashboard', name: 'Dashboard', component: DashboardView, meta: { hideNavigation: true } },
   { path: '/proyek-karbon', name: 'Dashboard_Proyek', component: DashboardView, meta: { hideNavigation: true } },
   { path: '/proyek-karbon/daftar', name: 'Dashboard_Proyek_Daftar', component: DashboardView, meta: { hideNavigation: true } },
   { path: '/proyek-karbon/pengajuan', name: 'Dashboard_Proyek_Pengajuan', component: DashboardView, meta: { hideNavigation: true } },
-  { path: '/lahan', name: 'Dashboard_Lahan', component: DashboardView, meta: { hideNavigation: true } },
-  { path: '/lahan/peta', name: 'Dashboard_Lahan_Peta', component: DashboardView, meta: { hideNavigation: true } },
-  { path: '/lahan/legalitas', name: 'Dashboard_Lahan_Legalitas', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/what-we-do', name: 'Dashboard_WhatWeDo', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/what-we-do/feasibility', name: 'Dashboard_Feasibility', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/what-we-do/environmental', name: 'Dashboard_Environmental', component: DashboardView, meta: { hideNavigation: true } },
+  { path: '/what-we-do/risk', name: 'Dashboard_Risk', component: DashboardView, meta: { hideNavigation: true } },
   { path: '/blog-media', name: 'Dashboard_BlogMedia', component: DashboardView, meta: { hideNavigation: true } },
   { path: '/pesan', name: 'Dashboard_Pesan', component: DashboardView, meta: { hideNavigation: true } },
   { path: '/laporan', name: 'Dashboard_Laporan', component: DashboardView, meta: { hideNavigation: true } },

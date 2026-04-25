@@ -161,10 +161,9 @@ const navLinks = [
   {
     id: 'what_we_do', key: 'what_we_do',
     children: [
-      { id: 'our_approach', key: 'our_approach', path: '/our-approach' },
-      { id: 'environment', key: 'environment', path: '/environment' },
-      { id: 'forestry', key: 'forestry', path: '/forestry' },
-      { id: 'community', key: 'community', path: '/community' }
+      { id: 'feasibility', key: 'feasibility', path: '/feasibility' },
+      { id: 'environmental', key: 'environmental', path: '/environmental' },
+      { id: 'risk', key: 'risk', path: '/risk' }
     ]
   },
   { id: 'career_btn', key: 'career', defaultLabel: 'Career', path: '/career' },
