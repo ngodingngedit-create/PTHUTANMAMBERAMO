@@ -8,7 +8,7 @@
             <img src="/logo/logo-membrano.png" alt="Logo PT Hutan Harapan Memberamo" class="footer-logo-img">
             <div class="footer-logo-text">
               <span class="fl-name">PT Hutan Harapan</span>
-              <span class="fl-sub">Mamberamo</span>
+              <span class="fl-sub">Mamberamo Raya</span>
             </div>
           </router-link>
           <p class="footer-tagline">{{ t.footer.tagline }}</p>

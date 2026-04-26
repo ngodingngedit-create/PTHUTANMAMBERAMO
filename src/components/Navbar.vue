@@ -5,7 +5,7 @@
         <img :src="(isScrolled || !isHome) ? '/logo/logo-membrano.png' : '/logo/logo-putih.png'" alt="Logo PT Hutan Harapan" class="logo-image">
         <div class="logo-text">
           <span class="logo-name">PT Hutan Harapan</span>
-          <span class="logo-sub">Mamberamo</span>
+          <span class="logo-sub">Mamberamo Raya</span>
         </div>
       </router-link>
 
