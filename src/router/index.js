@@ -7,7 +7,8 @@ import PartnershipView from '../views/PartnershipView.vue'
 import ContactView from '../views/ContactView.vue'
 import BlogView from '../views/BlogView.vue'
 import CareerView from '../views/CareerView.vue'
-import InvestorView from '../views/InvestorView.vue'
+import CarbonRegistrationView from '../views/CarbonRegistrationView.vue'
+import CarbonExchangeView from '../views/CarbonExchangeView.vue'
 import LeadershipView from '../views/LeadershipView.vue'
 import SubsidiariesView from '../views/SubsidiariesView.vue'
 import MilestonesView from '../views/MilestonesView.vue'
@@ -47,7 +48,8 @@ const routes = [
   { path: '/blog', name: 'Blog', component: BlogView },
   { path: '/blog/:id', name: 'BlogDetail', component: BlogDetailView },
   { path: '/career', name: 'Career', component: CareerView },
-  { path: '/investor', name: 'Investor', component: InvestorView },
+  { path: '/carbon-registration', name: 'CarbonRegistration', component: CarbonRegistrationView },
+  { path: '/carbon-exchange', name: 'CarbonExchange', component: CarbonExchangeView },
   { path: '/leadership', name: 'Leadership', component: LeadershipView },
   { path: '/subsidiaries', name: 'Subsidiaries', component: SubsidiariesView },
   { path: '/milestones', name: 'Milestones', component: MilestonesView },

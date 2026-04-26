@@ -167,7 +167,13 @@ const navLinks = [
     ]
   },
   { id: 'career_btn', key: 'career', defaultLabel: 'Career', path: '/career' },
-  { id: 'investor', key: 'investor', path: '/investor' },
+  {
+    id: 'registration', key: 'registration',
+    children: [
+      { id: 'carbon_registration', key: 'carbon_registration', path: '/carbon-registration' },
+      { id: 'carbon_exchange', key: 'carbon_exchange', path: '/carbon-exchange' }
+    ]
+  },
   { id: 'contact', key: 'contact', path: '/contact' },
 ]
 
@@ -188,7 +194,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  padding: 24px 0;
+  padding: 30px 0;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -229,7 +235,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(43,144,144,0.12);
   box-shadow: 0 4px 24px rgba(26,107,107,0.08);
-  padding: 12px 0;
+  padding: 18px 0;
 }
 
 .navbar.scrolled .logo-name { color: #1A2A2A; }
@@ -262,14 +268,14 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; min-width: 0; }
 .logo-image {
-  height: 32px;
+  height: 42px;
   width: auto;
   object-fit: contain;
   flex-shrink: 0;
 }
 .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
-.logo-name { font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700; }
-.logo-sub { font-size: 0.8rem; font-weight: 600; }
+.logo-name { font-family: 'Poppins', sans-serif; font-size: 1.15rem; font-weight: 700; }
+.logo-sub { font-size: 0.9rem; font-weight: 600; }
 
 .nav-links { display: flex; list-style: none; gap: 2px; }
 .nav-links li { position: relative; }
@@ -462,15 +468,18 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 .sidebar-overlay.open { opacity: 1; visibility: visible; }
 
 .sidebar {
-  position: fixed; top: 0; right: -100%; width: 300px; height: 100vh;
+  position: fixed; top: 0; right: 0; width: 300px; height: 100vh;
   background: rgba(255, 255, 255, 0.98); 
   backdrop-filter: blur(25px);
   z-index: 2000; padding: 100px 24px 40px;
   box-shadow: -10px 0 40px rgba(26,107,107,0.15);
-  overflow-y: auto; transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto; 
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
   border-left: 1px solid rgba(255, 255, 255, 0.5);
 }
-.sidebar.open { right: 0; }
+.sidebar.open { transform: translateX(0); visibility: visible; }
 
 .close-sidebar {
   position: absolute; top: 30px; right: 24px;
@@ -526,13 +535,13 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 @media (max-width: 960px) {
   .nav-links, .nav-cta, .profile-btn { display: none; }
   .hamburger { display: flex; }
-  .navbar { padding: 14px 0; }
-  .navbar.scrolled { padding: 10px 0; }
+  .navbar { padding: 18px 0; }
+  .navbar.scrolled { padding: 14px 0; }
 
-  .nav-logo { gap: 7px; }
+  .nav-logo { gap: 6px; }
   .logo-image { height: 26px; }
-  .logo-text { line-height: 1.15; }
-  .logo-name { font-size: 0.78rem; }
+  .logo-text { line-height: 1.1; }
+  .logo-name { font-size: 0.8rem; }
   .logo-sub { font-size: 0.65rem; }
 
   .nav-controls { gap: 8px; }

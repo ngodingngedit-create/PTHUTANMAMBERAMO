@@ -67,9 +67,15 @@ body {
   color: var(--body-text);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
-#app { min-height: 100vh; }
+#app { 
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
@@ -290,7 +296,12 @@ body {
 
 @media (max-width: 768px) {
   :root { --section-padding: 56px; }
-  .container { padding: 0 18px; }
+  .container { 
+    padding: 0 16px; 
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
   .section-title { font-size: 1.45rem; }
   .section-subtitle { font-size: 0.9rem; }
 }

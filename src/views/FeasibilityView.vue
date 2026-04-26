@@ -69,7 +69,40 @@
       </div>
     </section>
 
-    <!-- SECTION 3: ECONOMIC -->
+    <!-- SECTION 3: ENVIRONMENTAL IMPACT -->
+    <section class="section bg-eco">
+      <div class="container">
+        <div class="editorial-layout inverted" v-reveal>
+          <div class="editorial-text">
+            <span class="tag">{{ lang === 'en' ? 'Impact' : 'Dampak' }}</span>
+            <h2 class="heading-lg">{{ lang === 'en' ? 'Environmental Impact Analysis' : 'Analisa Dampak Lingkungan' }}</h2>
+            <p class="body-lg">{{ lang === 'en' ? 'Beyond carbon capture, we meticulously analyze and implement strategies for ecosystem regeneration, focusing on active reforestation and habitat protection.' : 'Selain penangkapan karbon, kami menganalisis dan menerapkan strategi regenerasi ekosistem secara cermat, berfokus pada reforestasi aktif dan perlindungan habitat.' }}</p>
+            
+            <div class="impact-list">
+              <div class="impact-item">
+                <div class="impact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                <div class="impact-info">
+                  <h4>{{ lang === 'en' ? 'Reforestation (Tree Planting)' : 'Reforestasi (Penanaman Pohon)' }}</h4>
+                  <p>{{ lang === 'en' ? 'Planting native tree species to restore 50,000 hectares of degraded land.' : 'Menanam spesies pohon asli untuk merestorasi 50.000 hektar lahan yang terdegradasi.' }}</p>
+                </div>
+              </div>
+              <div class="impact-item">
+                <div class="impact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                <div class="impact-info">
+                  <h4>{{ lang === 'en' ? 'Biodiversity Monitoring' : 'Pemantauan Keanekaragaman Hayati' }}</h4>
+                  <p>{{ lang === 'en' ? 'Real-time tracking of endangered species and forest health indicators.' : 'Pelacakan real-time spesies terancam punah dan indikator kesehatan hutan.' }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="editorial-image">
+            <img src="/backgrounds/forestry.png" alt="Environmental Impact" class="rounded-img shadow-teal">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: ECONOMIC -->
     <section class="section">
       <div class="container">
         <div class="economic-simple-card" v-reveal>
@@ -97,6 +130,7 @@ defineProps({ t: Object, lang: String })
 <style scoped>
 .simple-premium { background: #fff; color: #1e293b; }
 .bg-light { background: #f8fafc; }
+.bg-eco { background: #fdfdfd; border-top: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9; }
 
 .section { padding: 100px 0; }
 
@@ -142,6 +176,18 @@ defineProps({ t: Object, lang: String })
 .s-val { font-family: var(--font-display); font-size: 2.5rem; color: var(--dark-teal); font-weight: 800; }
 .s-lbl { font-size: 0.85rem; color: var(--slate-gray); font-weight: 600; text-transform: uppercase; }
 
+.shadow-teal { box-shadow: 0 20px 40px rgba(26, 107, 107, 0.1) !important; }
+
+.editorial-layout.inverted { grid-template-columns: 1.2fr 1fr; }
+.editorial-layout.inverted .editorial-text { order: 1; }
+.editorial-layout.inverted .editorial-image { order: 2; }
+
+.impact-list { display: flex; flex-direction: column; gap: 24px; margin-top: 32px; }
+.impact-item { display: flex; gap: 16px; align-items: flex-start; }
+.impact-icon { color: var(--medium-teal); flex-shrink: 0; margin-top: 4px; }
+.impact-info h4 { font-family: var(--font-display); font-size: 1.1rem; color: var(--dark-teal); margin-bottom: 4px; }
+.impact-info p { font-size: 0.95rem; color: var(--slate-gray); line-height: 1.5; }
+
 /* PILLARS */
 .section-header.centered { text-align: center; max-width: 700px; margin: 0 auto 60px; }
 .simple-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
@@ -180,7 +226,9 @@ defineProps({ t: Object, lang: String })
 .v-main { font-family: var(--font-display); font-size: 2rem; font-weight: 800; }
 
 @media (max-width: 1024px) {
-  .editorial-layout { grid-template-columns: 1fr; gap: 40px; }
+  .editorial-layout { grid-template-columns: 1fr !important; gap: 40px; }
+  .editorial-layout.inverted .editorial-text { order: 2; }
+  .editorial-layout.inverted .editorial-image { order: 1; }
   .simple-grid { grid-template-columns: repeat(2, 1fr); }
   .economic-simple-card { flex-direction: column; text-align: center; padding: 40px 24px; }
 }

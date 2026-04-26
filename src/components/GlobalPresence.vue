@@ -18,7 +18,7 @@
           
           <!-- Map Image (Indonesia as requested) -->
           <div class="gp-map-center">
-            <img src="/home/map.png" alt="Global Presence" class="global-map-img" />
+            <img src="/home/map2.png" alt="Global Presence" class="global-map-img" />
             
             <!-- Pinpoint for Mamberamo (Strategic Base) -->
             <!-- <div class="map-pin" style="top: 75%; left: 90%;">

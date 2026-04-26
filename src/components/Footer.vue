@@ -287,10 +287,10 @@ defineProps({ t: Object, lang: String })
 
 .assoc-grid {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .assoc-item {
@@ -388,7 +388,7 @@ defineProps({ t: Object, lang: String })
     border-radius: 6px;
   }
   .assoc-logo {
-    height: 28px;
+    height: 24px;
   }
 }
 </style>
