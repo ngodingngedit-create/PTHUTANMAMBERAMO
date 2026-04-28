@@ -32,6 +32,7 @@ export const translations = {
       environment_nav: 'Lingkungan',
       forestry_nav: 'Kehutanan',
       community_nav: 'Komunitas',
+      projects_nav: 'Proyek',
       feasibility: 'Feasibility Study',
       environmental: 'Environmental Study',
       risk: 'Analisis Risiko',
@@ -198,6 +199,8 @@ export const translations = {
       zomato_desc: 'Platform teknologi yang berkomitmen pada pengiriman ramah lingkungan.'
     },
     career: {
+      hero_title: 'Kembangkan Karir Anda Dengan Tujuan',
+      hero_subtitle: 'Bergabunglah dengan tim yang melindungi 300.000 Ha hutan hujan Papua. Kami mencari talenta terbaik di seluruh Papua dan Jakarta.',
       view_all_team: 'Lihat Semua Tim',
       teams_hero_desc: 'Tim kami adalah perpaduan dinamis dari para ahli lingkungan, analis, dan pemimpin yang bekerja sama untuk Papua yang berkelanjutan.',
       cat_executive: 'Kepemimpinan Eksekutif',
@@ -270,6 +273,29 @@ export const translations = {
       stats_species: 'Spesies Endemik',
       stats_species_val: '1,500+'
     },
+    knowledge_hub: {
+      section_tag: 'Knowledge Hub',
+      title: 'Wawasan Penghijauan & Penanaman Pohon',
+      subtitle: 'Edukasi mendalam mengenai teknik restorasi hutan dan pentingnya menjaga ekosistem tropis Indonesia.',
+      read_more: 'Pelajari Selengkapnya',
+      partners_label: 'Bekerja Sama Dengan',
+      blog_title: 'Blog Terbaru',
+      read_more_blog: 'Baca Selengkapnya',
+      project_title: 'Kegiatan Penanaman Pohon di Wilayah Bukit Suharto, Kalimantan Timur, Indonesia',
+      project_desc: 'Inisiatif strategis pemulihan ekosistem hutan tropis Kalimantan melalui penanaman pohon endemik di kawasan Bukit Suharto — wujud nyata kolaborasi lintas lembaga untuk masa depan hijau Indonesia.',
+      gallery_tag: 'Galeri Kegiatan',
+      gallery_title: 'Dokumentasi Lapangan',
+      ikn_name: 'Otoritas IKN'
+    },
+    video_showcase: {
+      section_tag: 'Video Berita',
+      title: 'Berita Pasar Karbon di Indonesia'
+    },
+    hashim_gallery: {
+      section_tag: 'Galeri Kegiatan',
+      title: 'Utusan Khusus Presiden Bidang Energi dan Iklim',
+      subtitle: 'Dokumentasi kegiatan dan inisiatif strategis menuju bursa karbon Indonesia 2026.'
+    }
   },
   en: {
     nav: {
@@ -304,6 +330,7 @@ export const translations = {
       environment_nav: 'Environment',
       forestry_nav: 'Forestry',
       community_nav: 'Community',
+      projects_nav: 'Projects',
       feasibility: 'Feasibility Study',
       environmental: 'Environmental Study',
       risk: 'Risk Analysis',
@@ -469,6 +496,8 @@ export const translations = {
       zomato_desc: 'A tech platform committed to eco-friendly delivery solutions.'
     },
     career: {
+      hero_title: 'Grow Your Career With Purpose',
+      hero_subtitle: 'Join a team protecting 300,000 Ha of Papua\'s rainforest. We\'re looking for bold minds across Papua and Jakarta.',
       view_all_team: 'View All Team',
       teams_hero_desc: 'Our teams are a vibrant mix of environmentalists, analysts, and leaders working together for a sustainable Papua.',
       cat_executive: 'Executive Leadership',
@@ -517,6 +546,7 @@ export const translations = {
       rehab_desc: 'Replanting degraded areas with pioneer species to accelerate forest regeneration.'
     },
     who_we_are_page: {
+      hero_tag: 'About Us',
       hero_title: 'About PT HHMR',
       hero_subtitle: 'Preserving the Green Heart of Papua through Innovative Conservation and Indigenous Empowerment.',
       basin_tag: 'Basin Geography',
@@ -540,5 +570,28 @@ export const translations = {
       stats_species: 'Endemic Species',
       stats_species_val: '1,500+'
     },
+    knowledge_hub: {
+      section_tag: 'Knowledge Hub',
+      title: 'Reforestation & Tree Planting Insights',
+      subtitle: 'In-depth education on forest restoration techniques and the importance of preserving Indonesia\'s tropical ecosystems.',
+      read_more: 'Learn More',
+      partners_label: 'In Collaboration With',
+      blog_title: 'Latest Blog',
+      read_more_blog: 'Read More',
+      project_title: 'Tree Planting Activities in the Bukit Suharto Area, East Kalimantan, Indonesia',
+      project_desc: 'A strategic initiative for restoring the tropical forest ecosystem of Kalimantan by planting endemic trees in the Bukit Suharto area — a tangible realization of cross-institutional collaboration for Indonesia\'s green future.',
+      gallery_tag: 'Activity Gallery',
+      gallery_title: 'Field Documentation',
+      ikn_name: 'IKN Authority'
+    },
+    video_showcase: {
+      section_tag: 'Featured Video',
+      title: 'Carbon Market News in Indonesia'
+    },
+    hashim_gallery: {
+      section_tag: 'Activity Gallery',
+      title: 'Special Envoy for Energy and Climate',
+      subtitle: 'Documentation of activities and strategic initiatives for the Indonesia Carbon Market 2026.'
+    }
   },
 }

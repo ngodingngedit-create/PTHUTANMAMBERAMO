@@ -1,7 +1,7 @@
 <template>
   <section class="latest-blog-section">
     <div class="container blog-container">
-      <h2 class="section-title">Latest Blog</h2>
+      <h2 class="section-title">{{ t.knowledge_hub.blog_title }}</h2>
       
       <div class="blog-grid">
         
@@ -26,7 +26,7 @@
               </span>
             </div>
             <h3 class="blog-title">{{ post.title[lang] || post.title.en }}</h3>
-            <router-link :to="'/blog/' + post.id" class="read-more-btn">Read More <span class="arrow">→</span></router-link>
+            <router-link :to="'/blog/' + post.id" class="read-more-btn">{{ t.knowledge_hub.read_more_blog }} <span class="arrow">→</span></router-link>
           </div>
         </article>
 
@@ -44,15 +44,8 @@ const props = defineProps({
   lang: { type: String, default: 'en' }
 });
 
-const allPosts = ref([...blogPosts]);
-
-onMounted(() => {
-  const customBlogs = JSON.parse(localStorage.getItem('custom_blogs') || '[]');
-  allPosts.value = [...customBlogs, ...blogPosts];
-});
-
 const latestPosts = computed(() => {
-  return allPosts.value.slice(0, 3);
+  return blogPosts.slice(0, 3);
 });
 </script>
 
@@ -237,22 +230,24 @@ const latestPosts = computed(() => {
     margin-bottom: 28px;
   }
   .image-wrapper {
-    height: 150px;
+    height: 125px; /* Slightly increased from 110px */
   }
   .card-content {
-    padding: 16px 14px;
+    padding: 14px 12px; /* Slightly increased padding */
   }
   .blog-title {
-    font-size: 1rem;
-    margin-bottom: 16px;
+    font-size: 0.88rem; /* Slightly larger */
+    margin-bottom: 14px;
+    line-height: 1.35;
   }
   .meta-info {
-    font-size: 0.72rem;
-    margin-bottom: 10px;
+    font-size: 0.68rem;
+    margin-bottom: 8px;
+    gap: 8px;
   }
   .read-more-btn {
-    font-size: 0.78rem;
-    padding: 6px 12px;
+    font-size: 0.75rem;
+    padding: 5px 12px;
   }
 }
 </style>

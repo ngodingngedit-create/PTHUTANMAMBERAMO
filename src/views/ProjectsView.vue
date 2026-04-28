@@ -1,14 +1,16 @@
 <template>
-  <div class="projects-view page-padding">
-    <Projects :t="t" />
+  <div class="projects-view">
+    <Projects :t="t" :lang="lang" />
   </div>
 </template>
 
 <script setup>
 import Projects from '../components/Projects.vue'
-defineProps({ t: Object })
+defineProps({ t: Object, lang: String })
 </script>
 
 <style scoped>
-.page-padding { padding-top: 80px; }
+.projects-view {
+  min-height: 100vh;
+}
 </style>

@@ -63,11 +63,6 @@ defineProps({
 })
 
 const blogPosts = ref([...staticPosts]);
-
-onMounted(() => {
-  const customBlogs = JSON.parse(localStorage.getItem('custom_blogs') || '[]');
-  blogPosts.value = [...customBlogs, ...staticPosts];
-});
 </script>
 
 <style scoped>

@@ -138,7 +138,6 @@ defineProps({
 .hero-content {
   max-width: 1000px;
   margin: 0 auto;
-  transform: translateX(30px);
 }
 
 .hero-glass-panel {
@@ -182,7 +181,7 @@ defineProps({
     padding: 24px 10px; 
   }
   .hero-content {
-    transform: translateX(60px);
+    transform: none;
   }
   .hero-title { 
     font-size: clamp(2rem, 8vw, 3rem); 

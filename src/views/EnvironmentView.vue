@@ -5,10 +5,11 @@
       :lang="lang"
       backgroundType="image"
       backgroundImage="/backgrounds/environment.png"
-      :title="t.environment.hero_title"
-      :subtitle="t.environment.hero_subtitle"
       height="100vh"
-    />
+    >
+      <h1 class="hero-title">{{ t.environment.hero_title }}</h1>
+      <p class="hero-subtitle">{{ t.environment.hero_subtitle }}</p>
+    </Hero>
 
     <!-- Main split -->
     <section class="section main-split">
@@ -114,6 +115,15 @@ const monitorItems = computed(() => {
 </script>
 
 <style scoped>
+.hero-tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #5BB8B8;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
 .page-environment { background: #fff; }
 
 /* Main Split */

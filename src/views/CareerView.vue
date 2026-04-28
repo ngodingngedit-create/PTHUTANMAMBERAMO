@@ -4,18 +4,12 @@
     <Hero 
       :t="t" 
       :lang="lang" 
-      videoSrc="/career/career_video.mp4"
+      videoSrc="/home/home.mp4"
     >
-      <h1 class="hero-title">
-        Grow Your Career<br />
-        <span class="hero-title-outline">With Purpose</span>
-      </h1>
-      <p class="hero-subtitle">
-        Join a team protecting 300,000 Ha of Papua's rainforest.<br />
-        We're looking for bold minds across Papua and Jakarta.
-      </p>
+      <h1 class="hero-title">{{ t.career.hero_title }}</h1>
+      <p class="hero-subtitle">{{ t.career.hero_subtitle }}</p>
       <div class="hero-actions">
-        <router-link to="/jobs" class="hero-btn-primary">Explore Open Roles</router-link>
+        <router-link to="/jobs" class="hero-btn-primary">{{ lang === 'en' ? 'Explore Open Roles' : 'Lihat Lowongan' }}</router-link>
       </div>
     </Hero>
 
@@ -24,8 +18,7 @@
       <div class="container values-container">
         <div class="values-text">
           <h2 class="section-title">
-            A mission led
-            <span class="outline-text block-outline">by values</span>
+            {{ lang === 'en' ? 'A mission led by values' : 'Misi yang dipandu oleh nilai' }}
           </h2>
           <p class="values-desc">
             Our mission is to create a sustainable future through carbon credits and environmental conservation. To achieve this, we live by our core principles.
@@ -84,8 +77,8 @@
       <div class="container">
         <div class="teammates-heading">
           <h2 class="section-title text-center">
-           Building Excellence Together
-            <span class="outline-text block-outline">Driven by people, defined by results</span>
+            Building Excellence Together<br />
+            <span class="highlight-text">{{ lang === 'en' ? 'Driven by people, defined by results' : 'Digerakkan oleh talenta, ditentukan oleh hasil' }}</span>
           </h2>
           <p class="teammates-desc text-center">
            Our organization brings together experienced professionals committed to collaboration, innovation, and delivering meaningful outcomes. We foster a culture where every contribution matters and continuous improvement is a priority
@@ -115,13 +108,12 @@
     <section class="opportunities-section">
       <div class="container">
         <h2 class="section-title text-center mb-5">
-          Your future teammates are 
-          <span class="outline-text block-outline">waiting for you</span>
+          {{ lang === 'en' ? 'Your future teammates are waiting for you' : 'Rekan tim masa depan Anda menanti Anda' }}
         </h2>
         
         <div class="opps-wrapper">
           <div class="opps-left">
-            <div class="job-card" v-for="job in jobs" :key="job.title">
+            <router-link :to="'/jobs/' + (index + 1)" class="job-card" v-for="(job, index) in jobs" :key="job.title">
               <div class="job-info">
                 <h3>{{ job.title }}</h3>
                 <p class="loc">
@@ -133,24 +125,20 @@
                   {{ job.team }}
                 </p>
               </div>
-              <button class="save-job-btn" aria-label="Save Job">
+              <button class="save-job-btn" aria-label="Save Job" @click.prevent>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
               </button>
-            </div>
+            </router-link>
           </div>
           <div class="opps-right">
             <h2 class="section-title" style="font-size: 2.2rem;">
               Opportunities <br />
-              <span class="outline-text">at PT HHM</span>
+              <span>at PT HHMR</span>
             </h2>
             <p class="opps-desc mt-2">
              Ready to build your career with purpose?
 We offer diverse opportunities, from field conservation to strategic roles, for individuals committed to creating sustainable environmental impact.
             </p>
-            <p class="opps-desc mt-2">
-              Explore our open roles to find the perfect fit for you.
-            </p>
-            <router-link to="/jobs" class="cta-btn mt-4">View more jobs</router-link>
           </div>
         </div>
       </div>
@@ -264,14 +252,18 @@ const teammates = ref([
   letter-spacing: -0.5px;
 }
 .outline-text {
-  color: transparent;
-  -webkit-text-stroke: 1.5px #1A6B6B;
+  color: #1A6B6B;
+}
+.highlight-text {
+  display: block;
+  color: #2B9090;
+  font-size: 2rem;
 }
 .block-outline {
   display: block;
 }
 .text-green {
-  -webkit-text-stroke: 1.5px #1A6B6B;
+  color: #1A6B6B;
 }
 .text-center { text-align: center; }
 .mb-5 { margin-bottom: 50px; }
@@ -297,10 +289,47 @@ const teammates = ref([
 }
 
 /* 1. HERO SECTION */
-.hero-title-outline {
-  color: transparent;
-  -webkit-text-stroke: 2px #ffffff;
-  display: block;
+.hero-tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #5BB8B8;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.hero-title {
+  color: #ffffff !important;
+  font-size: clamp(2.4rem, 4.2vw, 3.4rem) !important;
+  font-weight: 800 !important;
+  margin-bottom: 20px !important;
+  line-height: 1.2 !important;
+}
+.hero-subtitle {
+  color: #ffffff !important;
+  font-size: clamp(1rem, 1.8vw, 1.2rem) !important;
+  font-weight: 500 !important;
+  max-width: 800px;
+  margin: 0 auto 35px !important;
+  line-height: 1.6;
+  opacity: 1 !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.hero-btn-primary {
+  display: inline-block;
+  background: #1A6B6B;
+  color: white;
+  padding: 14px 40px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+.hero-btn-primary:hover {
+  opacity: 0.9;
 }
 
 
@@ -476,6 +505,7 @@ const teammates = ref([
   gap: 20px;
 }
 .job-card {
+  text-decoration: none;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   border-radius: 16px;

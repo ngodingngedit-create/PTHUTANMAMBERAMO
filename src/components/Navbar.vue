@@ -149,7 +149,7 @@ const isScrolled = ref(false)
 const menuOpen = ref(false)
 const activeAccordion = ref(null)
 const route = useRoute()
-const isHome = computed(() => ['/', '/career', '/teams', '/who-we-are', '/blog', '/our-approach', '/environment', '/forestry', '/community'].includes(route.path))
+const isHome = computed(() => ['/', '/career', '/teams', '/who-we-are', '/blog', '/our-approach', '/environment', '/forestry', '/community', '/projects'].includes(route.path))
 
 function toggleAccordion(key) {
   activeAccordion.value = activeAccordion.value === key ? null : key
@@ -161,6 +161,7 @@ const navLinks = [
   {
     id: 'what_we_do', key: 'what_we_do',
     children: [
+      { id: 'projects_nav', key: 'projects_nav', path: '/projects' },
       { id: 'feasibility', key: 'feasibility', path: '/feasibility' },
       { id: 'environmental', key: 'environmental', path: '/environmental' },
       { id: 'risk', key: 'risk', path: '/risk' }

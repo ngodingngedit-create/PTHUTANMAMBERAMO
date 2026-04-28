@@ -1,6 +1,6 @@
 <template>
   <div class="who-we-are-view">
-    <Hero backgroundType="youtube" youtubeId="jjg8d3Bja3A">
+    <Hero backgroundType="video" videoSrc="/home/home.mp4">
       <h1 class="hero-title">{{ t.who_we_are_page.hero_title }}</h1>
       <p class="hero-subtitle">{{ t.who_we_are_page.hero_subtitle }}</p>
     </Hero>
@@ -308,6 +308,16 @@ defineProps({ t: Object, lang: String })
 
 .mb-30 { margin-bottom: 30px; }
 .mb-50 { margin-bottom: 50px; }
+
+.hero-tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #5BB8B8;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
 
 /* --- RESPONSIVE --- */
 @media (max-width: 960px) {
