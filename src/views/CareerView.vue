@@ -4,7 +4,8 @@
     <Hero 
       :t="t" 
       :lang="lang" 
-      videoSrc="/home/home.mp4"
+      backgroundType="image" 
+      backgroundImage="/backgrounds/community.png"
     >
       <h1 class="hero-title">{{ t.career.hero_title }}</h1>
       <p class="hero-subtitle">{{ t.career.hero_subtitle }}</p>
