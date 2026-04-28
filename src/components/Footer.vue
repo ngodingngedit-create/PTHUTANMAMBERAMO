@@ -30,23 +30,31 @@
           <div class="footer-col-title">{{ t.footer.quick_links }}</div>
           <ul class="footer-links">
             <li><router-link to="/">{{ t.nav.home }}</router-link></li>
-            <li><router-link to="/about">{{ t.nav.about }}</router-link></li>
-            <li><router-link to="/projects">{{ t.nav.projects }}</router-link></li>
-            <li><router-link to="/methodology">{{ t.footer.methodology_label }}</router-link></li>
-            <li><router-link to="/partnership">{{ t.nav.partnership }}</router-link></li>
+            <li><router-link to="/who-we-are">{{ t.nav.who_we_are }}</router-link></li>
+            <li><router-link to="/career">{{ t.nav.career }}</router-link></li>
+            <li><router-link to="/contact">{{ t.nav.contact }}</router-link></li>
           </ul>
         </div>
 
-        <!-- Partners -->
-        <!-- <div class="footer-col">
-          <div class="footer-col-title">{{ lang === 'en' ? 'Partners' : 'Mitra' }}</div>
+        <!-- What We Do -->
+        <div class="footer-col">
+          <div class="footer-col-title">{{ t.nav.what_we_do }}</div>
           <ul class="footer-links">
-            <li><a href="https://enkingint.org/" target="_blank">EKI Energy Services ↗</a></li>
-            <li><a href="https://www.pertamina.com/id" target="_blank">Pertamina ↗</a></li>
-            <li><a href="https://3sahabatlingkungan.com/" target="_blank">3 Sahabat Lingkungan ↗</a></li>
-            <li><a href="https://verra.org" target="_blank">Verra (VCS) ↗</a></li>
+            <li><router-link to="/projects">{{ t.nav.projects_nav }}</router-link></li>
+            <li><router-link to="/feasibility">{{ t.nav.feasibility }}</router-link></li>
+            <li><router-link to="/environmental">{{ t.nav.environmental }}</router-link></li>
+            <li><router-link to="/risk">{{ t.nav.risk }}</router-link></li>
           </ul>
-        </div> -->
+        </div>
+
+        <!-- Registration -->
+        <div class="footer-col">
+          <div class="footer-col-title">{{ t.nav.registration }}</div>
+          <ul class="footer-links">
+            <li><router-link to="/carbon-registration">{{ t.nav.carbon_registration }}</router-link></li>
+            <li><router-link to="/carbon-exchange">{{ t.nav.carbon_exchange }}</router-link></li>
+          </ul>
+        </div>
 
         <!-- Contact -->
         <div class="footer-col">
