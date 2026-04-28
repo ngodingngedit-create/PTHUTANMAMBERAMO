@@ -2,7 +2,12 @@
   <div class="projects-page">
 
     <!-- ① HERO (same as Home) -->
-    <Hero :t="t" :lang="lang" />
+    <Hero 
+      :t="t" 
+      :lang="lang" 
+      backgroundType="image" 
+      backgroundImage="/backgrounds/patrol.png" 
+    />
 
     <!-- ② KNOWLEDGE HUB -->
     <section class="knowledge-hub">
