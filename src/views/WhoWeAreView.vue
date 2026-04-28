@@ -1,6 +1,6 @@
 <template>
   <div class="who-we-are-view">
-    <Hero backgroundType="video" videoSrc="/home/home.mp4">
+    <Hero backgroundType="image" backgroundImage="/backgrounds/our_approach.png">
       <h1 class="hero-title">{{ t.who_we_are_page.hero_title }}</h1>
       <p class="hero-subtitle">{{ t.who_we_are_page.hero_subtitle }}</p>
     </Hero>

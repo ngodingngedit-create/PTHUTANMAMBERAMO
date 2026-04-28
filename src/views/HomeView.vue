@@ -1,6 +1,11 @@
 <template>
   <div class="home-view">
-    <Hero :t="t" :lang="lang" />
+    <Hero 
+      :t="t" 
+      :lang="lang" 
+      backgroundType="image" 
+      backgroundImage="/backgrounds/forestry.png" 
+    />
     <GlobalPresence :t="t" :lang="lang" />
     <Clients :t="t" :lang="lang" />
     <VideoShowcase :t="t" :lang="lang" />
