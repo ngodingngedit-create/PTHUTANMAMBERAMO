@@ -550,7 +550,7 @@ export const translations = {
       hero_title: 'About PT HHMR',
       hero_subtitle: 'Preserving the Green Heart of Papua through Innovative Conservation and Indigenous Empowerment.',
       basin_tag: 'Basin Geography',
-      basin_title: 'The Mamberamo Basin: "Amazon of Papua"',
+      basin_title: 'Amazon of Papua',
       basin_desc: 'The Mamberamo Basin is one of the largest lowlands in the Western Pacific, forming vast swamp and primary wetland ecosystems spanning millions of hectares. As the "Lungs of Papua," this region sequesters millions of tons of global carbon every year.',
       raya_tengah_title: 'Two Regions, One Mission',
       raya_subtitle: 'Mamberamo Raya: Land of a Thousand Rivers',

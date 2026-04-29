@@ -5,6 +5,38 @@
       <p class="hero-subtitle">{{ t.who_we_are_page.hero_subtitle }}</p>
     </Hero>
 
+    <!-- TEAMMATES SECTION -->
+    <section class="teammates-section">
+      <div class="container">
+        <div class="teammates-heading">
+          <h2 class="section-title text-center">
+            Building Excellence Together<br />
+            <span class="highlight-text">{{ lang === 'en' ? 'Driven by people, defined by results' : 'Digerakkan oleh talenta, ditentukan oleh hasil' }}</span>
+          </h2>
+          <p class="teammates-desc text-center">
+           Our organization brings together experienced professionals committed to collaboration, innovation, and delivering meaningful outcomes. We foster a culture where every contribution matters and continuous improvement is a priority
+          </p>
+        </div>
+      </div>
+      <div class="teammates-scroll-wrapper">
+        <div class="teammates-track">
+          <div class="teammate-card" v-for="mate in teammates" :key="mate.name">
+            <div class="teammate-img" :style="{ backgroundImage: 'url(' + mate.photo + ')' }"></div>
+            <div class="teammate-overlay">
+              <h4 class="teammate-name">{{ mate.name }}</h4>
+              <p class="teammate-role">{{ mate.role }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="teammates-cta-wrap">
+        <router-link to="/teams" class="cta-btn teammates-cta-btn">
+          {{ t?.career?.view_all_team || 'Lihat Semua Tim' }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </router-link>
+      </div>
+    </section>
+
     <!-- BASIN GEOGRAPHY (THE SYSTEM) -->
     <section class="section geography-basin">
       <div class="container">
@@ -39,7 +71,7 @@
     <section class="section regional-split bg-alt">
       <div class="container">
         <div class="section-center" v-reveal>
-          <h2 class="section-title text-center mb-60">{{ t.who_we_are_page.raya_tengah_title }}</h2>
+          <h2 class="section-title text-center mb-80">{{ t.who_we_are_page.raya_tengah_title }}</h2>
         </div>
         
         <div class="comparison-grid">
@@ -109,8 +141,27 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import Hero from '../components/Hero.vue'
 defineProps({ t: Object, lang: String })
+
+const teammates = ref([
+  {
+    name: 'Harry Khoirul Anwar',
+    role: 'Komisaris utama PT Hutan Harapan Mamberamo Raya',
+    photo: '/career/HarryKhoirul.png'
+  },
+  {
+    name: 'Hashim Djojohadikusumo',
+    role: 'Komisaris Utama Arsari Group',
+    photo: '/career/Hashim.png'
+  },
+  {
+    name: 'H. Amir Mahpud',
+    role: 'Presiden Direktur PT Primajasa Perdana Raya Utama',
+    photo: '/career/H_Amir_Mahpud.png'
+  }
+])
 </script>
 
 <style scoped>
@@ -118,11 +169,12 @@ defineProps({ t: Object, lang: String })
   background: var(--bg-eco-neutral);
   color: var(--dark-charcoal);
   overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* --- HERO STYLES --- */
 .hero-title {
-  font-family: var(--font-display, 'Playfair Display', serif);
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(2.6rem, 5vw, 4rem);
   font-weight: 900;
   line-height: 1.1;
@@ -153,7 +205,7 @@ defineProps({ t: Object, lang: String })
   align-items: center;
 }
 .editorial-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.1;
   margin-bottom: 30px;
@@ -201,7 +253,14 @@ defineProps({ t: Object, lang: String })
 
 /* --- REGIONAL COMPARISON --- */
 .bg-alt { background: white; }
-.mb-60 { margin-bottom: 60px; }
+.mb-80 { margin-bottom: 80px; }
+.regional-split {
+  padding: 120px 0;
+}
+.section-center {
+  text-align: center;
+  margin-bottom: 40px;
+}
 .comparison-grid {
   display: flex;
   flex-direction: column;
@@ -225,7 +284,7 @@ defineProps({ t: Object, lang: String })
   margin-bottom: 15px;
 }
 .side-info h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 2.2rem;
   margin-bottom: 20px;
 }
@@ -250,7 +309,7 @@ defineProps({ t: Object, lang: String })
   align-items: center;
 }
 .editorial-title-md {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 3rem;
   margin-bottom: 30px;
 }
@@ -276,7 +335,7 @@ defineProps({ t: Object, lang: String })
 }
 .max-w-900 { max-width: 900px; margin: 0 auto; }
 .editorial-title-sm {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 2.5rem;
 }
 .editorial-desc-lg {
@@ -320,6 +379,123 @@ defineProps({ t: Object, lang: String })
 }
 
 /* --- RESPONSIVE --- */
+
+/* --- TEAMMATES SECTION --- */
+.teammates-section {
+  padding: 80px 0 60px;
+  background: white;
+  overflow: hidden;
+}
+.teammates-heading {
+  margin-bottom: 48px;
+  text-align: center;
+}
+.teammates-desc {
+  max-width: 660px;
+  margin: 0 auto;
+  color: var(--slate-gray);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+.section-title {
+  font-size: 2.5rem;
+  color: #1A6B6B;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 40px;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+.highlight-text {
+  display: block;
+  color: #2B9090;
+  font-size: 2rem;
+}
+.teammates-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  -webkit-overflow-scrolling: touch;
+}
+.teammates-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  min-width: 100%;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+.teammate-card {
+  position: relative;
+  width: 230px;
+  height: 380px;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.teammate-card:hover {
+  width: 280px;
+}
+.teammates-cta-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0 0;
+}
+.teammates-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: #1A6B6B;
+  border: 2px solid #1A6B6B;
+  padding: 13px 32px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.teammates-cta-btn:hover {
+  background: #1A6B6B;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(26,107,107,0.2);
+}
+.teammate-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center top;
+  transition: transform 0.5s ease;
+}
+.teammate-card:hover .teammate-img {
+  transform: scale(1.04);
+}
+.teammate-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 40px 20px 20px;
+  background: linear-gradient(to top, rgba(10, 40, 40, 0.92) 0%, rgba(10,40,40,0.4) 60%, transparent 100%);
+  color: white;
+  transition: all 0.3s ease;
+}
+.teammate-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #5BB8B8;
+  margin-bottom: 4px;
+  letter-spacing: 0.2px;
+}
+.teammate-role {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.85);
+  font-weight: 400;
+}
+
 @media (max-width: 960px) {
   .staggered-grid, .comparison-side, .comparison-side.reverse, .grid-layout {
     grid-template-columns: 1fr;
@@ -335,14 +511,33 @@ defineProps({ t: Object, lang: String })
     align-items: center;
   }
   .hero-title { font-size: 4rem; }
+  .teammate-card { width: 200px; height: 320px; }
+  .teammate-card:hover { width: 240px; }
 
   .video-overlay {
-  position: absolute;
-  inset: 0;
-  /* Darker at top to help white navbar visibility, centered for text */
-  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
-  backdrop-filter: blur(2px);
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
+    backdrop-filter: blur(2px);
+  }
 }
-  
+
+@media (max-width: 600px) {
+  .hero-title { 
+    font-size: 2.5rem !important; 
+    padding-left: 50px;
+    text-align: left !important;
+    line-height: 1.1 !important;
+  }
+  .hero-subtitle { 
+    font-size: 1rem !important;
+    padding-left: 50px;
+    text-align: left !important;
+    line-height: 1.5 !important;
+  }
+  .teammates-section { padding: 70px 0 0; }
+  .teammate-card { width: 160px; height: 260px; }
+  .teammate-card:hover { width: 190px; }
+  .teammates-cta-wrap { padding: 28px 0 48px; }
 }
 </style>

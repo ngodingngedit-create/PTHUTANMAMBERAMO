@@ -73,37 +73,6 @@
       </div>
     </section> -->
 
-    <!-- TEAMMATES SECTION -->
-    <section class="teammates-section">
-      <div class="container">
-        <div class="teammates-heading">
-          <h2 class="section-title text-center">
-            Building Excellence Together<br />
-            <span class="highlight-text">{{ lang === 'en' ? 'Driven by people, defined by results' : 'Digerakkan oleh talenta, ditentukan oleh hasil' }}</span>
-          </h2>
-          <p class="teammates-desc text-center">
-           Our organization brings together experienced professionals committed to collaboration, innovation, and delivering meaningful outcomes. We foster a culture where every contribution matters and continuous improvement is a priority
-          </p>
-        </div>
-      </div>
-      <div class="teammates-scroll-wrapper">
-        <div class="teammates-track">
-          <div class="teammate-card" v-for="mate in teammates" :key="mate.name">
-            <div class="teammate-img" :style="{ backgroundImage: 'url(' + mate.photo + ')' }"></div>
-            <div class="teammate-overlay">
-              <h4 class="teammate-name">{{ mate.name }}</h4>
-              <p class="teammate-role">{{ mate.role }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="teammates-cta-wrap">
-        <router-link to="/teams" class="cta-btn teammates-cta-btn">
-          {{ t?.career?.view_all_team || 'Lihat Semua Tim' }}
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </router-link>
-      </div>
-    </section>
 
     <!-- TEAMS & OPPORTUNITIES -->
     <section class="opportunities-section">
@@ -178,23 +147,6 @@ const jobs = ref([
   { title: 'Data Scientist (Spatial LiDAR)', location: 'Jakarta, Indonesia', team: 'Technology & R&D' }
 ])
 
-const teammates = ref([
-  {
-    name: 'Harry Khoirul Anwar',
-    role: 'Komisaris utama PT Hutan Harapan Mamberamo Raya',
-    photo: '/career/HarryKhoirul.png'
-  },
-  {
-    name: 'Hashim Djojohadikusumo',
-    role: 'Komisaris Utama Arsari Group',
-    photo: '/career/Hashim.png'
-  },
-  {
-    name: 'H. Amir Mahpud',
-    role: 'Presiden Direktur PT Primajasa Perdana Raya Utama',
-    photo: '/career/H_Amir_Mahpud.png'
-  }
-])
 </script>
 
 <style scoped>
@@ -531,123 +483,6 @@ const teammates = ref([
   line-height: 1.6;
 }
 
-/* 5. TEAMMATES SECTION */
-.teammates-section {
-  padding: 60px 0 0;
-  background: #ffffff;
-  overflow: hidden;
-}
-.teammates-heading {
-  margin-bottom: 36px;
-}
-.teammates-desc {
-  max-width: 660px;
-  margin: 0 auto;
-  color: #5A7070;
-  font-size: 1.05rem;
-  line-height: 1.7;
-}
-.teammates-scroll-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  padding-bottom: 20px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: #1A6B6B rgba(26, 107, 107, 0.1);
-}
-.teammates-scroll-wrapper::-webkit-scrollbar {
-  height: 4px;
-}
-.teammates-scroll-wrapper::-webkit-scrollbar-track {
-  background: rgba(26, 107, 107, 0.05);
-  border-radius: 10px;
-  margin: 0 24px;
-}
-.teammates-scroll-wrapper::-webkit-scrollbar-thumb {
-  background: #1A6B6B;
-  border-radius: 10px;
-}
-.teammates-scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #2B9090;
-}
-.teammates-track {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-  min-width: 100%;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 0 24px;
-  box-sizing: border-box;
-}
-.teammate-card {
-  position: relative;
-  width: 230px;
-  height: 380px;
-  overflow: hidden;
-  flex-shrink: 0;
-  cursor: pointer;
-  border-radius: 20px;
-  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.teammate-card:hover {
-  width: 280px;
-}
-.teammates-cta-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 24px 0 40px;
-}
-.teammates-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: transparent;
-  color: #1A6B6B;
-  border: 2px solid #1A6B6B;
-  padding: 13px 32px;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.teammates-cta-btn:hover {
-  background: #1A6B6B;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(26,107,107,0.2);
-}
-.teammate-img {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center top;
-  transition: transform 0.5s ease;
-}
-.teammate-card:hover .teammate-img {
-  transform: scale(1.04);
-}
-.teammate-overlay {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 40px 20px 20px;
-  background: linear-gradient(to top, rgba(10, 40, 40, 0.92) 0%, rgba(10,40,40,0.4) 60%, transparent 100%);
-  color: white;
-  transition: all 0.3s ease;
-}
-.teammate-name {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #5BB8B8;
-  margin-bottom: 4px;
-  letter-spacing: 0.2px;
-}
-.teammate-role {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.85);
-  font-weight: 400;
-}
 
 @media (max-width: 1024px) {
   .values-container, .opps-wrapper {
@@ -687,14 +522,5 @@ const teammates = ref([
   .opps-left { padding: 0 10px; }
   .job-card { flex-direction: column; align-items: flex-start; gap: 16px; width: 100%; box-sizing: border-box; }
   .save-job-btn { align-self: flex-end; margin-top: -40px; }
-  .teammates-section { padding: 70px 0 0; }
-  .teammates-heading { margin-bottom: 40px; }
-  .teammate-card { width: 160px; height: 260px; }
-  .teammate-card:hover { width: 190px; }
-  .teammate-name { font-size: 0.88rem; }
-  .teammate-role { font-size: 0.75rem; }
-  .teammate-overlay { padding: 30px 14px 14px; }
-  .teammates-cta-btn { font-size: 0.9rem; padding: 11px 24px; }
-  .teammates-cta-wrap { padding: 28px 0 48px; }
 }
 </style>
