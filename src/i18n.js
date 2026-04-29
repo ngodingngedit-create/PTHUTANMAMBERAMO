@@ -253,7 +253,7 @@ export const translations = {
       hero_subtitle: 'Menjaga Jantung Hijau Papua melalui Konservasi Inovatif dan Pemberdayaan Masyarakat Adat.',
       hero_subtitle2: 'https://www.youtube.com/watch?v=jjg8d3Bja3A',
       basin_tag: 'Geografi Basin',
-      basin_title: 'Cekungan Mamberamo: "Amazon of Papua"',
+      basin_title: 'Amazon of Papua',
       basin_desc: 'Cekungan Mamberamo adalah salah satu dataran rendah terbesar di Pasifik Barat, membentuk ekosistem rawa dan lahan basah primer yang luasnya mencapai jutaan hektar. Sebagai "Paru-paru Papua", wilayah ini menyerap jutaan ton karbon dunia setiap tahunnya.',
       raya_tengah_title: 'Dua Wilayah, Satu Misi',
       raya_subtitle: 'Mamberamo Raya: Negeri Seribu Sungai',
