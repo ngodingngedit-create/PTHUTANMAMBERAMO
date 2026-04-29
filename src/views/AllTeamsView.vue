@@ -223,15 +223,15 @@ const teammates = [
     flex-direction: column !important; 
     align-items: center !important; 
     width: 100% !important;
-    padding-left: 0 !important;
+    padding-left: 50px !important;
   }
   .hero-title { 
-    font-size: 2.2rem !important; 
+    font-size: 1.8rem !important; 
     text-align: center !important; 
     width: 100% !important;
   }
   .hero-subtitle { 
-    font-size: 0.9rem !important; 
+    font-size: 0.8rem !important; 
     text-align: center !important; 
     width: 100% !important;
     margin-left: auto !important;
