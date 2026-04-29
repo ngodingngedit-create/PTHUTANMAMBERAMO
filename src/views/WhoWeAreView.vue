@@ -10,11 +10,11 @@
       <div class="container">
         <div class="teammates-heading">
           <h2 class="section-title text-center">
-            Building Excellence Together<br />
-            <span class="highlight-text">{{ lang === 'en' ? 'Driven by people, defined by results' : 'Digerakkan oleh talenta, ditentukan oleh hasil' }}</span>
+            {{ t.who_we_are_page.leadership_title }}<br />
+            <span class="highlight-text">{{ t.who_we_are_page.leadership_subtitle }}</span>
           </h2>
           <p class="teammates-desc text-center">
-           Our organization brings together experienced professionals committed to collaboration, innovation, and delivering meaningful outcomes. We foster a culture where every contribution matters and continuous improvement is a priority
+           {{ t.who_we_are_page.leadership_desc }}
           </p>
         </div>
       </div>
@@ -60,7 +60,7 @@
           <div class="stagger-item image-block" v-reveal>
             <div class="editorial-image-wrapper">
               <img src="/backgrounds/environment.png" alt="Mamberamo Basin">
-              <div class="image-caption">Sustainable Ecosystem Monitoring</div>
+              <div class="image-caption">{{ t.who_we_are_page.monitoring_caption }}</div>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@
           <!-- RAYA -->
           <div class="comparison-side" v-reveal>
             <div class="side-info">
-              <span class="side-tag">The Lowlands</span>
+              <span class="side-tag">{{ t.who_we_are_page.lowlands_tag }}</span>
               <h3>{{ t.who_we_are_page.raya_subtitle }}</h3>
               <p>{{ t.who_we_are_page.raya_desc }}</p>
             </div>
@@ -93,7 +93,7 @@
               <img src="/backgrounds/our_approach.png" alt="Mamberamo Tengah">
             </div>
             <div class="side-info">
-              <span class="side-tag">The Highlands</span>
+              <span class="side-tag">{{ t.who_we_are_page.highlands_tag }}</span>
               <h3>{{ t.who_we_are_page.tengah_subtitle }}</h3>
               <p>{{ t.who_we_are_page.tengah_desc }}</p>
             </div>
@@ -131,8 +131,8 @@
             <span class="stat-name">{{ t.who_we_are_page.stats_tribes }}</span>
           </div>
           <div class="impact-stat-item highlight">
-            <span class="stat-digit">300k Ha</span>
-            <span class="stat-name">Protected Territory</span>
+            <span class="stat-digit">{{ t.who_we_are_page.protected_val }}</span>
+            <span class="stat-name">{{ t.who_we_are_page.protected_label }}</span>
           </div>
         </div>
       </div>

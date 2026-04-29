@@ -271,7 +271,15 @@ export const translations = {
       stats_tribes: 'Suku Lokal',
       stats_tribes_val: '100+',
       stats_species: 'Spesies Endemik',
-      stats_species_val: '1,500+'
+      stats_species_val: '1,500+',
+      leadership_title: 'Dewan Direksi',
+      leadership_subtitle: 'PT Hutan Harapan Mamberamo Raya',
+      leadership_desc: 'Dipimpin oleh visi, diwujudkan melalui kinerja.',
+      monitoring_caption: 'Pemantauan Ekosistem Berkelanjutan',
+      lowlands_tag: 'Dataran Rendah',
+      highlands_tag: 'Dataran Tinggi',
+      protected_val: '300rb Ha',
+      protected_label: 'Wilayah Terlindungi'
     },
     knowledge_hub: {
       section_tag: 'Knowledge Hub',
@@ -568,7 +576,15 @@ export const translations = {
       stats_tribes: 'Local Tribes',
       stats_tribes_val: '100+',
       stats_species: 'Endemic Species',
-      stats_species_val: '1,500+'
+      stats_species_val: '1,500+',
+      leadership_title: 'Board of Directors',
+      leadership_subtitle: 'PT Hutan Harapan Mamberamo Raya',
+      leadership_desc: 'Leading with Vision, Delivering with Integrity.',
+      monitoring_caption: 'Sustainable Ecosystem Monitoring',
+      lowlands_tag: 'The Lowlands',
+      highlands_tag: 'The Highlands',
+      protected_val: '300k Ha',
+      protected_label: 'Protected Territory'
     },
     knowledge_hub: {
       section_tag: 'Knowledge Hub',
