@@ -258,6 +258,7 @@ function handleLogoError(e) {
   margin-bottom: 24px;
   background: linear-gradient(135deg, #fff 0%, #a5dada 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

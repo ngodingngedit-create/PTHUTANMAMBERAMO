@@ -180,54 +180,19 @@ const jobs = ref([
 
 const teammates = ref([
   {
-    name: 'Budi Santoso',
-    role: 'Direktur Utama',
-    photo: '/team/direktur_utama.png'
+    name: 'Harry Khoirul Anwar',
+    role: 'Komisaris utama PT Hutan Harapan Mamberamo Raya',
+    photo: '/career/HarryKhoirul.png'
   },
   {
-    name: 'Sari Dewi',
-    role: 'Direktur',
-    photo: '/team/direktur.png'
+    name: 'Hashim Djojohadikusumo',
+    role: 'Komisaris Utama Arsari Group',
+    photo: '/career/Hashim.png'
   },
   {
-    name: 'H. Ahmad Fauzi',
-    role: 'Komisaris',
-    photo: '/team/komisaris.png'
-  },
-  {
-    name: 'Rizky Pratama',
-    role: 'Manajer Divisi Konservasi',
-    photo: '/team/manajer_divisi.png'
-  },
-  {
-    name: 'Anita Rahayu',
-    role: 'Asisten Manajer SDM',
-    photo: '/team/asisten_manajer.png'
-  },
-  {
-    name: 'Dafa Nugraha',
-    role: 'Supervisor Lapangan',
-    photo: '/team/supervisor.png'
-  },
-  {
-    name: 'Hendra Wijaya',
-    role: 'Manager Operasional',
-    photo: '/team/manager_operasional.png'
-  },
-  {
-    name: 'Maya Putri',
-    role: 'Head of Sustainability',
-    photo: '/team/head_sustainability.png'
-  },
-  {
-    name: 'Bagus Pratama',
-    role: 'Field Officer',
-    photo: '/team/field_officer.png'
-  },
-  {
-    name: 'Siska Amelia',
-    role: 'Finance Manager',
-    photo: '/team/finance_manager.png'
+    name: 'H. Amir Mahpud',
+    role: 'Presiden Direktur PT Primajasa Perdana Raya Utama',
+    photo: '/career/H_Amir_Mahpud.png'
   }
 ])
 </script>
@@ -609,7 +574,11 @@ const teammates = ref([
   display: flex;
   gap: 20px;
   width: max-content;
+  min-width: 100%;
+  justify-content: center;
+  margin: 0 auto;
   padding: 0 24px;
+  box-sizing: border-box;
 }
 .teammate-card {
   position: relative;

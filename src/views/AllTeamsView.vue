@@ -4,32 +4,30 @@
     <Hero 
       :t="t" 
       :lang="lang" 
-      backgroundType="image"
-      backgroundImage="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071"
-      height="80vh"
+      backgroundType="image" 
+      backgroundImage="/backgrounds/community.png"
     >
-      <h1 class="hero-title">
-        Meet the 
-        <span class="outline-text block-outline">Heart of HHM</span>
-      </h1>
-      <p class="hero-subtitle" style="max-width: 600px; margin: 0 auto;">
-        {{ t?.career?.teams_hero_desc || 'Our teams are a vibrant mix of environmentalists, analysts, and leaders working together for a sustainable Papua.' }}
-      </p>
+      <div class="hero-simple-content">
+        <h1 class="hero-title">
+          {{ lang === 'en' ? 'Meet the' : 'Mengenal' }} 
+          <span class="white-text">Heart of PT HHMR</span>
+        </h1>
+        <p class="hero-subtitle">
+          {{ t?.career?.teams_hero_desc || 'Our teams are a vibrant mix of environmentalists, analysts, and leaders working together for a sustainable Papua.' }}
+        </p>
+      </div>
     </Hero>
 
-    <!-- TEAMS GRID -->
+    <!-- TEAM GRID SECTION (SIMPLE) -->
     <section class="teams-grid-section">
       <div class="container">
-        <div class="category-block" v-for="category in filteredTeams" :key="category.name">
-          <h2 class="category-title">{{ category.name }}</h2>
-          <div class="teams-grid">
-            <div class="team-card" v-for="member in category.members" :key="member.name">
-              <div class="card-inner">
-                <div class="card-img" :style="{ backgroundImage: 'url(' + member.photo + ')' }"></div>
-                <div class="card-overlay">
-                  <h4 class="member-name">{{ member.name }}</h4>
-                  <p class="member-role">{{ member.role }}</p>
-                </div>
+        <div class="teams-grid">
+          <div class="team-card" v-for="member in teammates" :key="member.name">
+            <div class="card-inner">
+              <div class="card-img" :style="{ backgroundImage: 'url(' + member.photo + ')' }"></div>
+              <div class="card-overlay">
+                <h4 class="member-name">{{ member.name }}</h4>
+                <p class="member-role">{{ member.role }}</p>
               </div>
             </div>
           </div>
@@ -37,7 +35,7 @@
       </div>
     </section>
 
-    <!-- JOIN US FOOTER -->
+    <!-- JOIN US BANNER -->
     <section class="join-banner">
       <div class="container banner-container">
         <div class="banner-content">
@@ -51,7 +49,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
 import Hero from '../components/Hero.vue'
 
 const props = defineProps({
@@ -60,37 +57,28 @@ const props = defineProps({
 })
 
 const teammates = [
-  { name: 'Budi Santoso', role: 'Direktur Utama', photo: '/team/direktur_utama.png', category: 'Executive' },
-  { name: 'Sari Dewi', role: 'Direktur', photo: '/team/direktur.png', category: 'Executive' },
-  { name: 'H. Ahmad Fauzi', role: 'Komisaris', photo: '/team/komisaris.png', category: 'Executive' },
-  { name: 'Hendra Wijaya', role: 'Manager Operasional', photo: '/team/manager_operasional.png', category: 'Operations' },
-  { name: 'Siska Amelia', role: 'Finance Manager', photo: '/team/manager_operasional.png', category: 'Operations' }, // Reusing or need unique
-  { name: 'Anita Rahayu', role: 'Asisten Manajer SDM', photo: '/team/asisten_manajer.png', category: 'Operations' },
-  { name: 'Rizky Pratama', role: 'Manajer Divisi Konservasi', photo: '/team/manajer_divisi.png', category: 'Conservation' },
-  { name: 'Dafa Nugraha', role: 'Supervisor Lapangan', photo: '/team/supervisor.png', category: 'Conservation' },
-  { name: 'Bagus Pratama', role: 'Field Officer', photo: '/team/field_officer.png', category: 'Conservation' },
-  { name: 'Maya Putri', role: 'Head of Sustainability', photo: '/team/head_sustainability.png', category: 'Sustainability' }
+  {
+    name: 'Harry Khoirul Anwar',
+    role: 'Komisaris utama PT Hutan Harapan Mamberamo Raya',
+    photo: '/career/HarryKhoirul.png'
+  },
+  {
+    name: 'Hashim Djojohadikusumo',
+    role: 'Komisaris Utama Arsari Group',
+    photo: '/career/Hashim.png'
+  },
+  {
+    name: 'H. Amir Mahpud',
+    role: 'Presiden Direktur PT Primajasa Perdana Raya Utama',
+    photo: '/career/H_Amir_Mahpud.png'
+  }
 ]
-
-const filteredTeams = computed(() => {
-  const categories = [
-    { name: props.t?.career?.cat_executive || 'Executive Leadership', id: 'Executive' },
-    { name: props.t?.career?.cat_conservation || 'Conservation & Field', id: 'Conservation' },
-    { name: props.t?.career?.cat_operations || 'Operations & Support', id: 'Operations' },
-    { name: props.t?.career?.cat_sustainability || 'Sustainability & Impact', id: 'Sustainability' }
-  ]
-  
-  return categories.map(cat => ({
-    ...cat,
-    members: teammates.filter(m => m.category === cat.id)
-  })).filter(cat => cat.members.length > 0)
-})
 </script>
 
 <style scoped>
 .all-teams-view {
   min-height: 100vh;
-  padding-top: 80px;
+  padding-top: 0;
   background-color: #ffffff;
   font-family: 'Poppins', sans-serif;
 }
@@ -100,36 +88,45 @@ const filteredTeams = computed(() => {
   padding: 0 24px;
 }
 
-/* 1. HERO SECTION HELPER CLASSES */
-.outline-text {
-  color: transparent;
-  -webkit-text-stroke: 1.5px #1A6B6B;
+.hero-simple-content {
+  width: 100%;
 }
-.block-outline { display: block; }
-
+@media (min-width: 1025px) {
+  .hero-simple-content {
+    padding-left: 50px;
+  }
+}
+.hero-title {
+  color: #ffffff !important;
+  font-size: clamp(2.4rem, 4.2vw, 3.4rem) !important;
+  font-weight: 800 !important;
+  margin-bottom: 20px !important;
+  line-height: 1.3 !important;
+}
+.white-text {
+  color: #ffffff;
+  display: block;
+}
+.hero-subtitle {
+  color: #ffffff !important;
+  font-size: clamp(1rem, 1.8vw, 1.2rem) !important;
+  font-weight: 500 !important;
+  max-width: 800px;
+  margin: 0 auto 35px !important;
+  line-height: 1.6;
+  opacity: 1 !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
 
 /* 2. TEAMS GRID */
 .teams-grid-section {
-  padding: 120px 0;
-}
-.category-block {
-  margin-bottom: 100px;
-}
-.category-title {
-  font-size: 2.25rem;
-  color: #1A6B6B;
-  font-weight: 800;
-  margin-bottom: 40px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #E8F6F6;
+  padding: 100px 0;
+  background: #ffffff;
 }
 .teams-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
-}
-.team-card {
-  perspective: 1000px;
 }
 .card-inner {
   position: relative;
@@ -138,6 +135,11 @@ const filteredTeams = computed(() => {
   overflow: hidden;
   cursor: pointer;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.card-inner:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(26,107,107,0.15);
 }
 .card-img {
   width: 100%; height: 100%;
@@ -145,7 +147,7 @@ const filteredTeams = computed(() => {
   background-position: center top;
   transition: transform 0.6s ease;
 }
-.team-card:hover .card-img {
+.card-inner:hover .card-img {
   transform: scale(1.08);
 }
 .card-overlay {
@@ -159,12 +161,12 @@ const filteredTeams = computed(() => {
 .member-name {
   font-size: 1.4rem;
   font-weight: 700;
-  color: white;
+  color:#5BB8B8;
   margin-bottom: 6px;
 }
 .member-role {
   font-size: 0.95rem;
-  color: #D4F442;
+  color: rgba(255, 255, 255, 0.95);
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -172,58 +174,71 @@ const filteredTeams = computed(() => {
 
 /* 3. JOIN US BANNER */
 .join-banner {
-  padding: 120px 0;
-  background: #1A6B6B;
-  color: white;
+  padding: 80px 0;
+  background: #f8fbfb;
   text-align: center;
+  border-top: 1px solid #e8f6f6;
 }
 .banner-container {
-  max-width: 800px;
+  max-width: 700px;
 }
 .join-banner h2 {
-  font-size: 3.5rem;
+  font-size: 2.2rem;
   font-weight: 800;
-  margin-bottom: 24px;
+  color: #1A6B6B;
+  margin-bottom: 16px;
 }
 .join-banner p {
-  font-size: 1.25rem;
-  opacity: 0.9;
-  margin-bottom: 40px;
+  font-size: 1.1rem;
+  color: #5A7070;
+  margin-bottom: 32px;
+  line-height: 1.6;
 }
 .cta-btn.primary {
-  background: #D4F442;
-  color: #1A6B6B;
-  padding: 16px 40px;
+  background: #1A6B6B;
+  color: white;
+  padding: 12px 32px;
   border-radius: 50px;
-  font-weight: 800;
+  font-weight: 700;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: all 0.3s;
   display: inline-block;
 }
 .cta-btn.primary:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-  background: white;
+  background: #2B9090;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(26,107,107,0.15);
 }
 
 /* RESPONSIVE */
 @media (max-width: 1024px) {
-  .hero-container {
-    flex-direction: column;
-    text-align: center;
-  }
-  .hero-title { font-size: 3.5rem; }
-  .hero-visual { width: 100%; max-width: 600px; height: 350px; }
   .teams-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
-  .teams-hero { padding: 60px 0; }
-  .hero-title { font-size: 2.8rem; }
-  .category-title { font-size: 1.75rem; }
+  .hero-simple-content { 
+    text-align: center !important; 
+    display: flex !important; 
+    flex-direction: column !important; 
+    align-items: center !important; 
+    width: 100% !important;
+    padding-left: 0 !important;
+  }
+  .hero-title { 
+    font-size: 2.2rem !important; 
+    text-align: center !important; 
+    width: 100% !important;
+  }
+  .hero-subtitle { 
+    font-size: 0.9rem !important; 
+    text-align: center !important; 
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
   .teams-grid { grid-template-columns: 1fr; }
   .card-inner { height: 400px; border-radius: 24px; }
-  .join-banner h2 { font-size: 2.5rem; }
+  .join-banner h2 { font-size: 1.8rem; }
 }
 </style>
